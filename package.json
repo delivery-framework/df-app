@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build:css": "npx @tailwindcss/cli -i docs/css/input.css -o docs/css/output.css --minify",
-    "dev:css": "npx @tailwindcss/cli -i docs/css/input.css -o docs/css/output.css --watch"
+    "build:css": "npx @tailwindcss/cli -i site/css/input.css -o site/css/output.css --minify",
+    "dev:css": "npx @tailwindcss/cli -i site/css/input.css -o site/css/output.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.1",
