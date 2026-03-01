@@ -346,18 +346,7 @@
           <!-- Screenshot tabs -->
           <div role="tablist" class="tabs tabs-border">
 
-            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Kanban" checked="checked">
-            <div role="tabpanel" class="tab-content pt-6">
-              <div class="mockup-window bg-base-300 border border-base-300">
-                <picture>
-                  <source srcset="site/images/screenshots/platform-kanban.avif" type="image/avif">
-                  <img src="site/images/screenshots/platform-kanban.webp" alt="Kanban board view for state machine resources" class="w-full">
-                </picture>
-              </div>
-              <p class="mt-4 text-sm text-base-content/50">Kanban boards for state machine resources &mdash; automatic from any resource with a status workflow.</p>
-            </div>
-
-            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Detail Pages">
+            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Detail" checked="checked">
             <div role="tabpanel" class="tab-content pt-6">
               <div class="mockup-window bg-base-300 border border-base-300">
                 <picture>
@@ -365,10 +354,10 @@
                   <img src="site/images/screenshots/platform-detail.webp" alt="Detail page with field sections, tabs, and related records" class="w-full">
                 </picture>
               </div>
-              <p class="mt-4 text-sm text-base-content/50">Detail pages with field sections, tabs, and related records &mdash; generated from declarative resource definitions.</p>
+              <p class="mt-4 text-sm text-base-content/50">Detail pages with highlights, field sections, and relationship tabs &mdash; generated from declarative resource definitions.</p>
             </div>
 
-            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="List Pages">
+            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="List">
             <div role="tabpanel" class="tab-content pt-6">
               <div class="mockup-window bg-base-300 border border-base-300">
                 <picture>
@@ -390,6 +379,39 @@
               <p class="mt-4 text-sm text-base-content/50">Card views for visual browsing &mdash; toggle between table and card layouts per resource.</p>
             </div>
 
+            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Kanban">
+            <div role="tabpanel" class="tab-content pt-6">
+              <div class="mockup-window bg-base-300 border border-base-300">
+                <picture>
+                  <source srcset="site/images/screenshots/platform-kanban.avif" type="image/avif">
+                  <img src="site/images/screenshots/platform-kanban.webp" alt="Kanban board view for state machine resources" class="w-full">
+                </picture>
+              </div>
+              <p class="mt-4 text-sm text-base-content/50">Kanban boards for state machine resources &mdash; automatic from any resource with a status workflow.</p>
+            </div>
+
+            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Forms">
+            <div role="tabpanel" class="tab-content pt-6">
+              <div class="mockup-window bg-base-300 border border-base-300">
+                <picture>
+                  <source srcset="site/images/screenshots/platform-forms.avif" type="image/avif">
+                  <img src="site/images/screenshots/platform-forms.webp" alt="Create and edit forms with lookup inputs and validation" class="w-full">
+                </picture>
+              </div>
+              <p class="mt-4 text-sm text-base-content/50">Forms with searchable lookups, enum selects, and validation &mdash; introspected from resource definitions.</p>
+            </div>
+
+            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Attachments">
+            <div role="tabpanel" class="tab-content pt-6">
+              <div class="mockup-window bg-base-300 border border-base-300">
+                <picture>
+                  <source srcset="site/images/screenshots/platform-attachments.avif" type="image/avif">
+                  <img src="site/images/screenshots/platform-attachments.webp" alt="Photo gallery with drag-and-drop uploads and lightbox" class="w-full">
+                </picture>
+              </div>
+              <p class="mt-4 text-sm text-base-content/50">File attachments with drag-and-drop uploads, thumbnails, and lightbox &mdash; on any resource via one DSL line.</p>
+            </div>
+
             <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Comments">
             <div role="tabpanel" class="tab-content pt-6">
               <div class="mockup-window bg-base-300 border border-base-300">
@@ -401,7 +423,29 @@
               <p class="mt-4 text-sm text-base-content/50">Comments with @mentions and real-time collaboration &mdash; on any resource, no custom code required.</p>
             </div>
 
-            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Notifications">
+            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Activity">
+            <div role="tabpanel" class="tab-content pt-6">
+              <div class="mockup-window bg-base-300 border border-base-300">
+                <picture>
+                  <source srcset="site/images/screenshots/platform-activity.avif" type="image/avif">
+                  <img src="site/images/screenshots/platform-activity.webp" alt="Activity timeline with field-level change diffs" class="w-full">
+                </picture>
+              </div>
+              <p class="mt-4 text-sm text-base-content/50">Automatic audit trail with field-level diffs &mdash; every change tracked, no code required.</p>
+            </div>
+
+            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Actions">
+            <div role="tabpanel" class="tab-content pt-6">
+              <div class="mockup-window bg-base-300 border border-base-300">
+                <picture>
+                  <source srcset="site/images/screenshots/platform-actions.avif" type="image/avif">
+                  <img src="site/images/screenshots/platform-actions.webp" alt="State machine action buttons on detail page" class="w-full">
+                </picture>
+              </div>
+              <p class="mt-4 text-sm text-base-content/50">State machine actions with permission-aware buttons &mdash; declare transitions, the UI handles the rest.</p>
+            </div>
+
+            <input type="radio" name="screenshots" role="tab" class="tab text-xs" aria-label="Alerts">
             <div role="tabpanel" class="tab-content pt-6">
               <div class="mockup-window bg-base-300 border border-base-300">
                 <picture>
