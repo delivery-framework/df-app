@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <style>
+      <![CDATA[
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        text { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', Consolas, 'Courier New', monospace; }
+      ]]>
+    </style>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="topGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.05"/>
+      <stop offset="50%" stop-color="#00D4FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1350" fill="#0D1117"/>
+  <rect width="1080" height="500" fill="url(#topGlow)"/>
+
+  <!-- Terminal window chrome -->
+  <rect width="1080" height="44" fill="#161B22"/>
+  <circle cx="28" cy="22" r="6" fill="#F85149" opacity="0.8"/>
+  <circle cx="50" cy="22" r="6" fill="#D29922" opacity="0.8"/>
+  <circle cx="72" cy="22" r="6" fill="#3FB950" opacity="0.8"/>
+  <text x="540" y="28" fill="#484F58" font-size="13" text-anchor="middle">fusionframe.work</text>
+
+  <!-- Header: terminal prompt -->
+  <text x="80" y="95" fill="#00D4FF" font-size="18" font-weight="700">&gt; enterprise-ai --principles_</text>
+
+  <!-- Title -->
+  <text x="80" y="155" fill="#F0F6FC" font-size="42" font-weight="700">Can You Trust AI in Enterprise</text>
+  <text x="80" y="207" fill="#F0F6FC" font-size="42" font-weight="700">Software Development?</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="255" fill="#C9D1D9" font-size="22">5 principles for TRUSTED AI-assisted development</text>
+  <line x1="304" y1="260" x2="397" y2="260" stroke="#C9D1D9" stroke-width="2"/>
+
+  <!-- Divider -->
+  <line x1="80" y1="282" x2="1000" y2="282" stroke="#21262D" stroke-width="1"/>
+
+  <!-- SECTION 01: BEST PRACTICE SDLC -->
+  <rect x="60" y="305" width="960" height="140" rx="4" fill="#161B22"/>
+  <rect x="60" y="305" width="4" height="140" rx="2" fill="#00D4FF"/>
+  <text x="90" y="348" fill="#00D4FF" font-size="28" font-weight="700">01</text>
+  <text x="150" y="348" fill="#F0F6FC" font-size="24" font-weight="700">🚀 BEST PRACTICE SDLC</text>
+  <text x="90" y="388" fill="#C9D1D9" font-size="22">AI amplifies your process — or lack of it.</text>
+  <text x="90" y="418" fill="#C9D1D9" font-size="22">Without a solid SDLC, you're 10x productive at poor quality.</text>
+
+  <!-- SECTION 02: HUMAN IN CHARGE -->
+  <rect x="60" y="459" width="960" height="140" rx="4" fill="#161B22"/>
+  <rect x="60" y="459" width="4" height="140" rx="2" fill="#58A6FF"/>
+  <text x="90" y="502" fill="#58A6FF" font-size="28" font-weight="700">02</text>
+  <text x="150" y="502" fill="#F0F6FC" font-size="24" font-weight="700">👱 HUMAN IN CHARGE</text>
+  <text x="90" y="542" fill="#C9D1D9" font-size="22">Every step reviewed by an expert who owns the output.</text>
+  <text x="90" y="572" fill="#C9D1D9" font-size="22">Build guardrails and continuous improvement loops.</text>
+
+  <!-- SECTION 03: VERIFY, VERIFY, VERIFY -->
+  <rect x="60" y="613" width="960" height="140" rx="4" fill="#161B22"/>
+  <rect x="60" y="613" width="4" height="140" rx="2" fill="#3FB950"/>
+  <text x="90" y="656" fill="#3FB950" font-size="28" font-weight="700">03</text>
+  <text x="150" y="656" fill="#F0F6FC" font-size="24" font-weight="700">📋 VERIFY, VERIFY, VERIFY</text>
+  <text x="90" y="696" fill="#C9D1D9" font-size="22">Requirements as source of truth. TDD where appropriate.</text>
+  <text x="90" y="726" fill="#C9D1D9" font-size="22">Check for drift across specs, tests &amp; implementation.</text>
+
+  <!-- SECTION 04: LIMIT AI-WRITTEN CODE -->
+  <rect x="60" y="767" width="960" height="140" rx="4" fill="#161B22"/>
+  <rect x="60" y="767" width="4" height="140" rx="2" fill="#D29922"/>
+  <text x="90" y="810" fill="#D29922" font-size="28" font-weight="700">04</text>
+  <text x="150" y="810" fill="#F0F6FC" font-size="24" font-weight="700">🤖 LIMIT AI-WRITTEN CODE</text>
+  <text x="90" y="850" fill="#C9D1D9" font-size="22">Use frameworks to minimise custom code surface area.</text>
+  <text x="90" y="880" fill="#C9D1D9" font-size="22">Design specs first. Verify against idiomatic best practice.</text>
+
+  <!-- SECTION 05: EVERYTHING IN MARKDOWN + GIT -->
+  <rect x="60" y="921" width="960" height="140" rx="4" fill="#161B22"/>
+  <rect x="60" y="921" width="4" height="140" rx="2" fill="#F85149"/>
+  <text x="90" y="964" fill="#F85149" font-size="28" font-weight="700">05</text>
+  <text x="150" y="964" fill="#F0F6FC" font-size="24" font-weight="700">✅ EVERYTHING IN MARKDOWN + GIT</text>
+  <text x="90" y="1004" fill="#C9D1D9" font-size="22">All docs in Markdown &amp; Mermaid. Centralised Git repo.</text>
+  <text x="90" y="1034" fill="#C9D1D9" font-size="22">Non-negotiable for leveraging AI properly.</text>
+
+  <!-- Footer divider -->
+  <line x1="80" y1="1095" x2="1000" y2="1095" stroke="#21262D" stroke-width="1"/>
+
+  <!-- Footer: FusionFrame logo -->
+  <g transform="translate(510, 1115) scale(0.6)" filter="url(#glow)">
+    <line x1="50" y1="19" x2="50" y2="46" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="23.2" y1="65.5" x2="46.5" y2="52" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="76.8" y1="65.5" x2="53.5" y2="52" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
+    <polyline points="39.6,40 50,46 60.4,40" fill="none" stroke="#00D4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="36.1,46 46.5,52 46.5,64" fill="none" stroke="#00D4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="53.5,64 53.5,52 63.9,46" fill="none" stroke="#00D4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="50" cy="12" r="7" fill="none" stroke="#00D4FF" stroke-width="2"/>
+    <circle cx="50" cy="12" r="2.5" fill="#00D4FF"/>
+    <circle cx="17.1" cy="69" r="7" fill="none" stroke="#00D4FF" stroke-width="2"/>
+    <circle cx="17.1" cy="69" r="2.5" fill="#00D4FF"/>
+    <circle cx="82.9" cy="69" r="7" fill="none" stroke="#00D4FF" stroke-width="2"/>
+    <circle cx="82.9" cy="69" r="2.5" fill="#00D4FF"/>
+  </g>
+
+  <!-- Footer text -->
+  <text x="540" y="1195" fill="#F0F6FC" font-size="24" font-weight="700" text-anchor="middle">fusionframe.work</text>
+  <text x="540" y="1235" fill="#00D4FF" font-size="22" text-anchor="middle">SDLC + Models + Platform — one framework</text>
+  <text x="540" y="1272" fill="#C9D1D9" font-size="22" text-anchor="middle">Lower cost · Less risk · Better ROI</text>
+</svg>
