@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@source "../index.html";
+
+@theme {
+  --font-sans: "Inter Tight", system-ui, sans-serif;
+  --font-display: "Fraunces", serif;
+  --color-ink: #0B1220;
+}
