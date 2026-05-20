@@ -428,17 +428,22 @@
             </div>
 
             <div class="grid gap-3 md:grid-cols-2">
-              <input name="name" placeholder="Name" class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
-              <input name="email" type="email" placeholder="Work email" class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
+              <input name="name" placeholder="Name" required class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
+              <input name="email" type="email" placeholder="Work email" required class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
               <input name="organisation" placeholder="Organisation" class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
               <input name="role" placeholder="Role" class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
             </div>
-            <button type="submit" class="w-full inline-flex items-center justify-center rounded-full bg-ink py-4 text-base font-medium text-white hover:bg-slate-800 transition-colors">
+            <!-- Honeypot: hidden from humans, bots tend to fill it -->
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hidden" style="display:none !important;" aria-hidden="true" />
+            <button type="submit" id="scanSubmit" class="w-full inline-flex items-center justify-center rounded-full bg-ink py-4 text-base font-medium text-white hover:bg-slate-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
               <span data-scanform-submit>Get my readiness summary</span>
               <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
             </button>
             <div id="scanThanks" class="hidden rounded-2xl border p-4 text-sm leading-6 text-slate-800" style="border-color: var(--accent-200); background: var(--accent-50);">
-              Thank you. In production this would push the lead, score and responses into your CRM. The recommended next step is a tailored executive briefing.
+              Thank you — your readiness summary is on its way. The recommended next step is a tailored executive briefing; we'll be in touch shortly.
+            </div>
+            <div id="scanError" class="hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-800">
+              Something went wrong submitting the form. Please try again, or email us directly.
             </div>
           </form>
         </div>
@@ -721,6 +726,10 @@ const content = {
   },
 };
 
+/* ---------- Lead capture (Web3Forms) ---------- */
+// Get a free access key at https://web3forms.com (enter the email leads should go to).
+const WEB3FORMS_ACCESS_KEY = "be3fdadd-7e50-45ae-afa6-b4242e31a5c9";
+
 /* ---------- Scale labels (1–5) ---------- */
 const scaleLabels = {
   1: "Strongly disagree",
@@ -989,10 +998,60 @@ document.addEventListener('DOMContentLoaded', () => {
     positionIndicator(document.querySelector('.toggle-pill button.active'));
   });
 
-  $('#scanForm').addEventListener('submit', (e) => {
+  $('#scanForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    $('#scanThanks').classList.remove('hidden');
-    $('#scanThanks').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const form = e.currentTarget;
+    const btn = $('#scanSubmit');
+    const thanks = $('#scanThanks');
+    const error = $('#scanError');
+    error.classList.add('hidden');
+
+    const aud = document.body.dataset.audience;
+    const c = content[aud];
+    const fd = new FormData(form);
+
+    // Build a readable summary of the scan answers
+    const answers = $$('#questionList input[type=range]').map(r => {
+      const idx = Number(r.dataset.q);
+      return `Q${idx + 1}. ${c.scan.questions[idx]}\n   → ${r.value}/5 (${scaleLabels[r.value]})`;
+    }).join('\n');
+
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: `New ${aud === 'services' ? 'Productisation Opportunity' : 'Readiness'} Scan lead — ${fd.get('name') || 'Unknown'}`,
+      from_name: "FusionFrame scan",
+      name: fd.get('name') || '',
+      email: fd.get('email') || '',
+      organisation: fd.get('organisation') || '',
+      role: fd.get('role') || '',
+      audience: aud,
+      readiness_score: $('#scoreNumber').textContent,
+      readiness_band: $('#scoreLabel').textContent,
+      scan_responses: answers,
+      botcheck: fd.get('botcheck') ? true : false,
+    };
+
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.success) {
+        thanks.classList.remove('hidden');
+        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.querySelectorAll('input[name="name"],input[name="email"],input[name="organisation"],input[name="role"]').forEach(i => i.value = '');
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+    } catch (err) {
+      error.classList.remove('hidden');
+      error.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+      btn.disabled = false;
+    }
   });
 });
 </script>
