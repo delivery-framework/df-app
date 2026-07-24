@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fusion — AI-assisted delivery that actually ships.</title>
+<meta name="description" content="Fusion helps organisations ship working software — and services firms turn delivery IP into recurring product revenue. Built from real deliveries." />
+<link rel="canonical" href="https://fusionframe.work/redesign/" />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="/site/images/favicon.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Fusion" />
+<meta property="og:title" content="Fusion — AI-assisted delivery that actually ships." />
+<meta property="og:description" content="Fusion helps organisations ship working software — and services firms turn delivery IP into recurring product revenue. Built from real deliveries." />
+<meta property="og:url" content="https://fusionframe.work/redesign/" />
+<meta property="og:image" content="https://fusionframe.work/site/images/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fusion — AI-assisted delivery that actually ships." />
+<meta name="twitter:description" content="Fusion helps organisations ship working software — and services firms turn delivery IP into recurring product revenue. Built from real deliveries." />
+<meta name="twitter:image" content="https://fusionframe.work/site/images/og-image.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Fusion",
+  "url": "https://fusionframe.work/",
+  "slogan": "AI-assisted delivery that actually ships.",
+  "description": "Fusion helps organisations ship working software — and services firms turn delivery IP into recurring product revenue. Built from real deliveries."
+}
+</script>
+
+<link rel="stylesheet" href="/css/output.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-ktZLDqdblhaDYlH3Rd1PY.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+<style>
+  :root {
+    --accent-50:  #fffbeb;
+    --accent-100: #fef3c7;
+    --accent-200: #fde68a;
+    --accent-300: #fcd34d;
+    --accent-500: #f59e0b;
+    --accent-600: #d97706;
+    --accent-700: #b45309;
+    --accent-900: #78350f;
+    --hero-glow: rgba(217, 119, 6, 0.26);
+    --torus-1: #fcd34d; /* gold */
+    --torus-2: #fda4af; /* rose */
+    --torus-3: #fdba74; /* orange */
+  }
+  [data-audience="services"] {
+    --accent-50:  #ecfeff;
+    --accent-100: #cffafe;
+    --accent-200: #a5f3fc;
+    --accent-300: #67e8f9;
+    --accent-500: #06b6d4;
+    --accent-600: #0891b2;
+    --accent-700: #0e7490;
+    --accent-900: #164e63;
+    --hero-glow: rgba(8, 145, 178, 0.30);
+    --torus-1: #67e8f9; /* cyan */
+    --torus-2: #a78bfa; /* violet */
+    --torus-3: #f0abfc; /* fuchsia */
+  }
+
+  body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, .font-display { font-family: 'Fraunces', serif; font-feature-settings: 'ss01' on; letter-spacing: -0.02em; }
+
+  .text-accent-100 { color: var(--accent-100); }
+  .text-accent-200 { color: var(--accent-200); }
+  .text-accent-300 { color: var(--accent-300); }
+  .text-accent-600 { color: var(--accent-600); }
+  .text-accent-700 { color: var(--accent-700); }
+  .bg-accent-50  { background-color: var(--accent-50); }
+  .bg-accent-100 { background-color: var(--accent-100); }
+  .bg-accent-200 { background-color: var(--accent-200); }
+  .bg-accent-500 { background-color: var(--accent-500); }
+  .bg-accent-600 { background-color: var(--accent-600); }
+  .border-accent-200 { border-color: var(--accent-200); }
+  .border-accent-300 { border-color: var(--accent-300); }
+  .accent-color { accent-color: var(--accent-600); }
+
+  .hero-bg {
+    background:
+      radial-gradient(900px 520px at 76% 42%, var(--hero-glow), transparent 65%),
+      linear-gradient(135deg, #0B1220 0%, #101a2e 55%, #0B1220 100%);
+    transition: background 600ms ease;
+  }
+
+  /* Landing fills the viewport below the header — one clean screen, nothing peeking */
+  .hero-fill {
+    min-height: calc(100vh - 73px);
+    min-height: calc(100svh - 73px);
+  }
+
+  /* Fade animation for audience swap */
+  .swap-fade {
+    animation: swapFade 500ms ease both;
+  }
+  @keyframes swapFade {
+    0%   { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Initial fade-up on load */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealUp 700ms cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  @keyframes revealUp { to { opacity: 1; transform: translateY(0); } }
+  .reveal-1 { animation-delay: 80ms; }
+  .reveal-2 { animation-delay: 180ms; }
+  .reveal-3 { animation-delay: 280ms; }
+  .reveal-4 { animation-delay: 380ms; }
+
+  /* Marquee separator */
+  .ribbon-track {
+    display: flex;
+    gap: 3rem;
+    animation: ribbonScroll 38s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes ribbonScroll { to { transform: translateX(-50%); } }
+
+  /* Grain overlay */
+  .grain::before {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Underline link */
+  .ulink {
+    position: relative;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 280ms ease;
+  }
+  .ulink:hover { background-size: 0% 1px; background-position: 100% 100%; }
+
+  /* Card hover lift */
+  .lift { transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease; }
+  .lift:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px rgba(15,23,42,0.25); }
+
+  /* Range thumb */
+  input[type="range"] {
+    -webkit-appearance: none;
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    background: #0B1220;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(15,23,42,0.25);
+    transition: transform 160ms ease;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px; height: 18px;
+    background: #0B1220;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* Diagonal divider */
+  .diag-divider {
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+  }
+  .diag-divider::after {
+    content: "";
+    position: absolute;
+    inset: -20% -5% auto -5%;
+    height: 140%;
+    background: #0B1220;
+    transform: skewY(-2deg) translateY(20%);
+  }
+
+  /* Smooth scrolling */
+  html { scroll-behavior: smooth; }
+
+  /* Focus rings */
+  *:focus-visible { outline: 2px solid var(--accent-500); outline-offset: 2px; border-radius: 8px; }
+
+  /* Custom selection */
+  ::selection { background: var(--accent-200); color: #0B1220; }
+
+  /* Hide scrollbar on the ribbon */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Honour reduced motion across the page, not just the hero canvas */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ribbon-track { animation: none; }
+    .reveal, .swap-fade { animation: none; opacity: 1; transform: none; }
+    .lift, .lift:hover { transition: none; transform: none; }
+  }
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-950" data-audience="enterprise">
+
+<!-- ====================== HEADER ====================== -->
+<header class="sticky top-0 z-50 border-b border-white/10 bg-ink/85 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+    <a href="#top" class="flex items-center gap-2.5">
+      <!-- Logo mark: confinement arcs around a fusion core (follows the audience accent) -->
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--accent-300)">
+        <g transform="rotate(-18 16 16)">
+          <path d="M 13.15 26.63 A 11 11 0 0 1 13.15 5.37" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M 23.43 7.89 A 11 11 0 0 1 23.43 24.11" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+        <circle cx="16.4" cy="16" r="4.6" fill="#ffffff"/>
+      </svg>
+      <span class="text-xl font-semibold tracking-tight text-white">Fusion</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+      <a href="#why" class="hover:text-white ulink">Why Fusion</a>
+      <a href="#platform" class="hover:text-white ulink">Platform</a>
+      <a href="#scan" class="hover:text-white ulink">Assessment</a>
+      <a href="#offers" class="hover:text-white ulink">Engagement</a>
+    </nav>
+
+    <div class="flex items-center gap-3 md:gap-5">
+      <button id="audienceSwitch" class="whitespace-nowrap text-sm font-medium text-slate-300 transition-colors hover:text-white md:border-l md:border-white/15 md:pl-5" aria-label="Switch to the services firm view">
+        <span class="md:hidden" data-switch-short>Services</span>
+        <span class="hidden md:inline" data-switch-long>For services firms</span>
+      </button>
+      <a href="#scan" class="rounded-full bg-white px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-slate-100 md:px-5">
+        <span data-cta-header>Take the scan</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ====================== HERO ====================== -->
+<section class="hero-bg hero-fill grain relative flex items-center overflow-hidden">
+  <div class="absolute right-0 top-10 h-80 w-80 rounded-full blur-3xl" style="background: color-mix(in srgb, var(--accent-500) 22%, transparent);"></div>
+  <div class="absolute bottom-0 left-1/2 h-72 w-72 rounded-full blur-3xl" style="background: color-mix(in srgb, var(--accent-500) 14%, transparent);"></div>
+  <canvas id="heroCanvas" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; -webkit-mask-image:linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.8) 45%, #000 65%); mask-image:linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.8) 45%, #000 65%);"></canvas>
+
+  <div class="mx-auto w-full max-w-7xl px-5 py-12">
+    <div class="relative z-10 reveal reveal-2" data-swap-key="hero-left">
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-slate-200">
+        <i data-lucide="sparkles" class="h-4 w-4" style="color: var(--accent-300)"></i>
+        <span data-hero-eyebrow>SDLC + AI + code you own</span>
+      </div>
+      <h1 class="font-display max-w-4xl text-5xl font-medium text-white md:text-7xl leading-[0.98]">
+        <span data-hero-title>Finally master enterprise software development.</span>
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl" data-hero-sub>
+        Fusion combines a disciplined SDLC, AI across the whole lifecycle, and the business apps you'd otherwise build on a rented low-code platform — delivered as code you own. No per-seat licensing, no vendor lock-in. Built from real deliveries, not a whiteboard.
+      </p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <a href="#scan" class="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-base font-medium text-ink hover:bg-slate-100 transition-colors">
+          <span data-cta-primary>Take the readiness scan</span>
+          <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+        </a>
+        <a href="#platform" class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-4 text-base font-medium text-white hover:bg-white/20 transition-colors">
+          <span data-cta-secondary>Explore the platform</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== RIBBON ====================== -->
+<section class="overflow-hidden border-y border-slate-200 bg-white/60 py-4">
+  <div class="ribbon-track text-sm uppercase tracking-[0.3em] text-slate-400">
+    <div class="flex shrink-0 items-center gap-12">
+      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <i data-lucide="diamond" class="h-3 w-3"></i>
+      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <i data-lucide="diamond" class="h-3 w-3"></i>
+      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <i data-lucide="diamond" class="h-3 w-3"></i>
+    </div>
+    <div class="flex shrink-0 items-center gap-12">
+      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <i data-lucide="diamond" class="h-3 w-3"></i>
+      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <i data-lucide="diamond" class="h-3 w-3"></i>
+      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <i data-lucide="diamond" class="h-3 w-3"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== WHY ====================== -->
+<section id="why" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl" data-swap-key="why-intro">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);" data-why-eyebrow>Why the old model is breaking</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-why-title>
+        Traditional SDLC tools track activity. Fusion connects it to working software.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600" data-why-sub>
+        Requirements in Confluence. Work in Jira. Risks in a spreadsheet. Evidence assembled by hand before every release. It's the fragmentation, not the people, that's failing — in a Fusion engagement, your initiative runs on one record, so the trace holds from business intent to working software.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-2" data-problems></div>
+  </div>
+</section>
+
+<!-- ====================== CATEGORY SHIFT ====================== -->
+<section class="relative overflow-hidden bg-ink py-20 text-white grain">
+  <div class="absolute -right-20 -top-20 h-96 w-96 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
+  <div class="mx-auto max-w-7xl px-5 relative">
+    <div class="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+      <div data-swap-key="shift-intro">
+        <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);" data-shift-eyebrow>What changes</p>
+        <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-shift-title>
+          From managing process to shipping software.
+        </h2>
+      </div>
+      <div class="grid gap-4" data-shift-rows></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PLATFORM ====================== -->
+<section id="platform" class="bg-slate-50 py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end" data-swap-key="platform-intro">
+      <div class="max-w-3xl">
+        <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);" data-platform-eyebrow>Platform</p>
+        <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-platform-title>
+          One connected lifecycle. Six modules.
+        </h2>
+      </div>
+      <p class="max-w-md text-base leading-7 text-slate-600" data-platform-sub>
+        Fusion doesn't replace your delivery tools on day one. Day-to-day work continues in the tools your teams already use; through the engagement, we keep the record current alongside them — that's part of the work, not an integration you have to build. No per-seat licensing, so the record can spread without a procurement fight.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-modules></div>
+  </div>
+</section>
+
+<!-- ====================== TRANSFORMATION (Before/After for services; AI panel for enterprise) ====================== -->
+<section class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="rounded-[2rem] bg-gradient-to-br from-ink to-slate-800 p-8 text-white shadow-2xl md:p-12 relative overflow-hidden grain">
+      <div class="absolute right-0 top-0 h-64 w-64 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
+      <div class="relative grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center" data-swap-key="ai-panel">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);" data-ai-eyebrow>Where AI fits</p>
+          <h2 class="font-display mt-4 text-4xl font-medium tracking-tight" data-ai-title>AI beyond code.</h2>
+          <p class="mt-5 leading-8 text-slate-300" data-ai-sub>
+            Coding assistants cover one step of the lifecycle. We apply AI from requirements to working software — with conventions that keep the output reviewable work, not slop.
+          </p>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2" data-ai-grid></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ASSESSMENT ====================== -->
+<section id="scan" class="bg-slate-50 py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div data-swap-key="scan-intro">
+        <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);" data-scan-eyebrow>Free self-assessment</p>
+        <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-scan-title>Delivery Readiness Scan</h2>
+        <p class="mt-5 text-lg leading-8 text-slate-600" data-scan-sub>
+          Five questions, two minutes. See where fragmented tools, handoffs or weak traceability are costing you — and what to fix first.
+        </p>
+        <div class="mt-8 space-y-4" data-scan-bullets></div>
+      </div>
+
+      <div class="rounded-[2rem] border border-slate-200 bg-white shadow-xl">
+        <div class="p-6 md:p-8">
+          <form id="scanForm" class="space-y-7">
+            <div data-swap-key="scan-form-intro">
+              <h3 class="font-display text-2xl font-medium" data-scanform-title>Assess your current model</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Rate each statement from 1 (strongly disagree) to 5 (strongly agree).</p>
+            </div>
+            <div class="space-y-5" id="questionList"></div>
+
+            <div class="rounded-2xl bg-ink p-5 text-white shadow-xl">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <p class="text-sm uppercase tracking-[0.25em]" style="color: var(--accent-200);">Readiness score</p>
+                  <h3 id="scoreNumber" class="font-display mt-2 text-4xl font-medium">10/25</h3>
+                </div>
+                <div id="scoreLabel" class="rounded-full bg-white/10 px-4 py-2 text-sm font-medium" style="color: var(--accent-100);">Fragmented</div>
+              </div>
+              <p id="scoreSummary" class="mt-4 text-sm leading-6 text-slate-200"></p>
+            </div>
+
+            <div class="grid gap-3 md:grid-cols-2">
+              <input name="name" placeholder="Name" required class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
+              <input name="email" type="email" placeholder="Work email" required class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
+              <input name="organisation" placeholder="Organisation" class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
+              <input name="role" placeholder="Role" class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
+            </div>
+            <!-- Honeypot: hidden from humans, bots tend to fill it -->
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hidden" style="display:none !important;" aria-hidden="true" />
+            <button type="submit" id="scanSubmit" class="w-full inline-flex items-center justify-center rounded-full bg-ink py-4 text-base font-medium text-white hover:bg-slate-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+              <span data-scanform-submit>Get my readiness summary</span>
+              <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+            </button>
+            <div id="scanThanks" class="hidden rounded-2xl border p-4 text-sm leading-6 text-slate-800" style="border-color: var(--accent-200); background: var(--accent-50);">
+              Thanks — your summary is on its way. If the result raises questions, we'll offer 30 minutes to walk through it. No deck.
+            </div>
+            <div id="scanError" class="hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-800">
+              Something went wrong submitting the form. Please try again, or email us directly.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== OFFERS ====================== -->
+<section id="offers" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl" data-swap-key="offers-intro">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);" data-offers-eyebrow>How to start</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-offers-title>
+        Start with one real initiative.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600" data-offers-sub>
+        No transformation programme up front. Prove Fusion on one live initiative, then decide.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-5 lg:grid-cols-3" data-offers-cards></div>
+  </div>
+</section>
+
+<!-- ====================== FINAL CTA ====================== -->
+<section class="bg-ink py-20 text-white relative overflow-hidden grain">
+  <div class="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
+  <div class="mx-auto max-w-7xl px-5 text-center relative">
+    <i data-lucide="workflow" class="mx-auto h-10 w-10" style="color: var(--accent-200);"></i>
+    <h2 class="font-display mx-auto mt-6 max-w-4xl text-4xl font-medium tracking-tight md:text-5xl" data-final-title>
+      Can you trace what shipped last quarter back to why it was funded?
+    </h2>
+    <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300" data-final-sub>
+      It's a harder question than it should be. Five questions, honest answer — see where the trace breaks and what to fix first.
+    </p>
+    <a href="#scan" class="mt-9 inline-flex items-center rounded-full bg-white px-7 py-4 text-base font-medium text-ink hover:bg-slate-100 transition-colors">
+      <span data-final-cta>Take the readiness scan</span>
+      <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+    </a>
+  </div>
+</section>
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="border-t border-slate-200 bg-white py-10">
+  <div class="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 md:flex-row md:items-center">
+    <div>
+      <div class="text-lg font-semibold">Fusion</div>
+      <p class="mt-1 text-sm text-slate-500" data-footer-tagline>Your initiative on one record, from business intent to working software. Built from real deliveries, not mockups.</p>
+    </div>
+    <div class="flex flex-wrap gap-6 text-sm text-slate-500">
+      <a href="#why" class="hover:text-ink ulink">Why Fusion</a>
+      <a href="#platform" class="hover:text-ink ulink">Platform</a>
+      <a href="#scan" class="hover:text-ink ulink">Assessment</a>
+      <a href="#offers" class="hover:text-ink ulink">Engagement</a>
+    </div>
+  </div>
+  <div class="mx-auto max-w-7xl px-5 mt-6">
+    <p class="text-xs text-slate-400">© <span id="year"></span> Fusion. AI-assisted delivery that actually ships.</p>
+  </div>
+</footer>
+
+<!-- ====================== SCRIPT ====================== -->
+<script>
+/* ============================================================
+   Fusion — audience-driven content + state
+   ============================================================ */
+
+const content = {
+  enterprise: {
+    ctaHeader: "Take the scan",
+    ribbon: "Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software",
+    hero: {
+      eyebrow: "SDLC + AI + code you own",
+      title: "Finally master enterprise software development.",
+      sub: "Fusion combines a disciplined SDLC, AI across the whole lifecycle, and the business apps you'd otherwise build on a rented low-code platform — delivered as code you own. No per-seat licensing, no vendor lock-in. Built from real deliveries, not a whiteboard.",
+      ctaPrimary: "Take the readiness scan",
+      ctaSecondary: "Explore the platform",
+    },
+    why: {
+      eyebrow: "Why the old model is breaking",
+      title: "Traditional SDLC tools track activity. Fusion connects it to working software.",
+      sub: "Requirements in Confluence. Work in Jira. Risks in a spreadsheet. Evidence assembled by hand before every release. It's the fragmentation, not the people, that's failing — in a Fusion engagement, your initiative runs on one record, so the trace holds from business intent to working software.",
+      problems: [
+        "Discovery, design, development and deployment happen in disconnected tools. Context dies at every handoff.",
+        "Teams track activity, but can't trace work back to business outcomes.",
+        "Requirements, architecture, risk, assurance and release evidence drift apart.",
+        "AI is bolted on as a coding assistant instead of applied across the full lifecycle.",
+      ],
+    },
+    shift: {
+      eyebrow: "What changes",
+      title: "From managing process to shipping software.",
+      rows: [
+        ["Today", "A requirement changes and nobody updates the linked tests, risks or release gates. You find out at go-live."],
+        ["With Fusion", "The requirement, its tests, risks and release gates live on one record. Every change lands on the record's audit trail, next to everything linked to it."],
+        ["What it buys you", "Evidence assembled as you go, not the night before. One record, one context, from idea to production."],
+      ],
+    },
+    platform: {
+      eyebrow: "Platform",
+      title: "One connected lifecycle. Six modules.",
+      sub: "Fusion doesn't replace your delivery tools on day one. Day-to-day work continues in the tools your teams already use; through the engagement, we keep the record current alongside them — that's part of the work, not an integration you have to build. No per-seat licensing, so the record can spread without a procurement fight.",
+      modules: [
+        ["Discover", "compass", "Capture business intent, opportunity, user need, constraints and success measures before work fragments."],
+        ["Blueprint", "file-text", "Turn intent into requirements, options, architecture, dependencies, epics and delivery plans."],
+        ["Forge", "cpu", "Support backlog creation, build guidance, development orchestration and AI-assisted engineering work."],
+        ["Assure", "shield-check", "Connect requirements, risks, controls, tests, quality gates and release readiness from the beginning."],
+        ["Deploy", "rocket", "Coordinate deployment confidence, change impact, operational transition and release evidence."],
+        ["Signals", "line-chart", "Track delivery health, operational feedback, adoption, value progress and measurable impact."],
+      ],
+    },
+    ai: {
+      eyebrow: "Where AI fits",
+      title: "AI beyond code.",
+      sub: "Coding assistants cover one step of the lifecycle. We apply AI from requirements to working software — with conventions that keep the output reviewable work, not slop.",
+      grid: [
+        "Intent awareness", "Architecture context", "Dependency intelligence",
+        "Risk and control mapping", "Release readiness", "Impact signals",
+      ],
+    },
+    scan: {
+      eyebrow: "Free self-assessment",
+      title: "Delivery Readiness Scan",
+      sub: "Five questions, two minutes. See where fragmented tools, handoffs or weak traceability are costing you — and what to fix first.",
+      bullets: [
+        "Get a readiness score across five dimensions of your delivery model.",
+        "See where lifecycle integration, traceability or release evidence breaks down.",
+        "If the result raises questions, book 30 minutes and we'll walk through it — no deck.",
+      ],
+      formTitle: "Assess your current model",
+      submit: "Get my readiness summary",
+      questions: [
+        "Business intent is clearly captured and traceable through design, delivery and deployment.",
+        "Discovery, design, development and deployment run through connected tools, not disconnected silos.",
+        "Initiatives are measured by progress to outcome, not only by activity, velocity or milestones.",
+        "Risks, controls, test coverage and release readiness are linked back to requirements and solution design.",
+        "AI supports discovery, design, delivery, assurance and feedback — not just code generation.",
+      ],
+      bands: {
+        low:  { label: "Fragmented", summary: "Your delivery likely runs across disconnected tools, and the trace from intent to release breaks early. Start by connecting one initiative end to end." },
+        mid:  { label: "Partly connected", summary: "Useful foundations, but gaps in traceability, assurance or outcome visibility are still costing you. Fix the weakest link first." },
+        high: { label: "Connected", summary: "Your delivery model holds together. You're well placed to run a connected record across multiple initiatives and teams." },
+      },
+    },
+    offers: {
+      eyebrow: "How to start",
+      title: "Start with one real initiative.",
+      sub: "No transformation programme up front. Prove Fusion on one live initiative, then decide.",
+      cards: [
+        ["Readiness Assessment", "target", "Fixed-scope diagnostic", "Map where your delivery fragments, where the trace breaks, and the highest-value place to start."],
+        ["Delivery Pilot", "rocket", "4–6 weeks, one live initiative", "Run the initiative through discovery, blueprint and assurance — with evidence you can put in front of your exec team."],
+        ["Operating Model Sprint", "layers-3", "8–12 weeks, after the pilot", "Once the pilot proves value, redesign how work moves from idea to production across the organisation."],
+      ],
+    },
+    final: {
+      title: "Can you trace what shipped last quarter back to why it was funded?",
+      sub: "It's a harder question than it should be. Five questions, honest answer — see where the trace breaks and what to fix first.",
+      cta: "Take the readiness scan",
+    },
+    footerTagline: "Your initiative on one record, from business intent to working software. Built from real deliveries, not mockups.",
+  },
+
+  services: {
+    ctaHeader: "Take the scan",
+    ribbon: "Client work · Captured IP · Packaged offer · Recurring revenue",
+    hero: {
+      eyebrow: "For SIs, consultancies and professional services firms",
+      title: "Your services business already builds products. It just doesn't keep them.",
+      sub: "Capture the IP you already create, productise the solutions you keep rebuilding, and turn that into recurring revenue.",
+      ctaPrimary: "Take the opportunity scan",
+      ctaSecondary: "See how it works",
+    },
+    why: {
+      eyebrow: "Why services growth has a ceiling",
+      title: "Billable hours built your business. They'll also cap it.",
+      sub: "Every project creates IP — patterns, code, templates, know-how — and most of it walks out the door when the engagement ends. We grew a Salesforce consultancy to 130 people and sold it. Fusion is the operating model we wished we had.",
+      problems: [
+        "Revenue resets at the start of every project. Growth depends on more people, more hours.",
+        "Your IP is trapped in proposals, repos, old SOWs and three senior people's heads.",
+        "Consultants rebuild the same solution for different clients because starting over is easier than finding what you already built.",
+        "Productisation dies the moment a client project needs the team. Billable work always wins.",
+      ],
+    },
+    shift: {
+      eyebrow: "What changes",
+      title: "From selling hours to compounding IP.",
+      rows: [
+        ["Today", "The engagement ends, the team rolls off, and everything you learned goes with them."],
+        ["With Fusion", "A structured way to capture what you build, and to turn the patterns you're actually allowed to keep into offers you can sell again."],
+        ["What it buys you", "Same expertise. Better margins. Recurring revenue — the things acquirers actually pay for."],
+      ],
+    },
+    platform: {
+      eyebrow: "Platform",
+      title: "One operating model. Six modules. From delivery to product.",
+      sub: "Start where your IP already lives — repos, proposals, delivery docs, wikis — and work one repeatable problem at a time into a packaged offer with recurring economics.",
+      modules: [
+        ["Discover", "compass", "Surface repeatable customer problems across engagements and identify your strongest productisation candidates."],
+        ["Capture", "archive", "Pull together the IP your teams already create — artefacts, code, frameworks, templates, workflows and know-how."],
+        ["Blueprint", "file-text", "Shape captured IP into productised solutions: target customer, value proposition, packaging, commercial model."],
+        ["Package", "package", "Define the offer — fixed-scope service, accelerator, subscription, managed service — with the assets behind it."],
+        ["Operationalise", "workflow", "Embed productised delivery into how your firm sells, scopes, delivers and renews."],
+        ["Signals", "line-chart", "Track product adoption, margin uplift, reuse and recurring revenue contribution across the portfolio."],
+      ],
+    },
+    ai: {
+      eyebrow: "Where AI fits",
+      title: "Make every engagement build your product company.",
+      sub: "No magic. Fusion gives you a structured way to spot the problems you've solved more than three times, decide which engagements hold product-ready IP, and shape those assets into offers you can sell again.",
+      grid: [
+        "Pattern detection", "IP inventory", "Reusable asset mapping",
+        "Offer packaging assist", "Pricing model guidance", "Recurring revenue forecasting",
+      ],
+    },
+    scan: {
+      eyebrow: "Free self-assessment",
+      title: "Productisation Opportunity Scan",
+      sub: "Five questions. Find the repeatable problem most ready to become a productised, recurring offer — and see what's standing in the way.",
+      bullets: [
+        "Get a productisation readiness score across five dimensions.",
+        "See where delivery IP is leaking — and what's worth packaging.",
+        "If the result looks interesting, book 30 minutes to map your first product candidate.",
+      ],
+      formTitle: "Assess your productisation readiness",
+      submit: "Get my opportunity summary",
+      questions: [
+        "We solve similar customer problems across multiple clients.",
+        "Our delivery teams create reusable artefacts, templates, code or frameworks on every engagement.",
+        "One of our offers has been delivered end to end by someone other than the person who created it.",
+        "We have services that could be packaged into fixed-scope or subscription offers.",
+        "We have protected, non-billable time set aside to package what we build.",
+      ],
+      bands: {
+        low:  { label: "Hidden IP",                summary: "Your product potential is still trapped in delivery work. Start by capturing what you build before it walks out the door." },
+        mid:  { label: "Productisation ready",     summary: "You have repeatable problems and reusable assets. What's missing is a structured way to package them — and protected time to do it." },
+        high: { label: "Product company in waiting", summary: "The raw material is there. Pick one problem, prove the economics, then the next." },
+      },
+    },
+    offers: {
+      eyebrow: "How to start",
+      title: "Start with one repeatable problem.",
+      sub: "You don't need a transformation programme. Pick one problem you already solve well, prove the product economics, and do the next one.",
+      cards: [
+        ["Opportunity Assessment", "target", "Fixed-scope diagnostic", "Map your service portfolio, the IP you already hold, and the strongest first product candidate."],
+        ["First Product Sprint", "rocket", "6–8 week productisation", "Turn one repeatable problem into a packaged offer you can put in front of a client the following week, plus a build-ready blueprint for the product version."],
+        ["Services-to-Product Operating Model", "layers-3", "10–12 week embedding", "Embed IP capture, packaging, pricing and recurring revenue into how the firm sells, scopes and delivers."],
+      ],
+    },
+    final: {
+      title: "Which problem did your firm solve three times last year — and productise zero times?",
+      sub: "Take the opportunity scan and find the first repeatable problem worth turning into a product. If the result raises questions, book 30 minutes and we'll walk through it — no deck.",
+      cta: "Take the opportunity scan",
+    },
+    footerTagline: "Turn client work into product revenue — and capture what you build before it walks out the door.",
+  },
+};
+
+/* ---------- Lead capture (Web3Forms) ---------- */
+// Get a free access key at https://web3forms.com (enter the email leads should go to).
+const WEB3FORMS_ACCESS_KEY = "be3fdadd-7e50-45ae-afa6-b4242e31a5c9";
+
+/* ---------- Scale labels (1–5) ---------- */
+const scaleLabels = {
+  1: "Strongly disagree",
+  2: "Disagree",
+  3: "Neutral",
+  4: "Agree",
+  5: "Strongly agree",
+};
+
+/* ---------- Helpers ---------- */
+const $  = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+function setText(selector, value) {
+  $$(selector).forEach(el => el.textContent = value);
+}
+
+function lucideRefresh() {
+  if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+}
+
+/* ---------- Render functions ---------- */
+function renderHero(c) {
+  setText('[data-hero-eyebrow]', c.hero.eyebrow);
+  setText('[data-hero-title]', c.hero.title);
+  setText('[data-hero-sub]', c.hero.sub);
+  setText('[data-cta-primary]', c.hero.ctaPrimary);
+  setText('[data-cta-secondary]', c.hero.ctaSecondary);
+}
+
+function renderWhy(c) {
+  setText('[data-why-eyebrow]', c.why.eyebrow);
+  setText('[data-why-title]', c.why.title);
+  setText('[data-why-sub]', c.why.sub);
+  const target = $('[data-problems]');
+  target.innerHTML = c.why.problems.map(p => `
+    <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
+      <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
+        <i data-lucide="git-branch" class="h-5 w-5"></i>
+      </div>
+      <p class="text-base leading-7 text-slate-700">${p}</p>
+    </div>
+  `).join('');
+}
+
+function renderShift(c) {
+  setText('[data-shift-eyebrow]', c.shift.eyebrow);
+  setText('[data-shift-title]', c.shift.title);
+  const target = $('[data-shift-rows]');
+  target.innerHTML = c.shift.rows.map(([t, d]) => `
+    <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+      <h3 class="text-lg font-semibold" style="color: var(--accent-100);">${t}</h3>
+      <p class="mt-2 leading-7 text-slate-300">${d}</p>
+    </div>
+  `).join('');
+}
+
+function renderPlatform(c) {
+  setText('[data-platform-eyebrow]', c.platform.eyebrow);
+  setText('[data-platform-title]', c.platform.title);
+  setText('[data-platform-sub]', c.platform.sub);
+  const target = $('[data-modules]');
+  target.innerHTML = c.platform.modules.map(([title, icon, text]) => `
+    <div class="rounded-3xl border border-slate-200 bg-white shadow-sm lift">
+      <div class="p-6">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-white">
+          <i data-lucide="${icon}" class="h-6 w-6"></i>
+        </div>
+        <h3 class="font-display mt-5 text-xl font-medium">Fusion ${title}</h3>
+        <p class="mt-3 leading-7 text-slate-600">${text}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderAI(c) {
+  setText('[data-ai-eyebrow]', c.ai.eyebrow);
+  setText('[data-ai-title]', c.ai.title);
+  setText('[data-ai-sub]', c.ai.sub);
+  const target = $('[data-ai-grid]');
+  target.innerHTML = c.ai.grid.map(item => `
+    <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+      <i data-lucide="network" class="h-5 w-5" style="color: var(--accent-200);"></i>
+      <span class="text-sm font-medium">${item}</span>
+    </div>
+  `).join('');
+}
+
+function renderScan(c) {
+  setText('[data-scan-eyebrow]', c.scan.eyebrow);
+  setText('[data-scan-title]', c.scan.title);
+  setText('[data-scan-sub]', c.scan.sub);
+  setText('[data-scanform-title]', c.scan.formTitle);
+  setText('[data-scanform-submit]', c.scan.submit);
+
+  // Bullets
+  const bullets = $('[data-scan-bullets]');
+  bullets.innerHTML = c.scan.bullets.map(b => `
+    <div class="flex gap-3">
+      <i data-lucide="check-circle-2" class="mt-1 h-5 w-5 shrink-0 text-ink"></i>
+      <p class="leading-7 text-slate-700">${b}</p>
+    </div>
+  `).join('');
+
+  // Questions
+  const qList = $('#questionList');
+  qList.innerHTML = c.scan.questions.map((q, idx) => `
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <label class="block text-sm font-medium leading-6 text-slate-800">${q}</label>
+      <div class="mt-4 flex items-center gap-3">
+        <span class="text-xs text-slate-500">1</span>
+        <input type="range" min="1" max="5" value="2" data-q="${idx}" class="w-full accent-color" aria-valuetext="${scaleLabels[2]}" />
+        <span class="text-xs text-slate-500">5</span>
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-semibold shadow-sm" data-q-out="${idx}">2</span>
+      </div>
+      <p class="mt-2 text-xs font-medium text-slate-600" data-q-label="${idx}">${scaleLabels[2]}</p>
+    </div>
+  `).join('');
+
+  // wire ranges
+  qList.querySelectorAll('input[type=range]').forEach(r => {
+    r.addEventListener('input', () => {
+      const out = qList.querySelector(`[data-q-out="${r.dataset.q}"]`);
+      const lbl = qList.querySelector(`[data-q-label="${r.dataset.q}"]`);
+      const text = scaleLabels[r.value];
+      out.textContent = r.value;
+      lbl.textContent = text;
+      r.setAttribute('aria-valuetext', text);
+      updateScore();
+    });
+  });
+
+  updateScore();
+}
+
+function updateScore() {
+  const aud = document.body.dataset.audience;
+  const c = content[aud];
+  const ranges = $$('#questionList input[type=range]');
+  const total = ranges.reduce((s, r) => s + Number(r.value), 0);
+  $('#scoreNumber').textContent = `${total}/25`;
+  let band = c.scan.bands.low;
+  if (total >= 18) band = c.scan.bands.high;
+  else if (total >= 12) band = c.scan.bands.mid;
+  $('#scoreLabel').textContent = band.label;
+  $('#scoreSummary').textContent = band.summary;
+}
+
+function renderOffers(c) {
+  setText('[data-offers-eyebrow]', c.offers.eyebrow);
+  setText('[data-offers-title]', c.offers.title);
+  setText('[data-offers-sub]', c.offers.sub);
+  const target = $('[data-offers-cards]');
+  target.innerHTML = c.offers.cards.map(([title, icon, price, text]) => `
+    <div class="rounded-3xl border border-slate-200 bg-slate-50 shadow-sm lift">
+      <div class="p-6">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+          <i data-lucide="${icon}" class="h-6 w-6"></i>
+        </div>
+        <h3 class="font-display mt-5 text-xl font-medium">${title}</h3>
+        <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">${price}</p>
+        <p class="mt-4 leading-7 text-slate-600">${text}</p>
+        <a href="#scan" class="mt-5 inline-flex items-center text-sm font-semibold text-ink">
+          Start here <i data-lucide="chevron-right" class="ml-1 h-4 w-4"></i>
+        </a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderFinalAndChrome(c) {
+  setText('[data-final-title]', c.final.title);
+  setText('[data-final-sub]', c.final.sub);
+  setText('[data-final-cta]', c.final.cta);
+  setText('[data-footer-tagline]', c.footerTagline);
+  setText('[data-cta-header]', c.ctaHeader);
+  // Ribbon - update all instances
+  $$('[data-ribbon]').forEach(el => el.textContent = c.ribbon);
+}
+
+/* ---------- Audience switch ---------- */
+function setAudience(aud, opts = {}) {
+  document.body.dataset.audience = aud;
+  const c = content[aud];
+  if (typeof heroParticles !== 'undefined' && heroParticles) heroParticles.refreshColors();
+
+  // Animate the swappable groups
+  const swapTargets = $$('[data-swap-key]');
+  if (!opts.initial) {
+    swapTargets.forEach(el => {
+      el.classList.remove('swap-fade');
+      // force reflow so animation can replay
+      void el.offsetWidth;
+      el.classList.add('swap-fade');
+    });
+  }
+
+  renderHero(c);
+  renderWhy(c);
+  renderShift(c);
+  renderPlatform(c);
+  renderAI(c);
+  renderScan(c);
+  renderOffers(c);
+  renderFinalAndChrome(c);
+
+  // Header switch always points at the other audience
+  const sw = $('#audienceSwitch');
+  if (sw) {
+    const toServices = aud === 'enterprise';
+    setText('[data-switch-short]', toServices ? 'Services' : 'Enterprise');
+    setText('[data-switch-long]', toServices ? 'For services firms' : 'For enterprise teams');
+    sw.setAttribute('aria-label', toServices ? 'Switch to the services firm view' : 'Switch to the enterprise view');
+  }
+
+  lucideRefresh();
+}
+
+/* ---------- Hero tokamak (continuous field lines on a spinning torus) ---------- */
+const heroParticles = (() => {
+  const canvas = $('#heroCanvas');
+  if (!canvas || !canvas.getContext) return null;
+  const ctx = canvas.getContext('2d');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const R = 3.0, TUBE = 0.8; // torus major/minor radius, world units
+  const WINDS = 6;           // poloidal turns per toroidal loop — each line is a closed (1,6) torus knot
+  const LINES = Math.min(window.innerWidth, window.innerHeight) < 768 ? 14 : 26;
+  const SEGS = 220;          // sample points per line
+  const BANDS = 5, WLVL = 4; // depth bands × wave-brightness levels = style LUT buckets
+  const bandA = [0.08, 0.12, 0.18, 0.3, 0.5];  // far rim floor stays ≥ old baseline
+  const bandW = [1, 1.05, 1.15, 1.35, 1.65];
+  const INTRO = 2.5;         // ignition draw-in on first view, seconds
+  let W = 0, H = 0, raf = 0, visible = false, last = 0, colors = [], lut = [];
+  let t0 = null, lastT = 30; // animation clock starts on first visible frame
+
+  const lines = [];
+  for (let i = 0; i < LINES; i++) {
+    lines.push({
+      th0: (i / LINES) * Math.PI * 2,
+      rr: TUBE * (0.97 + Math.random() * 0.06),
+      c: i % 3,
+      p1: i * 2.399, p2: i * 4.71,  // golden-angle wave phases so bands don't align across lines
+      delay: (i / LINES) * 1.3,     // ignition stagger sweeps around the ring
+    });
+  }
+
+  function hexToRgb(hex) {
+    const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+    if (!m) return '71,85,105';
+    const n = parseInt(m[1], 16);
+    return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`;
+  }
+
+  function refreshColors() {
+    const cs = getComputedStyle(document.body);
+    colors = ['--torus-1', '--torus-2', '--torus-3'].map(v => hexToRgb(cs.getPropertyValue(v)));
+    // lut[color][band*WLVL+level]: continuous-ish depth grading × traveling-wave brightness
+    lut = colors.map(c => {
+      const arr = [];
+      for (let b = 0; b < BANDS; b++) {
+        for (let l = 0; l < WLVL; l++) {
+          const mult = 0.35 + 0.9 * (l + 0.5) / WLVL;
+          arr.push(`rgba(${c},${Math.min(1, bandA[b] * mult).toFixed(3)})`);
+        }
+      }
+      return arr;
+    });
+  }
+
+  const ptx = new Float32Array(SEGS + 1);
+  const pty = new Float32Array(SEGS + 1);
+  const ptd = new Float32Array(SEGS + 1); // normalized depth per point
+  const ptbk = new Uint8Array(SEGS + 1);  // style-LUT bucket per point
+
+  // --- flare: every 6-9s a hot comet races one full loop of a random field line ---
+  const FLARE_DUR = 2.4, TAIL = 0.16;
+  let flareLine = null, flareStart = 0, flareEnv = 0, flareHead = 0, nextFlareAt = 4.2;
+
+  function updateFlare(time) {
+    if (!flareLine && time >= nextFlareAt) {
+      flareLine = lines[(Math.random() * LINES) | 0];
+      flareStart = nextFlareAt; // anchor to schedule so a late frame lands mid-envelope
+    }
+    if (flareLine) {
+      const u = (time - flareStart) / FLARE_DUR;
+      if (u >= 1) {
+        flareLine = null; flareEnv = 0;
+        nextFlareAt = Math.max(flareStart + 6 + Math.random() * 3, time + 4);
+      } else {
+        flareEnv = u < 0.15 ? Math.sin((u / 0.15) * Math.PI / 2) : Math.pow(1 - (u - 0.15) / 0.85, 1.4);
+        flareHead = u; // the head runs exactly one loop over the flare
+      }
+    }
+  }
+
+  const easeOut = u => 1 - Math.pow(1 - u, 3);
+
+  // Full redraw every frame. Two brightness waves travel along each closed field
+  // line (quantized into the style LUT so strokes stay batched), depth grades both
+  // alpha and width, and the whole torus drifts a few pixels like it's floating.
+  function drawFrame(time) {
+    lastT = time;
+    ctx.clearRect(0, 0, W, H);
+    const A = 0.75 + 0.05 * Math.sin(time * 0.24); // precession wobble
+    const cosA = Math.cos(A), sinA = Math.sin(A);
+    const spin = time * 0.132, flow = time * 0.6;
+    const s = Math.min(W, H) / 7.8;
+    const cx = W * 0.74 + 4 * Math.sin(time * 0.21) + 3 * Math.sin(time * 0.087);
+    const cy = H * 0.45 + 3.5 * Math.sin(time * 0.16 + 1.3) + 2.5 * Math.sin(time * 0.06);
+    const wt1 = time * 0.55, wt2 = time * 0.35;
+    ctx.globalCompositeOperation = 'lighter'; // crossings add up like glow
+    for (const ln of lines) {
+      // ignition: each line draws itself in once, with a bright ember at the tip
+      const frac = time >= INTRO + 1.3 ? 1 : easeOut(Math.min(1, Math.max(0, (time - ln.delay) / 1.2)));
+      if (frac === 0) continue;
+      const jMax = Math.round(SEGS * frac);
+      let used = 0;
+      for (let j = 0; j <= jMax; j++) {
+        const t = (j / SEGS) * Math.PI * 2;
+        const th = ln.th0 + spin + t;
+        const ph = flow + WINDS * t;
+        const ring = R + ln.rr * Math.cos(ph);
+        const x = ring * Math.cos(th);
+        const z = ring * Math.sin(th);
+        const y = ln.rr * Math.sin(ph);
+        ptx[j] = cx + x * s;
+        pty[j] = cy + (z * sinA - y * cosA) * s;
+        const d = (y * sinA + z * cosA) - R * Math.sin(th) * cosA; // depth vs tube centreline
+        const dn = Math.min(1, Math.max(0, (d + 0.9) / 1.8));
+        ptd[j] = dn;
+        let band = (dn * BANDS) | 0; if (band >= BANDS) band = BANDS - 1;
+        // two waves traveling in opposite directions; integer frequencies keep the wrap seamless
+        const w = 0.8 + 0.45 * (0.5 * Math.sin(2 * t - wt1 + ln.p1) + 0.5 * Math.sin(3 * t + wt2 + ln.p2));
+        let lvl = ((w - 0.35) / 0.9 * WLVL) | 0;
+        if (lvl < 0) lvl = 0; else if (lvl >= WLVL) lvl = WLVL - 1;
+        const bk = band * WLVL + lvl;
+        ptbk[j] = bk;
+        used |= 1 << bk;
+      }
+      const style = lut[ln.c];
+      for (let bk = 0; bk < BANDS * WLVL; bk++) {
+        if (!((used >> bk) & 1)) continue;
+        ctx.strokeStyle = style[bk];
+        ctx.lineWidth = bandW[bk >> 2];
+        ctx.beginPath();
+        for (let j = 0; j < jMax; j++) {
+          if (ptbk[j] === bk) { ctx.moveTo(ptx[j], pty[j]); ctx.lineTo(ptx[j + 1], pty[j + 1]); }
+        }
+        ctx.stroke();
+      }
+      if (frac > 0.02 && frac < 1) {
+        const tipX = ptx[jMax], tipY = pty[jMax];
+        const g = ctx.createRadialGradient(tipX, tipY, 0, tipX, tipY, 6);
+        g.addColorStop(0, 'rgba(235,253,255,0.9)');
+        g.addColorStop(0.4, `rgba(${colors[ln.c]},0.5)`);
+        g.addColorStop(1, `rgba(${colors[ln.c]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(tipX, tipY, 6, 0, Math.PI * 2); ctx.fill();
+      }
+      if (ln === flareLine && flareEnv > 0.01 && frac === 1) drawFlare();
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  // Comet riding the flared line: depth-aware tapered tail + hot gradient head.
+  // Uses the line's freshly computed points, so it must run inside that line's turn.
+  function drawFlare() {
+    const headJ = flareHead * SEGS;
+    const tailN = TAIL * SEGS;
+    for (let k = 0; k < tailN; k++) {
+      let j = Math.floor(headJ - k);
+      if (j < 0) j += SEGS; // wrap on the closed line
+      const j1 = j + 1 > SEGS ? 0 : j + 1;
+      const taper = Math.pow(1 - k / tailN, 2);
+      const dg = 0.35 + 0.65 * ptd[j]; // fade when the comet passes behind the torus
+      const aa = flareEnv * taper * dg;
+      ctx.strokeStyle = `rgba(${colors[flareLine.c]},${(aa * 0.22).toFixed(3)})`;
+      ctx.lineWidth = 7;
+      ctx.beginPath(); ctx.moveTo(ptx[j], pty[j]); ctx.lineTo(ptx[j1], pty[j1]); ctx.stroke();
+      ctx.strokeStyle = `rgba(220,250,255,${(aa * 0.6).toFixed(3)})`;
+      ctx.lineWidth = 1.8;
+      ctx.beginPath(); ctx.moveTo(ptx[j], pty[j]); ctx.lineTo(ptx[j1], pty[j1]); ctx.stroke();
+    }
+    const hj = Math.min(SEGS, Math.floor(headJ));
+    const hx = ptx[hj], hy = pty[hj];
+    const dg = 0.35 + 0.65 * ptd[hj];
+    const g = ctx.createRadialGradient(hx, hy, 0, hx, hy, 9);
+    g.addColorStop(0, `rgba(240,254,255,${(0.95 * flareEnv * dg).toFixed(3)})`);
+    g.addColorStop(0.45, `rgba(${colors[flareLine.c]},${(0.55 * flareEnv * dg).toFixed(3)})`);
+    g.addColorStop(1, `rgba(${colors[flareLine.c]},0)`);
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(hx, hy, 9, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // Time-based clock (not frame-counted): identical speed at any refresh rate.
+  function step() {
+    const now = performance.now() / 1000;
+    if (t0 === null) t0 = now;
+    const time = now - t0;
+    updateFlare(time);
+    drawFrame(time);
+  }
+
+  // cap at ~60fps so 120Hz displays don't run double speed at double cost
+  function loop(ts) {
+    raf = requestAnimationFrame(loop);
+    if (ts - last < 15) return;
+    last = ts;
+    step();
+  }
+  function start() { if (!raf && visible && !reduced.matches) raf = requestAnimationFrame(loop); }
+  function stop() { cancelAnimationFrame(raf); raf = 0; }
+
+  function resize() {
+    // iOS fires resize while scrolling (URL bar collapse); skip if dimensions are unchanged
+    if (canvas.clientWidth === W && canvas.clientHeight === H && W > 0) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (reduced.matches) drawFrame(30);       // static, post-ignition frame
+    else if (t0 !== null) drawFrame(lastT);
+    // else: stay blank so the ignition draw-in is the first thing seen
+  }
+
+  refreshColors();
+  resize();
+  // ResizeObserver catches hero height changes with no window resize (web font load, content swap)
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(resize).observe(canvas);
+  else window.addEventListener('resize', resize);
+
+  new IntersectionObserver(entries => {
+    visible = entries[0].isIntersecting;
+    visible ? start() : stop();
+  }).observe(canvas.parentElement);
+
+  if (reduced.addEventListener) reduced.addEventListener('change', () => {
+    stop();
+    if (reduced.matches) drawFrame(30);
+    else start();
+  });
+
+  return {
+    refreshColors: () => {
+      refreshColors();
+      if (!raf) drawFrame(reduced.matches || t0 === null ? 30 : lastT); // repaint in the new accent
+    },
+  };
+})();
+
+/* ---------- Wire up ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  $('#year').textContent = new Date().getFullYear();
+  setAudience('enterprise', { initial: true });
+
+  $('#audienceSwitch').addEventListener('click', () => {
+    setAudience(document.body.dataset.audience === 'enterprise' ? 'services' : 'enterprise');
+  });
+
+  $('#scanForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const btn = $('#scanSubmit');
+    const thanks = $('#scanThanks');
+    const error = $('#scanError');
+    error.classList.add('hidden');
+
+    const aud = document.body.dataset.audience;
+    const c = content[aud];
+    const fd = new FormData(form);
+
+    // Build a readable summary of the scan answers
+    const answers = $$('#questionList input[type=range]').map(r => {
+      const idx = Number(r.dataset.q);
+      return `Q${idx + 1}. ${c.scan.questions[idx]}\n   → ${r.value}/5 (${scaleLabels[r.value]})`;
+    }).join('\n');
+
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: `New ${aud === 'services' ? 'Productisation Opportunity' : 'Readiness'} Scan lead — ${fd.get('name') || 'Unknown'}`,
+      from_name: "Fusion scan",
+      name: fd.get('name') || '',
+      email: fd.get('email') || '',
+      organisation: fd.get('organisation') || '',
+      role: fd.get('role') || '',
+      audience: aud,
+      readiness_score: $('#scoreNumber').textContent,
+      readiness_band: $('#scoreLabel').textContent,
+      scan_responses: answers,
+      botcheck: fd.get('botcheck') ? true : false,
+    };
+
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.success) {
+        thanks.classList.remove('hidden');
+        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.querySelectorAll('input[name="name"],input[name="email"],input[name="organisation"],input[name="role"]').forEach(i => i.value = '');
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+    } catch (err) {
+      error.classList.remove('hidden');
+      error.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+      btn.disabled = false;
+    }
+  });
+});
+</script>
+
+</body>
+</html>
