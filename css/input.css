@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @source "../index.html";
+@source "../redesign/index.html";
 
 @theme {
   --font-sans: "Inter Tight", system-ui, sans-serif;
