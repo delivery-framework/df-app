@@ -134,7 +134,7 @@
   .ribbon-track {
     display: flex;
     gap: 3rem;
-    animation: ribbonScroll 38s linear infinite;
+    animation: ribbonScroll 50s linear infinite;
     white-space: nowrap;
   }
   @keyframes ribbonScroll { to { transform: translateX(-50%); } }
@@ -298,20 +298,24 @@
 <!-- ====================== RIBBON ====================== -->
 <section class="overflow-hidden border-y border-slate-200 bg-white/60 py-4">
   <div class="ribbon-track text-sm uppercase tracking-[0.3em] text-slate-400">
-    <div class="flex shrink-0 items-center gap-12">
-      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+    <div class="flex shrink-0 items-center gap-12" data-ribbon-group>
+      <span>Discovery — Problem statement · Stakeholders &amp; personas · Current state walkthroughs · Current state workflows</span>
       <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <span>Design — Workflow value chain · Domain model · Workflow spec · Resource spec</span>
       <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <span>Development — Code · System test plan · System test results · UAT task · UAT results</span>
+      <i data-lucide="diamond" class="h-3 w-3"></i>
+      <span>Deploy — PR review · CI/CD</span>
       <i data-lucide="diamond" class="h-3 w-3"></i>
     </div>
-    <div class="flex shrink-0 items-center gap-12">
-      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+    <div class="flex shrink-0 items-center gap-12" data-ribbon-group>
+      <span>Discovery — Problem statement · Stakeholders &amp; personas · Current state walkthroughs · Current state workflows</span>
       <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <span>Design — Workflow value chain · Domain model · Workflow spec · Resource spec</span>
       <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span data-ribbon>Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software</span>
+      <span>Development — Code · System test plan · System test results · UAT task · UAT results</span>
+      <i data-lucide="diamond" class="h-3 w-3"></i>
+      <span>Deploy — PR review · CI/CD</span>
       <i data-lucide="diamond" class="h-3 w-3"></i>
     </div>
   </div>
@@ -507,7 +511,13 @@
 const content = {
   enterprise: {
     ctaHeader: "Take the scan",
-    ribbon: "Problem statement · Stakeholder analysis · Domain model · Specs · Tests · Working software",
+    // the four SDLC phases, in delivery order
+    ribbon: [
+      "Discovery — Problem statement · Stakeholders & personas · Current state walkthroughs · Current state workflows",
+      "Design — Workflow value chain · Domain model · Workflow spec · Resource spec",
+      "Development — Code · System test plan · System test results · UAT task · UAT results",
+      "Deploy — PR review · CI/CD",
+    ],
     hero: {
       eyebrow: "SDLC + AI + code you own",
       title: "Finally master enterprise software development.",
@@ -601,7 +611,11 @@ const content = {
 
   services: {
     ctaHeader: "Take the scan",
-    ribbon: "Client work · Captured IP · Packaged offer · Recurring revenue",
+    ribbon: [
+      "Client work · Captured IP · Packaged offer · Recurring revenue",
+      "Client work · Captured IP · Packaged offer · Recurring revenue",
+      "Client work · Captured IP · Packaged offer · Recurring revenue",
+    ],
     hero: {
       eyebrow: "For SIs, consultancies and professional services firms",
       title: "Your services business already builds products. It just doesn't keep them.",
@@ -874,8 +888,12 @@ function renderFinalAndChrome(c) {
   setText('[data-final-cta]', c.final.cta);
   setText('[data-footer-tagline]', c.footerTagline);
   setText('[data-cta-header]', c.ctaHeader);
-  // Ribbon - update all instances
-  $$('[data-ribbon]').forEach(el => el.textContent = c.ribbon);
+  // Ribbon: one span per segment, diamond separators, both marquee halves identical
+  $$('[data-ribbon-group]').forEach(g => {
+    g.innerHTML = c.ribbon.map(r =>
+      `<span>${r.replace(/&/g, '&amp;')}</span><i data-lucide="diamond" class="h-3 w-3"></i>`
+    ).join('');
+  });
 }
 
 /* ---------- Audience switch ---------- */
