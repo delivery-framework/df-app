@@ -2,6 +2,7 @@
 
 @source "../index.html";
 @source "../redesign/index.html";
+@source "../redesign/services/index.html";
 
 @theme {
   --font-sans: "Inter Tight", system-ui, sans-serif;

@@ -63,20 +63,6 @@
     --torus-2: #fda4af; /* rose */
     --torus-3: #fdba74; /* orange */
   }
-  [data-audience="services"] {
-    --accent-50:  #ecfeff;
-    --accent-100: #cffafe;
-    --accent-200: #a5f3fc;
-    --accent-300: #67e8f9;
-    --accent-500: #06b6d4;
-    --accent-600: #0891b2;
-    --accent-700: #0e7490;
-    --accent-900: #164e63;
-    --hero-glow: rgba(8, 145, 178, 0.30);
-    --torus-1: #67e8f9; /* cyan */
-    --torus-2: #a78bfa; /* violet */
-    --torus-3: #f0abfc; /* fuchsia */
-  }
 
   body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   h1, h2, h3, .font-display { font-family: 'Fraunces', serif; font-feature-settings: 'ss01' on; letter-spacing: -0.02em; }
@@ -110,11 +96,6 @@
   }
 
   /* Fade animation for audience swap */
-  .swap-fade {
-    animation: swapFade 500ms ease both;
-  }
-  @keyframes swapFade {
-    0%   { opacity: 0; transform: translateY(8px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
@@ -129,15 +110,6 @@
   .reveal-2 { animation-delay: 180ms; }
   .reveal-3 { animation-delay: 280ms; }
   .reveal-4 { animation-delay: 380ms; }
-
-  /* Marquee separator */
-  .ribbon-track {
-    display: flex;
-    gap: 3rem;
-    animation: ribbonScroll 50s linear infinite;
-    white-space: nowrap;
-  }
-  @keyframes ribbonScroll { to { transform: translateX(-50%); } }
 
   /* Grain overlay */
   .grain::before {
@@ -163,32 +135,6 @@
   .lift { transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease; }
   .lift:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px rgba(15,23,42,0.25); }
 
-  /* Range thumb */
-  input[type="range"] {
-    -webkit-appearance: none;
-    height: 4px;
-    background: #e2e8f0;
-    border-radius: 999px;
-    outline: none;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 18px; height: 18px;
-    background: #0B1220;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(15,23,42,0.25);
-    transition: transform 160ms ease;
-  }
-  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
-  input[type="range"]::-moz-range-thumb {
-    width: 18px; height: 18px;
-    background: #0B1220;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
-  }
-
   /* Diagonal divider */
   .diag-divider {
     position: relative;
@@ -213,20 +159,411 @@
   /* Custom selection */
   ::selection { background: var(--accent-200); color: #0B1220; }
 
-  /* Hide scrollbar on the ribbon */
-  .no-scrollbar::-webkit-scrollbar { display: none; }
+  /* Speedrun timeline */
+  .run-layout { display: grid; gap: 2.5rem; align-items: start; }
+  .run-aside { min-width: 0; }
+  @media (min-width: 1024px) {
+    .run-layout { grid-template-columns: 1.35fr 0.65fr; }
+    .run-aside { position: sticky; top: 7rem; }
+  }
+  .run-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    column-gap: 1.25rem;
+    padding-bottom: 2.25rem;
+  }
+  .run-step:last-child { padding-bottom: 0; }
+  /* The rail joins each node to the next */
+  .run-step::before {
+    content: "";
+    position: absolute;
+    left: 1.4375rem;
+    top: 3.25rem;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-300), #e2e8f0);
+  }
+  .run-step:last-child::before { display: none; }
+
+  .run-node {
+    width: 3rem; height: 3rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 9999px;
+    background: #0B1220; color: #fff;
+    font-weight: 600; font-size: 0.9375rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .run-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.625rem; }
+  .run-title { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; }
+  .run-dur {
+    font-size: 0.75rem; font-weight: 600; white-space: nowrap;
+    padding: 0.2rem 0.6rem; border-radius: 9999px;
+    background: var(--accent-50); color: var(--accent-700);
+    border: 1px solid var(--accent-200);
+  }
+  .run-split {
+    margin-left: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8125rem; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: #64748b;
+  }
+  .run-text { margin-top: 0.5rem; line-height: 1.75; color: #475569; }
+  .run-arts { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .run-art {
+    font-size: 0.75rem; font-weight: 500;
+    padding: 0.25rem 0.6rem; border-radius: 9999px;
+    background: #f8fafc; border: 1px solid #e2e8f0; color: #334155;
+  }
+  .run-total {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem;
+    border-radius: 1.5rem; padding: 1.5rem 1.75rem;
+    background: #0B1220; color: #fff;
+  }
+  .run-total-clock {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 2.25rem; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-300);
+  }
+  @media (max-width: 640px) {
+    .run-step { grid-template-columns: 2.25rem 1fr; column-gap: 0.875rem; }
+    .run-step::before { left: 1.0625rem; top: 2.5rem; }
+    .run-node { width: 2.25rem; height: 2.25rem; font-size: 0.8125rem; }
+    .run-split { margin-left: 0; width: 100%; }
+  }
+
+  /* Run-complete marker, between the last timed step and the continuous one */
+  .run-mark {
+    display: flex; align-items: center; gap: 0.875rem;
+    margin-bottom: 2.25rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--accent-700);
+  }
+  .run-mark::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--accent-300), #e2e8f0);
+  }
+  .run-mark-clock {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.05em;
+  }
+  /* The run stops. The monitoring does not. */
+  .run-step--cont .run-node { background: var(--accent-500); color: #0B1220; }
+  .run-step--cont .run-dur {
+    background: var(--accent-500); color: #0B1220; border-color: var(--accent-500);
+  }
+
+  /* The four steps that need people from the business */
+  .run-step--biz .run-node { box-shadow: 0 0 0 4px var(--accent-200); }
+  .run-biz {
+    font-size: 0.75rem; font-weight: 600; white-space: nowrap;
+    padding: 0.2rem 0.6rem; border-radius: 9999px;
+    background: #0B1220; color: #fff;
+  }
+  .run-legend {
+    display: flex; align-items: center; gap: 0.625rem;
+    margin-bottom: 1.75rem;
+    font-size: 0.8125rem; line-height: 1.5; color: #64748b;
+  }
+  .run-legend-dot {
+    width: 0.75rem; height: 0.75rem; flex: none;
+    border-radius: 9999px; background: #0B1220;
+    box-shadow: 0 0 0 3px var(--accent-200);
+  }
+  .run-stat {
+    margin-top: 1rem;
+    border-radius: 1.5rem; padding: 1.5rem 1.75rem;
+    background: #fff; border: 1px solid var(--accent-200);
+  }
+  .run-stat-clock {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 2.25rem; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-700);
+  }
+
+  /* Platform screenshot gallery — CSS-only tabs, no script */
+  .shots { position: relative; }
+  .shots > input {
+    position: absolute; width: 1px; height: 1px;
+    opacity: 0; margin: 0; pointer-events: none;
+  }
+  .shot-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .shot-tabs label {
+    cursor: pointer;
+    font-size: 0.875rem; font-weight: 600; line-height: 1.25;
+    padding: 0.5rem 0.95rem; border-radius: 9999px;
+    background: #fff; border: 1px solid #e2e8f0; color: #475569;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+  .shot-tabs label:hover { border-color: var(--accent-300); color: #0B1220; }
+  #shot-list:checked ~ .shot-tabs label[for="shot-list"],
+  #shot-detail:checked ~ .shot-tabs label[for="shot-detail"],
+  #shot-actions:checked ~ .shot-tabs label[for="shot-actions"],
+  #shot-form:checked ~ .shot-tabs label[for="shot-form"],
+  #shot-search:checked ~ .shot-tabs label[for="shot-search"],
+  #shot-cards:checked ~ .shot-tabs label[for="shot-cards"],
+  #shot-theme:checked ~ .shot-tabs label[for="shot-theme"] {
+    background: #0B1220; border-color: #0B1220; color: #fff;
+  }
+  #shot-list:focus-visible ~ .shot-tabs label[for="shot-list"],
+  #shot-detail:focus-visible ~ .shot-tabs label[for="shot-detail"],
+  #shot-actions:focus-visible ~ .shot-tabs label[for="shot-actions"],
+  #shot-form:focus-visible ~ .shot-tabs label[for="shot-form"],
+  #shot-search:focus-visible ~ .shot-tabs label[for="shot-search"],
+  #shot-cards:focus-visible ~ .shot-tabs label[for="shot-cards"],
+  #shot-theme:focus-visible ~ .shot-tabs label[for="shot-theme"] {
+    outline: 2px solid var(--accent-500); outline-offset: 2px;
+  }
+
+  .shot-panel { display: none; margin: 0; }
+  #shot-list:checked ~ .shot-panels #panel-list,
+  #shot-detail:checked ~ .shot-panels #panel-detail,
+  #shot-actions:checked ~ .shot-panels #panel-actions,
+  #shot-form:checked ~ .shot-panels #panel-form,
+  #shot-search:checked ~ .shot-panels #panel-search,
+  #shot-cards:checked ~ .shot-panels #panel-cards,
+  #shot-theme:checked ~ .shot-panels #panel-theme { display: block; }
+
+  .shot-frame {
+    border-radius: 1.25rem; overflow: hidden;
+    border: 1px solid #e2e8f0; background: #0B1220;
+    box-shadow: 0 30px 60px -30px rgba(15, 23, 42, 0.45);
+  }
+  .shot-frame img { display: block; width: 100%; height: auto; }
+  .shot-cap {
+    margin-top: 1.25rem; max-width: 46rem;
+    font-size: 1rem; line-height: 1.75; color: #475569;
+  }
+
+  .shot-claims {
+    margin-top: 2.5rem; padding: 0; list-style: none;
+    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+    font-size: 0.9375rem; font-weight: 600; color: #0B1220;
+  }
+  .shot-claims li { display: flex; align-items: center; gap: 0.5rem; }
+  .shot-claims li::before {
+    content: ""; width: 0.5rem; height: 0.5rem; flex: none;
+    border-radius: 9999px; background: var(--accent-500);
+  }
+
+  /* Technology section */
+  .tech-bens { margin-top: 3rem; display: grid; gap: 1.25rem; }
+  @media (min-width: 900px) { .tech-bens { grid-template-columns: repeat(3, 1fr); } }
+  .tech-ben {
+    border-radius: 1.5rem; padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .tech-ben-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.75rem; height: 2.75rem;
+    border-radius: 0.875rem;
+    background: var(--accent-500); color: #0B1220;
+  }
+  .tech-ben-title {
+    margin-top: 1.25rem;
+    font-family: 'Fraunces', serif; font-feature-settings: 'ss01' on;
+    font-size: 1.375rem; font-weight: 500; letter-spacing: -0.01em;
+    line-height: 1.25; color: #fff;
+  }
+  .tech-ben-text { margin-top: 0.875rem; line-height: 1.75; color: #cbd5e1; }
+
+  .tech-under {
+    margin-top: 2.5rem; padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+  }
+  .tech-under-lead {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--accent-200);
+  }
+  .tech-under-body {
+    margin-top: 0.875rem; max-width: 52rem;
+    font-size: 0.9375rem; line-height: 1.75; color: #94a3b8;
+  }
+
+  /* Less custom code section */
+  .less-split { margin-top: 3rem; display: grid; gap: 2rem; align-items: start; }
+  @media (min-width: 1024px) { .less-split { grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; } }
+  .less-label {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: #64748b; margin-bottom: 0.875rem;
+  }
+  .less-code {
+    border-radius: 1.25rem; overflow: hidden;
+    background: #0B1220; border: 1px solid #0B1220;
+    box-shadow: 0 24px 50px -30px rgba(15, 23, 42, 0.5);
+  }
+  .less-code pre { margin: 0; padding: 1.5rem; overflow-x: auto; }
+  .less-code code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8125rem; line-height: 1.85;
+    color: #e2e8f0; white-space: pre;
+  }
+  .less-out { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.875rem; }
+  .less-out li {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    line-height: 1.7; color: #334155;
+  }
+  .less-out li::before {
+    content: ""; margin-top: 0.6rem;
+    width: 0.5rem; height: 0.5rem; flex: none;
+    border-radius: 9999px; background: var(--accent-500);
+  }
+
+  .less-stat {
+    margin-top: 3rem;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2.5rem;
+    border-radius: 1.75rem; padding: 2rem;
+    background: #0B1220; color: #fff;
+  }
+  .less-stat-fig { display: flex; flex-direction: column; flex: none; }
+  .less-stat-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 3.5rem; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-300);
+  }
+  .less-stat-unit {
+    margin-top: 0.6rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--accent-200);
+  }
+  .less-stat-body { max-width: 44rem; line-height: 1.75; color: #e2e8f0; }
+  .less-stat-scope {
+    margin-top: 0.875rem; max-width: 44rem;
+    font-size: 0.875rem; line-height: 1.7; color: #94a3b8;
+  }
+
+  .less-points { margin-top: 3.5rem; display: grid; gap: 1.25rem; }
+  @media (min-width: 900px) { .less-points { grid-template-columns: repeat(3, 1fr); } }
+  .less-point {
+    display: flex; gap: 1rem;
+    border-radius: 1.5rem; padding: 1.5rem;
+    background: #fff; border: 1px solid #e2e8f0;
+  }
+  .less-point-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem; flex: none;
+    border-radius: 0.875rem; background: #0B1220; color: #fff;
+  }
+  .less-point-title { font-size: 1.0625rem; font-weight: 600; color: #0B1220; line-height: 1.3; }
+  .less-point-text { margin-top: 0.5rem; font-size: 0.9375rem; line-height: 1.7; color: #475569; }
+
+  /* Custom interfaces — the escalation ladder */
+  .craft-steps { margin-top: 3rem; display: grid; gap: 1.25rem; }
+  @media (min-width: 700px) { .craft-steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .craft-steps { grid-template-columns: repeat(4, 1fr); } }
+  .craft-step {
+    position: relative;
+    border-radius: 1.5rem; padding: 1.5rem;
+    border: 1px solid #e2e8f0; background: #f8fafc;
+  }
+  /* each rung commits a little more */
+  .craft-step:nth-child(2) { background: #f1f5f9; }
+  .craft-step:nth-child(3) { background: #e9eef5; }
+  .craft-step:nth-child(4) {
+    background: #0B1220; border-color: #0B1220;
+  }
+  .craft-step:nth-child(4) .craft-step-title { color: #fff; }
+  .craft-step:nth-child(4) .craft-step-text { color: #cbd5e1; }
+  .craft-step:nth-child(4) .craft-step-num { color: var(--accent-300); }
+  .craft-step:nth-child(4) .craft-step-cost {
+    background: rgba(255,255,255,0.10); color: var(--accent-200); border-color: transparent;
+  }
+
+  .craft-step-head { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+  .craft-step-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.875rem; font-weight: 700;
+    font-variant-numeric: tabular-nums; color: #94a3b8;
+  }
+  .craft-step-cost {
+    font-size: 0.6875rem; font-weight: 600; white-space: nowrap;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0.2rem 0.55rem; border-radius: 9999px;
+    background: #fff; border: 1px solid #e2e8f0; color: #475569;
+  }
+  .craft-step-title {
+    margin-top: 1rem;
+    font-family: 'Fraunces', serif; font-feature-settings: 'ss01' on;
+    font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em;
+    line-height: 1.25; color: #0B1220;
+  }
+  .craft-step-text { margin-top: 0.75rem; font-size: 0.9375rem; line-height: 1.7; color: #475569; }
+
+  .craft-note {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    border-radius: 1.5rem; padding: 1.75rem;
+    border: 1px solid var(--accent-200); background: var(--accent-50);
+  }
+  .craft-note-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem; flex: none;
+    border-radius: 0.875rem; background: var(--accent-500); color: #0B1220;
+  }
+  .craft-note-title { font-size: 1.0625rem; font-weight: 600; color: #0B1220; }
+  .craft-note-text { margin-top: 0.5rem; max-width: 60rem; line-height: 1.75; color: #475569; }
+
+  /* No lock-in ledger */
+  .exit-ledger { margin-top: 3rem; display: grid; gap: 1.25rem; align-items: start; }
+  @media (min-width: 900px) { .exit-ledger { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+  .exit-col {
+    border-radius: 1.75rem; padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .exit-col--keep { border-color: color-mix(in srgb, var(--accent-500) 45%, transparent); }
+  .exit-col-head {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    padding-bottom: 1.25rem; margin-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    color: #94a3b8;
+  }
+  .exit-col--keep .exit-col-head { color: var(--accent-200); }
+  .exit-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 1.5rem; }
+  .exit-item-title { font-size: 1.0625rem; font-weight: 600; color: #fff; }
+  .exit-item-text { margin-top: 0.5rem; font-size: 0.9375rem; line-height: 1.7; color: #cbd5e1; }
+
+  .exit-verdict {
+    margin-top: 2rem; max-width: 52rem;
+    font-family: 'Fraunces', serif; font-feature-settings: 'ss01' on;
+    font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em;
+    line-height: 1.4; color: #fff;
+  }
+  .exit-compare {
+    margin-top: 2.5rem; padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+  }
+  .exit-compare-title {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--accent-200);
+  }
+  .exit-compare-text {
+    margin-top: 0.875rem; max-width: 52rem;
+    font-size: 0.9375rem; line-height: 1.75; color: #94a3b8;
+  }
 
   /* Honour reduced motion across the page, not just the hero canvas */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .ribbon-track { animation: none; }
-    .reveal, .swap-fade { animation: none; opacity: 1; transform: none; }
+    .reveal { animation: none; opacity: 1; transform: none; }
     .lift, .lift:hover { transition: none; transform: none; }
   }
 </style>
 </head>
 
-<body class="bg-slate-50 text-slate-950" data-audience="enterprise">
+<body class="bg-slate-50 text-slate-950">
 
 <!-- ====================== HEADER ====================== -->
 <header class="sticky top-0 z-50 border-b border-white/10 bg-ink/85 backdrop-blur-xl">
@@ -245,18 +582,17 @@
 
     <nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
       <a href="#why" class="hover:text-white ulink">Why Fusion</a>
+      <a href="#outcomes" class="hover:text-white ulink">Outcomes</a>
+      <a href="#challenge" class="hover:text-white ulink">The Challenge</a>
       <a href="#platform" class="hover:text-white ulink">Platform</a>
-      <a href="#scan" class="hover:text-white ulink">Assessment</a>
+      <a href="#technology" class="hover:text-white ulink">Technology</a>
       <a href="#offers" class="hover:text-white ulink">Engagement</a>
     </nav>
 
     <div class="flex items-center gap-3 md:gap-5">
-      <button id="audienceSwitch" class="whitespace-nowrap text-sm font-medium text-slate-300 transition-colors hover:text-white md:border-l md:border-white/15 md:pl-5" aria-label="Switch to the services firm view">
-        <span class="md:hidden" data-switch-short>Services</span>
-        <span class="hidden md:inline" data-switch-long>For services firms</span>
-      </button>
-      <a href="#scan" class="rounded-full bg-white px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-slate-100 md:px-5">
-        <span data-cta-header>Take the scan</span>
+      <a href="/redesign/services/" class="whitespace-nowrap text-sm font-medium text-slate-300 transition-colors hover:text-white md:border-l md:border-white/15 md:pl-5">
+        <span class="md:hidden">Services</span>
+        <span class="hidden md:inline">For services firms</span>
       </a>
     </div>
   </div>
@@ -271,52 +607,22 @@
   <canvas id="heroCanvas" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; -webkit-mask-image:linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.8) 45%, #000 65%); mask-image:linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.8) 45%, #000 65%);"></canvas>
 
   <div class="mx-auto w-full max-w-7xl px-5 py-12">
-    <div class="relative z-10 reveal reveal-2" data-swap-key="hero-left">
+    <div class="relative z-10 reveal reveal-2">
       <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-slate-200">
         <i data-lucide="sparkles" class="h-4 w-4" style="color: var(--accent-300)"></i>
-        <span data-hero-eyebrow>SDLC + AI + code you own</span>
+        <span>SDLC + AI + code you own</span>
       </div>
       <h1 class="font-display max-w-4xl text-5xl font-medium text-white md:text-7xl leading-[0.98]">
-        <span data-hero-title>Finally master enterprise software development.</span>
+        Enterprise software development solved.
       </h1>
-      <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl" data-hero-sub>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
         Fusion combines a disciplined SDLC, AI across the whole lifecycle, and the business apps you'd otherwise build on a rented low-code platform — delivered as code you own. No per-seat licensing, no vendor lock-in. Built from real deliveries, not a whiteboard.
       </p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-        <a href="#scan" class="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-base font-medium text-ink hover:bg-slate-100 transition-colors">
-          <span data-cta-primary>Take the readiness scan</span>
-          <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
-        </a>
         <a href="#platform" class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-4 text-base font-medium text-white hover:bg-white/20 transition-colors">
-          <span data-cta-secondary>Explore the platform</span>
+          <span>Explore the platform</span>
         </a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== RIBBON ====================== -->
-<section class="overflow-hidden border-y border-slate-200 bg-white/60 py-4">
-  <div class="ribbon-track text-sm uppercase tracking-[0.3em] text-slate-400">
-    <div class="flex shrink-0 items-center gap-12" data-ribbon-group>
-      <span>Discovery — Problem statement · Stakeholders &amp; personas · Current state walkthroughs · Current state workflows</span>
-      <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span>Design — Workflow value chain · Domain model · Workflow spec · Resource spec</span>
-      <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span>Development — Code · System test plan · System test results · UAT task · UAT results</span>
-      <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span>Deploy — PR review · CI/CD</span>
-      <i data-lucide="diamond" class="h-3 w-3"></i>
-    </div>
-    <div class="flex shrink-0 items-center gap-12" data-ribbon-group>
-      <span>Discovery — Problem statement · Stakeholders &amp; personas · Current state walkthroughs · Current state workflows</span>
-      <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span>Design — Workflow value chain · Domain model · Workflow spec · Resource spec</span>
-      <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span>Development — Code · System test plan · System test results · UAT task · UAT results</span>
-      <i data-lucide="diamond" class="h-3 w-3"></i>
-      <span>Deploy — PR review · CI/CD</span>
-      <i data-lucide="diamond" class="h-3 w-3"></i>
     </div>
   </div>
 </section>
@@ -324,16 +630,86 @@
 <!-- ====================== WHY ====================== -->
 <section id="why" class="bg-white py-20">
   <div class="mx-auto max-w-7xl px-5">
-    <div class="max-w-3xl" data-swap-key="why-intro">
-      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);" data-why-eyebrow>Why the old model is breaking</p>
-      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-why-title>
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Why the old model is breaking</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
         Traditional SDLC tools track activity. Fusion connects it to working software.
       </h2>
-      <p class="mt-5 text-lg leading-8 text-slate-600" data-why-sub>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
         Requirements in Confluence. Work in Jira. Risks in a spreadsheet. Evidence assembled by hand before every release. It's the fragmentation, not the people, that's failing — in a Fusion engagement, your initiative runs on one record, so the trace holds from business intent to working software.
       </p>
     </div>
-    <div class="mt-12 grid gap-5 md:grid-cols-2" data-problems></div>
+    <div class="mt-12 grid gap-5 md:grid-cols-2">
+      <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
+        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
+          <i data-lucide="git-branch" class="h-5 w-5"></i>
+        </div>
+        <p class="text-base leading-7 text-slate-700">Discovery, design, development and deployment happen in disconnected tools. Context dies at every handoff.</p>
+      </div>
+      <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
+        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
+          <i data-lucide="git-branch" class="h-5 w-5"></i>
+        </div>
+        <p class="text-base leading-7 text-slate-700">Teams track activity, but can't trace work back to business outcomes.</p>
+      </div>
+      <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
+        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
+          <i data-lucide="git-branch" class="h-5 w-5"></i>
+        </div>
+        <p class="text-base leading-7 text-slate-700">Requirements, architecture, risk, assurance and release evidence drift apart.</p>
+      </div>
+      <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
+        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
+          <i data-lucide="git-branch" class="h-5 w-5"></i>
+        </div>
+        <p class="text-base leading-7 text-slate-700">AI is bolted on as a coding assistant instead of applied across the full lifecycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== OUTCOMES ====================== -->
+<section id="outcomes" class="bg-slate-50 py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Outcomes</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        Less disruption. Faster impact. A stronger posture.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        The point isn't a tidier process. It's what a connected lifecycle does to your timeline, your risk profile, and the demand delivery places on the rest of the business.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-2">
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lift">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-white">
+          <i data-lucide="users" class="h-6 w-6"></i>
+        </div>
+        <h3 class="font-display mt-5 text-xl font-medium">Less disruption to business as usual</h3>
+        <p class="mt-3 leading-7 text-slate-600">Fusion asks less of your business stakeholders. Structured discovery and one shared record mean fewer workshops, fewer repeat conversations, and fewer people pulled off their day job to explain the same thing twice.</p>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lift">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-white">
+          <i data-lucide="badge-check" class="h-6 w-6"></i>
+        </div>
+        <h3 class="font-display mt-5 text-xl font-medium">A stronger risk and compliance posture</h3>
+        <p class="mt-3 leading-7 text-slate-600">Requirements, risks, controls, tests and release evidence are linked from the start. It's the quality of the lifecycle that lifts the posture — your audit trail is a by-product of how the work runs, not a scramble before every release.</p>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lift">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-white">
+          <i data-lucide="zap" class="h-6 w-6"></i>
+        </div>
+        <h3 class="font-display mt-5 text-xl font-medium">Idea to impact in days or weeks</h3>
+        <p class="mt-3 leading-7 text-slate-600">Not months or years. One connected lifecycle takes out the handoffs, the rework and the waiting that stretch enterprise delivery out.</p>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lift">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-white">
+          <i data-lucide="refresh-cw" class="h-6 w-6"></i>
+        </div>
+        <h3 class="font-display mt-5 text-xl font-medium">User feedback live in hours</h3>
+        <p class="mt-3 leading-7 text-slate-600">Feedback is collected continuously, not at the end of a phase. A change can be in production the same day — with requirements, tests and release evidence already up to date.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -342,13 +718,281 @@
   <div class="absolute -right-20 -top-20 h-96 w-96 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
   <div class="mx-auto max-w-7xl px-5 relative">
     <div class="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
-      <div data-swap-key="shift-intro">
-        <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);" data-shift-eyebrow>What changes</p>
-        <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-shift-title>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);">What changes</p>
+        <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
           From managing process to shipping software.
         </h2>
       </div>
-      <div class="grid gap-4" data-shift-rows></div>
+      <div class="grid gap-4">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h3 class="text-lg font-semibold" style="color: var(--accent-100);">Today</h3>
+          <p class="mt-2 leading-7 text-slate-300">A requirement changes and nobody updates the linked tests, risks or release gates. You find out at go-live.</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h3 class="text-lg font-semibold" style="color: var(--accent-100);">With Fusion</h3>
+          <p class="mt-2 leading-7 text-slate-300">The requirement, its tests, risks and release gates live on one record. Every change lands on the record's audit trail, next to everything linked to it.</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h3 class="text-lg font-semibold" style="color: var(--accent-100);">What it buys you</h3>
+          <p class="mt-2 leading-7 text-slate-300">Evidence assembled as you go, not the night before. One record, one context, from idea to production.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== IDEA TO IMPACT CHALLENGE ====================== -->
+<section id="challenge" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">The Idea to Impact Challenge</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        Bring one workflow. Sixteen hours later, it's in production.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        Pick a workflow your business actually runs, and we will take it the whole way. This is the sequence, with the clock running. Every step hands the next one a finished artefact — which is why the trace from the sponsor's problem to software running in production holds without anyone assembling it afterwards. Four of the sixteen hours are your people's time.
+      </p>
+    </div>
+
+    <div class="mt-12 run-layout">
+      <div class="max-w-2xl">
+        <p class="run-legend">
+          <span class="run-legend-dot"></span>
+          A ringed number is a step that needs people from the business. There are four of them.
+        </p>
+      <ol>
+      <li class="run-step run-step--biz">
+        <div class="run-node">01</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Sponsor session</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-biz">Business time</span>
+            <span class="run-split">1:00h</span>
+          </div>
+          <p class="run-text">Sit with the sponsor and agree the problem to be solved, the opportunity, the success measures and who the stakeholders are.</p>
+        <div class="run-arts">
+          <span class="run-art">Session transcript</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">02</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Problem &amp; Opportunity Statement</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">2:00h</span>
+          </div>
+          <p class="run-text">Produce the statement and the stakeholder artefacts straight from the sponsor session transcript.</p>
+        <div class="run-arts">
+          <span class="run-art">Problem &amp; Opportunity Statement</span>
+          <span class="run-art">Stakeholders &amp; Personas</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step run-step--biz">
+        <div class="run-node">03</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Observation sessions</h3>
+            <span class="run-dur">1 hour each</span>
+            <span class="run-biz">Business time</span>
+            <span class="run-split">3:00h</span>
+          </div>
+          <p class="run-text">Stakeholders walk you through the workflows they run today, and you capture the pain points and the openings to improve.</p>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">04</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Current state documented</h3>
+            <span class="run-dur">2 hours</span>
+            <span class="run-split">5:00h</span>
+          </div>
+          <p class="run-text">Write up how the work runs today and what it runs on, then update the Problem &amp; Opportunity Statement with what you learned.</p>
+        <div class="run-arts">
+          <span class="run-art">Current State Workflows</span>
+          <span class="run-art">Current State System Architecture</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">05</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Domain Model and Workflows Value Stream</h3>
+            <span class="run-dur">4 hours</span>
+            <span class="run-split">9:00h</span>
+          </div>
+          <p class="run-text">Design the model the solution rests on, and the value stream its workflows make up between them.</p>
+        <div class="run-arts">
+          <span class="run-art">Domain Model</span>
+          <span class="run-art">Workflows Value Stream</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">06</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Workflow design and Model Specs</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">10:00h</span>
+          </div>
+          <p class="run-text">Design one workflow from the stream. Create the model specs behind it, or update the specs that already exist.</p>
+        <div class="run-arts">
+          <span class="run-art">Workflow design</span>
+          <span class="run-art">Model Specs</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">07</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Build and unit test</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">11:00h</span>
+          </div>
+          <p class="run-text">Build the workflow and unit test it.</p>
+        <div class="run-arts">
+          <span class="run-art">Working workflow</span>
+          <span class="run-art">Unit tests</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">08</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">System tests written and run</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">12:00h</span>
+          </div>
+          <p class="run-text">Write the system tests, run them, and record what they returned.</p>
+        <div class="run-arts">
+          <span class="run-art">System tests</span>
+          <span class="run-art">Test results</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">09</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">User guide and video</h3>
+            <span class="run-dur">30 minutes</span>
+            <span class="run-split">12:30h</span>
+          </div>
+          <p class="run-text">Write the user guide and produce the walkthrough video, so the people who use the workflow can start on it.</p>
+        <div class="run-arts">
+          <span class="run-art">User Guide</span>
+          <span class="run-art">User Guide Video</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step run-step--biz">
+        <div class="run-node">10</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Users review and test</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-biz">Business time</span>
+            <span class="run-split">13:30h</span>
+          </div>
+          <p class="run-text">Hand the guide and the build to the users. They review the guide and test the workflow against the way they actually work.</p>
+        <div class="run-arts">
+          <span class="run-art">Review findings</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">11</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Triage, fix, re-test</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">14:30h</span>
+          </div>
+          <p class="run-text">Triage the findings and fix them. Every artefact the fix touches is updated with it, and the system tests run again.</p>
+        <div class="run-arts">
+          <span class="run-art">Updated artefacts</span>
+          <span class="run-art">System test results</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step run-step--biz">
+        <div class="run-node">12</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Users confirm the fixes</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-biz">Business time</span>
+            <span class="run-split">15:30h</span>
+          </div>
+          <p class="run-text">The users who raised the findings confirm the fixes. The record is current at the moment they sign off, not a week later.</p>
+        <div class="run-arts">
+          <span class="run-art">User sign-off</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">13</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Release notes, roadmap, production deploy</h3>
+            <span class="run-dur">30 minutes</span>
+            <span class="run-split">16:00h</span>
+          </div>
+          <p class="run-text">Publish the release notes and the updated roadmap, then deploy to production. Both come off artefacts that are already current, which is why this step is measured in minutes.</p>
+        <div class="run-arts">
+          <span class="run-art">Release notes</span>
+          <span class="run-art">Roadmap</span>
+          <span class="run-art">Production deploy</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-mark">
+        <span>Run complete</span>
+        <span class="run-mark-clock">16:00h</span>
+      </li>
+      <li class="run-step run-step--cont">
+        <div class="run-node">14</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Monitor usage, security and performance</h3>
+            <span class="run-dur">continuous</span>
+          </div>
+          <p class="run-text">From the moment it is live. Usage, security and performance are watched in production, and what comes back is the input to the next run.</p>
+        </div>
+      </li>
+      </ol>
+      </div>
+
+      <div class="run-aside">
+        <div class="run-total">
+          <div>
+            <p class="text-sm uppercase tracking-[0.25em]" style="color: var(--accent-200);">Total</p>
+            <p class="run-total-clock mt-2">16:00h</p>
+          </div>
+          <p class="text-sm leading-6 text-slate-300">
+            Two working days from the sponsor session to the workflow running in production. Add an hour for every extra stakeholder you observe.
+          </p>
+        </div>
+        <div class="run-stat">
+          <p class="text-sm uppercase tracking-[0.25em]" style="color: var(--accent-700);">Business stakeholder time</p>
+          <p class="run-stat-clock mt-2">4:00h</p>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            Four of the sixteen hours ask anything of your business: the sponsor session, the observation session, the review, and the confirmation. The other twelve run without them.
+          </p>
+        </div>
+        <p class="mt-4 text-sm leading-6 text-slate-500">
+          The running clock assumes one observation session. Nothing in the list is a status meeting, a handover, or a document written to catch a record up. Step 14 sits outside the clock, because the monitoring does not stop.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -356,94 +1000,392 @@
 <!-- ====================== PLATFORM ====================== -->
 <section id="platform" class="bg-slate-50 py-20">
   <div class="mx-auto max-w-7xl px-5">
-    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end" data-swap-key="platform-intro">
-      <div class="max-w-3xl">
-        <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);" data-platform-eyebrow>Platform</p>
-        <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-platform-title>
-          One connected lifecycle. Six modules.
-        </h2>
-      </div>
-      <p class="max-w-md text-base leading-7 text-slate-600" data-platform-sub>
-        Fusion doesn't replace your delivery tools on day one. Day-to-day work continues in the tools your teams already use; through the engagement, we keep the record current alongside them — that's part of the work, not an integration you have to build. No per-seat licensing, so the record can spread without a procurement fight.
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Platform</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        What you rent from Salesforce, Dynamics and ServiceNow — as code you own.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        These are screenshots of a working application on the Fusion framework, not mockups. Lists, record pages, forms, state machines, search and audit are generated from declarative resource definitions. You get the source, the schema and the design system, in your repository.
       </p>
     </div>
-    <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-modules></div>
+
+    <div class="mt-12 shots">
+        <input type="radio" name="platform-shot" id="shot-list" checked>
+        <input type="radio" name="platform-shot" id="shot-detail">
+        <input type="radio" name="platform-shot" id="shot-actions">
+        <input type="radio" name="platform-shot" id="shot-form">
+        <input type="radio" name="platform-shot" id="shot-search">
+        <input type="radio" name="platform-shot" id="shot-cards">
+        <input type="radio" name="platform-shot" id="shot-theme">
+        <div class="shot-tabs">
+          <label for="shot-list">Records at scale</label>
+          <label for="shot-detail">Record pages</label>
+          <label for="shot-actions">State machines</label>
+          <label for="shot-form">Forms and validation</label>
+          <label for="shot-search">Search across everything</label>
+          <label for="shot-cards">Views your users pick</label>
+          <label for="shot-theme">Your design system</label>
+        </div>
+        <div class="shot-panels">
+          <figure class="shot-panel" id="panel-list">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/list.avif" type="image/avif">
+                <img src="/site/images/platform/list.webp" alt="Session list showing 2,932 records with search, a status filter, sortable columns and status badges" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">Search, filter, sort and page through thousands of records. The status badges, the sortable columns and the links out to related records all come from the resource definition — nobody hand-built this screen.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-detail">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/detail.avif" type="image/avif">
+                <img src="/site/images/platform/detail.webp" alt="Session record page with highlight fields, tabbed sections and linked related records" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">Highlights across the top, field sections below, and tabs for history, comments and attachments. Every record page in the application is generated the same way, so they behave the same way.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-actions">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/actions.avif" type="image/avif">
+                <img src="/site/images/platform/actions.webp" alt="Actions menu on a scheduled session showing Complete, Cancel and Reschedule available while Schedule and Reopen are disabled" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">Declare the states and the transitions once. The actions menu then enforces the guards: this session is scheduled, so it can be completed, cancelled or rescheduled — and the transitions that are not legal from here are not offered.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-form">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/form.avif" type="image/avif">
+                <img src="/site/images/platform/form.webp" alt="New session form with a typeahead lookup, required field markers and a date picker" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">Sections, typeahead lookups with inline create, required fields and validation — generated from the same definition that generates the list and the record page. Change the model, and all three follow.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-search">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/search.avif" type="image/avif">
+                <img src="/site/images/platform/search.webp" alt="Global search showing typed results grouped under an Organisations heading" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">One search box over every resource in the application, grouped by type as you type. There is no separate index to stand up and no per-object configuration to maintain.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-cards">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/cards.avif" type="image/avif">
+                <img src="/site/images/platform/cards.webp" alt="The same session records shown as a grid of cards instead of a table" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">Table or cards, chosen per resource by the person using it. Both views come with the resource; neither is a screen someone has to build and then keep in step with the other.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-theme">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/theme.avif" type="image/avif">
+                <img src="/site/images/platform/theme.webp" alt="The same session list rendered in the light theme" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">Light, dark and system themes, in your repository, under your control. Rebrand it, restyle it, or fork it — there is no vendor to raise a ticket with.</figcaption>
+          </figure>
+        </div>
+    </div>
+
+    <ul class="shot-claims">
+      <li>No per-seat licensing</li>
+      <li>No vendor lock-in</li>
+      <li>No platform vendor deciding what you build next</li>
+    </ul>
   </div>
 </section>
 
-<!-- ====================== TRANSFORMATION (Before/After for services; AI panel for enterprise) ====================== -->
+<!-- ====================== TECHNOLOGY ====================== -->
+<section id="technology" class="bg-ink py-20 text-white relative overflow-hidden grain">
+  <div class="absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl opacity-15" style="background: var(--accent-500);"></div>
+  <div class="mx-auto max-w-7xl px-5 relative">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);">Technology</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        Fast for the people who use it. Cheap for the people who pay for it.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-300">
+        Two groups judge the technology, and they judge it on opposite things. The people doing the work care whether it is quick. The people signing for it care what it costs to run and whether they are tied to one supplier. You should not have to trade one against the other.
+      </p>
+    </div>
+
+    <div class="tech-bens">
+        <div class="tech-ben">
+          <div class="tech-ben-icon"><i data-lucide="zap" class="h-5 w-5"></i></div>
+          <h3 class="tech-ben-title">It feels quick to the people using it</h3>
+          <p class="tech-ben-text">Pages arrive ready to work with. The heavy lifting happens on the server, so nobody sits watching a spinner while their browser downloads and assembles an application first. Your people meet this difference every hour of every day, and it is what separates software they use from software they tolerate.</p>
+        </div>
+        <div class="tech-ben">
+          <div class="tech-ben-icon"><i data-lucide="wallet" class="h-5 w-5"></i></div>
+          <h3 class="tech-ben-title">It costs little to keep running</h3>
+          <p class="tech-ben-text">Fusion needs a web server and one database. That is the whole list. The platforms you are comparing it against expect a string of extra paid services alongside them, and every one of those is another line on the invoice, another supplier to manage, and another thing that can fail on a Sunday night.</p>
+        </div>
+        <div class="tech-ben">
+          <div class="tech-ben-icon"><i data-lucide="server" class="h-5 w-5"></i></div>
+          <h3 class="tech-ben-title">It runs wherever you want it to</h3>
+          <p class="tech-ben-text">Any hosting provider, and you can move to a different one in a day. Or your own servers in your own building, if that is what your policy, your board or your regulator asks for. Nothing inside Fusion ties it to one supplier, so nobody can put the price up and count on you staying.</p>
+        </div>
+    </div>
+
+    <div class="tech-under">
+      <p class="tech-under-lead">And when your IT team asks what it is built on</p>
+      <p class="tech-under-body">
+        Ruby on Rails, PostgreSQL and Hotwire — mature, open source, and widely used. Any Rails developer can read it on their first day, and the pool of people who can maintain it is the whole industry rather than one vendor's certified partners. You hold the source code.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== LESS CODE ====================== -->
+<section id="less-code" class="bg-slate-50 py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Less custom code</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        The safest code is the code nobody has to write.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        A business application is mostly the same screen over and over: a list, a record, a form, a permission check. Teams write those by hand, and lately they let an AI generate them — thousands of near-identical lines that nobody reads closely enough to catch the one that is wrong. Fusion does not produce those lines at all. It reads what your business objects already declare, and works the rest out from there.
+      </p>
+    </div>
+
+    <div class="less-split">
+      <div>
+        <p class="less-label">What you write</p>
+        <div class="less-code"><pre><code>class Person &lt; ApplicationRecord
+  has_auto_controller key_attributes: [ :first_name, :last_name, :email ],
+    searchable: true,
+    field_groups: {
+      personal: [ :title, :first_name, :last_name ],
+      contact:  [ :email, :telephone, :address_id ]
+    }
+
+  policy visible_to:  [ :owner, :manager ],
+         editable_by: [ :owner, :manager ]
+end</code></pre></div>
+      </div>
+      <div>
+        <p class="less-label">What you get, with no further code</p>
+        <ul class="less-out">
+          <li>A searchable, sortable, paged list of people</li>
+          <li>A record page with the fields grouped as declared</li>
+          <li>Create and edit forms, each input matched to what the field is</li>
+          <li>A picker for the linked address, with inline create</li>
+          <li>Web addresses and navigation, registered automatically</li>
+          <li>Owner and manager permissions, enforced on every action and every query</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="less-stat">
+      <div class="less-stat-fig">
+        <span class="less-stat-num">90%</span>
+        <span class="less-stat-unit">less application code</span>
+      </div>
+      <div>
+        <p class="less-stat-body">
+          Around 90% less than building the same thing yourself — and that is measured against a well-factored implementation, not a sloppy one. Fusion's own source lives in the framework, the way React's does, rather than in your repository for your team to maintain.
+        </p>
+        <p class="less-stat-scope">
+          The lists, records, forms and permissions that make up most of a business application. Your genuinely custom logic is still yours to write, and it is the same size either way.
+        </p>
+      </div>
+    </div>
+
+    <div class="less-points">
+      <div class="less-point">
+        <div class="less-point-icon"><i data-lucide="file-minus" class="h-5 w-5"></i></div>
+        <div>
+          <h3 class="less-point-title">One declaration, not a folder of files</h3>
+          <p class="less-point-text">The business object says what it is and who is allowed to see it. The list, the record page, the forms, the web addresses and the permission checks all follow from that. There is no screen file and no form template sitting in the repository for anyone — human or machine — to get subtly wrong.</p>
+        </div>
+      </div>
+      <div class="less-point">
+        <div class="less-point-icon"><i data-lucide="scan-line" class="h-5 w-5"></i></div>
+        <div>
+          <h3 class="less-point-title">The screens read the business rules</h3>
+          <p class="less-point-text">Fusion inspects what each field actually is and decides how to present it. A date gets a date picker, a fixed set of options gets a dropdown, a link to another record gets a searchable picker with a create button beside it. Change the rule in one place and every screen follows it. Nothing drifts out of step.</p>
+        </div>
+      </div>
+      <div class="less-point">
+        <div class="less-point-icon"><i data-lucide="shield-check" class="h-5 w-5"></i></div>
+        <div>
+          <h3 class="less-point-title">A much smaller surface for AI to touch</h3>
+          <p class="less-point-text">When AI works on a Fusion application it works on the business rules — the part where your domain actually lives, and the part a person can read in one sitting and genuinely review. It is not producing a thousand lines of near-identical plumbing that nobody will ever check properly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CUSTOM UI ====================== -->
+<section id="custom-ui" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Custom interfaces</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        The back office can look like a business app. What your customers touch cannot.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        Most screens in a business application are used by a handful of people who want them fast, consistent and out of the way. A few screens are used by thousands of customers, and those have to be designed rather than generated. Fusion does not ask you to choose between the two, and it does not make you start again to get from one to the other.
+      </p>
+    </div>
+
+    <div class="craft-steps">
+        <div class="craft-step">
+          <div class="craft-step-head">
+            <span class="craft-step-num">01</span>
+            <span class="craft-step-cost">no code at all</span>
+          </div>
+          <h3 class="craft-step-title">Leave it generated</h3>
+          <p class="craft-step-text">For the screens twelve people use to get through their day, generated is the right answer. It is consistent, it is complete, and it follows the model without anybody maintaining it.</p>
+        </div>
+        <div class="craft-step">
+          <div class="craft-step-head">
+            <span class="craft-step-num">02</span>
+            <span class="craft-step-cost">one file</span>
+          </div>
+          <h3 class="craft-step-title">Replace one piece of it</h3>
+          <p class="craft-step-text">Put your own version in the ordinary place and it wins. One table, one row, one form section — designed by you, while everything around it stays generated.</p>
+        </div>
+        <div class="craft-step">
+          <div class="craft-step-head">
+            <span class="craft-step-num">03</span>
+            <span class="craft-step-cost">one file, everywhere</span>
+          </div>
+          <h3 class="craft-step-title">Restyle the whole application</h3>
+          <p class="craft-step-text">The interface is built from a small set of shared pieces. Redraw the button once and every button in the application changes with it, in every theme.</p>
+        </div>
+        <div class="craft-step">
+          <div class="craft-step-head">
+            <span class="craft-step-num">04</span>
+            <span class="craft-step-cost">your screen, your code</span>
+          </div>
+          <h3 class="craft-step-title">Build it from scratch</h3>
+          <p class="craft-step-text">When a screen has to be a designed thing rather than a competent one, take it and build it. Nothing is wasted. The generated screen was only keeping the seat warm.</p>
+        </div>
+    </div>
+
+    <div class="craft-note">
+      <div class="craft-note-icon"><i data-lucide="paintbrush" class="h-5 w-5"></i></div>
+      <div>
+        <h3 class="craft-note-title">Skills AI excels at, and you can hire for</h3>
+        <p class="craft-note-text">
+          A custom Fusion screen is ordinary web work — the most widely written code there is. That cuts in your favour twice. It is what AI assistants are strongest at, because they have been trained on more of it than anything else. And it is what any front-end developer or design agency already knows, so you can hire in an open market. A rented platform's own interface framework is the reverse on both counts: far fewer people write it, so AI is weaker at it, and far fewer people know it, so the specialists who do charge accordingly.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TRANSFORMATION ====================== -->
 <section class="bg-white py-20">
   <div class="mx-auto max-w-7xl px-5">
     <div class="rounded-[2rem] bg-gradient-to-br from-ink to-slate-800 p-8 text-white shadow-2xl md:p-12 relative overflow-hidden grain">
       <div class="absolute right-0 top-0 h-64 w-64 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
-      <div class="relative grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center" data-swap-key="ai-panel">
+      <div class="relative grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
         <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);" data-ai-eyebrow>Where AI fits</p>
-          <h2 class="font-display mt-4 text-4xl font-medium tracking-tight" data-ai-title>AI beyond code.</h2>
-          <p class="mt-5 leading-8 text-slate-300" data-ai-sub>
+          <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);">Where AI fits</p>
+          <h2 class="font-display mt-4 text-4xl font-medium tracking-tight">AI beyond code.</h2>
+          <p class="mt-5 leading-8 text-slate-300">
             Coding assistants cover one step of the lifecycle. We apply AI from requirements to working software — with conventions that keep the output reviewable work, not slop.
           </p>
         </div>
-        <div class="grid gap-3 sm:grid-cols-2" data-ai-grid></div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <i data-lucide="network" class="h-5 w-5" style="color: var(--accent-200);"></i>
+            <span class="text-sm font-medium">Intent awareness</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <i data-lucide="network" class="h-5 w-5" style="color: var(--accent-200);"></i>
+            <span class="text-sm font-medium">Architecture context</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <i data-lucide="network" class="h-5 w-5" style="color: var(--accent-200);"></i>
+            <span class="text-sm font-medium">Dependency intelligence</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <i data-lucide="network" class="h-5 w-5" style="color: var(--accent-200);"></i>
+            <span class="text-sm font-medium">Risk and control mapping</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <i data-lucide="network" class="h-5 w-5" style="color: var(--accent-200);"></i>
+            <span class="text-sm font-medium">Release readiness</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <i data-lucide="network" class="h-5 w-5" style="color: var(--accent-200);"></i>
+            <span class="text-sm font-medium">Impact signals</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ====================== ASSESSMENT ====================== -->
-<section id="scan" class="bg-slate-50 py-20">
-  <div class="mx-auto max-w-7xl px-5">
-    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-      <div data-swap-key="scan-intro">
-        <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);" data-scan-eyebrow>Free self-assessment</p>
-        <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-scan-title>Delivery Readiness Scan</h2>
-        <p class="mt-5 text-lg leading-8 text-slate-600" data-scan-sub>
-          Five questions, two minutes. See where fragmented tools, handoffs or weak traceability are costing you — and what to fix first.
-        </p>
-        <div class="mt-8 space-y-4" data-scan-bullets></div>
+<!-- ====================== NO LOCK-IN ====================== -->
+<section id="lock-in" class="bg-ink py-20 text-white relative overflow-hidden grain">
+  <div class="absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl opacity-15" style="background: var(--accent-500);"></div>
+  <div class="mx-auto max-w-7xl px-5 relative">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);">No lock-in</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        Here is exactly what it would cost you to leave.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-300">
+        Every platform claims there is no lock-in. Almost none of them will tell you what walking away actually involves. So here is the honest ledger, before you sign anything rather than after.
+      </p>
+    </div>
+
+    <div class="exit-ledger">
+      <div class="exit-col exit-col--keep">
+        <p class="exit-col-head"><i data-lucide="check" class="h-4 w-4"></i> You keep</p>
+        <ul class="exit-list">
+          <li class="exit-item">
+            <h4 class="exit-item-title">Your documents</h4>
+            <p class="exit-item-text">The discovery, the design decisions, the delivery record. They are plain files sitting in your repository, and they stay readable with or without us.</p>
+          </li>
+          <li class="exit-item">
+            <h4 class="exit-item-title">Your business logic</h4>
+            <p class="exit-item-text">The models and the rules that describe how your organisation actually works. That is the part that took the thinking, and it is ordinary Rails that any Rails developer can pick up.</p>
+          </li>
+          <li class="exit-item">
+            <h4 class="exit-item-title">Your database, and everything in it</h4>
+            <p class="exit-item-text">A standard PostgreSQL database with a standard schema. Not a file export you have to reassemble — the live thing, running, with your data in it.</p>
+          </li>
+        </ul>
       </div>
-
-      <div class="rounded-[2rem] border border-slate-200 bg-white shadow-xl">
-        <div class="p-6 md:p-8">
-          <form id="scanForm" class="space-y-7">
-            <div data-swap-key="scan-form-intro">
-              <h3 class="font-display text-2xl font-medium" data-scanform-title>Assess your current model</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-600">Rate each statement from 1 (strongly disagree) to 5 (strongly agree).</p>
-            </div>
-            <div class="space-y-5" id="questionList"></div>
-
-            <div class="rounded-2xl bg-ink p-5 text-white shadow-xl">
-              <div class="flex items-center justify-between gap-4">
-                <div>
-                  <p class="text-sm uppercase tracking-[0.25em]" style="color: var(--accent-200);">Readiness score</p>
-                  <h3 id="scoreNumber" class="font-display mt-2 text-4xl font-medium">10/25</h3>
-                </div>
-                <div id="scoreLabel" class="rounded-full bg-white/10 px-4 py-2 text-sm font-medium" style="color: var(--accent-100);">Fragmented</div>
-              </div>
-              <p id="scoreSummary" class="mt-4 text-sm leading-6 text-slate-200"></p>
-            </div>
-
-            <div class="grid gap-3 md:grid-cols-2">
-              <input name="name" placeholder="Name" required class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
-              <input name="email" type="email" placeholder="Work email" required class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
-              <input name="organisation" placeholder="Organisation" class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
-              <input name="role" placeholder="Role" class="rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-ink" />
-            </div>
-            <!-- Honeypot: hidden from humans, bots tend to fill it -->
-            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hidden" style="display:none !important;" aria-hidden="true" />
-            <button type="submit" id="scanSubmit" class="w-full inline-flex items-center justify-center rounded-full bg-ink py-4 text-base font-medium text-white hover:bg-slate-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
-              <span data-scanform-submit>Get my readiness summary</span>
-              <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
-            </button>
-            <div id="scanThanks" class="hidden rounded-2xl border p-4 text-sm leading-6 text-slate-800" style="border-color: var(--accent-200); background: var(--accent-50);">
-              Thanks — your summary is on its way. If the result raises questions, we'll offer 30 minutes to walk through it. No deck.
-            </div>
-            <div id="scanError" class="hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-800">
-              Something went wrong submitting the form. Please try again, or email us directly.
-            </div>
-          </form>
-        </div>
+      <div class="exit-col exit-col--lose">
+        <p class="exit-col-head"><i data-lucide="rotate-ccw" class="h-4 w-4"></i> You would have to replace</p>
+        <ul class="exit-list">
+          <li class="exit-item">
+            <h4 class="exit-item-title">The interface</h4>
+            <p class="exit-item-text">Fusion generates your screens. Take Fusion out and the screens go with it, so you would build your own. This is the real cost of leaving and we are not going to pretend it is small.</p>
+          </li>
+          <li class="exit-item">
+            <h4 class="exit-item-title">The AI-assisted lifecycle</h4>
+            <p class="exit-item-text">The path from discovery to delivery, and the conventions that keep AI output as reviewable work. You would go back to whatever you were doing before.</p>
+          </li>
+        </ul>
       </div>
+    </div>
+
+    <p class="exit-verdict">
+      That is a viable escape hatch, not a full system replacement. You would be rebuilding an interface, not rebuilding a system.
+    </p>
+
+    <div class="exit-compare">
+      <h3 class="exit-compare-title">Now weigh it against leaving a rented platform</h3>
+      <p class="exit-compare-text">
+        Your data comes out as a file export that somebody has to reassemble into a working system. Your business rules were written in a language that runs nowhere else. Your screens were configuration inside a product you no longer have access to. There is no escape hatch, viable or otherwise — and that is not an oversight in the design. It is the commercial model.
+      </p>
     </div>
   </div>
 </section>
@@ -451,34 +1393,61 @@
 <!-- ====================== OFFERS ====================== -->
 <section id="offers" class="bg-white py-20">
   <div class="mx-auto max-w-7xl px-5">
-    <div class="max-w-3xl" data-swap-key="offers-intro">
-      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);" data-offers-eyebrow>How to start</p>
-      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl" data-offers-title>
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">How to start</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
         Start with one real initiative.
       </h2>
-      <p class="mt-5 text-lg leading-8 text-slate-600" data-offers-sub>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
         No transformation programme up front. Prove Fusion on one live initiative, then decide.
       </p>
     </div>
-    <div class="mt-12 grid gap-5 lg:grid-cols-3" data-offers-cards></div>
+    <div class="mt-12 grid gap-5 lg:grid-cols-3">
+      <div class="rounded-3xl border border-slate-200 bg-slate-50 shadow-sm lift">
+        <div class="p-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+            <i data-lucide="target" class="h-6 w-6"></i>
+          </div>
+          <h3 class="font-display mt-5 text-xl font-medium">Readiness Assessment</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">Fixed-scope diagnostic</p>
+          <p class="mt-4 leading-7 text-slate-600">Map where your delivery fragments, where the trace breaks, and the highest-value place to start.</p>
+        </div>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-slate-50 shadow-sm lift">
+        <div class="p-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+            <i data-lucide="rocket" class="h-6 w-6"></i>
+          </div>
+          <h3 class="font-display mt-5 text-xl font-medium">Delivery Pilot</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">4–6 weeks, one live initiative</p>
+          <p class="mt-4 leading-7 text-slate-600">Run the initiative through discovery, blueprint and assurance — with evidence you can put in front of your exec team.</p>
+        </div>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-slate-50 shadow-sm lift">
+        <div class="p-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+            <i data-lucide="layers-3" class="h-6 w-6"></i>
+          </div>
+          <h3 class="font-display mt-5 text-xl font-medium">Operating Model Sprint</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">8–12 weeks, after the pilot</p>
+          <p class="mt-4 leading-7 text-slate-600">Once the pilot proves value, redesign how work moves from idea to production across the organisation.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ====================== FINAL CTA ====================== -->
+<!-- ====================== FINAL ====================== -->
 <section class="bg-ink py-20 text-white relative overflow-hidden grain">
   <div class="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
   <div class="mx-auto max-w-7xl px-5 text-center relative">
     <i data-lucide="workflow" class="mx-auto h-10 w-10" style="color: var(--accent-200);"></i>
-    <h2 class="font-display mx-auto mt-6 max-w-4xl text-4xl font-medium tracking-tight md:text-5xl" data-final-title>
+    <h2 class="font-display mx-auto mt-6 max-w-4xl text-4xl font-medium tracking-tight md:text-5xl">
       Can you trace what shipped last quarter back to why it was funded?
     </h2>
-    <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300" data-final-sub>
+    <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
       It's a harder question than it should be. Five questions, honest answer — see where the trace breaks and what to fix first.
     </p>
-    <a href="#scan" class="mt-9 inline-flex items-center rounded-full bg-white px-7 py-4 text-base font-medium text-ink hover:bg-slate-100 transition-colors">
-      <span data-final-cta>Take the readiness scan</span>
-      <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
-    </a>
   </div>
 </section>
 </main>
@@ -488,454 +1457,35 @@
   <div class="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 md:flex-row md:items-center">
     <div>
       <div class="wordmark text-lg">Fusion</div>
-      <p class="mt-1 text-sm text-slate-500" data-footer-tagline>Your initiative on one record, from business intent to working software. Built from real deliveries, not mockups.</p>
+      <p class="mt-1 text-sm text-slate-500">Your initiative on one record, from business intent to working software. Built from real deliveries, not mockups.</p>
     </div>
     <div class="flex flex-wrap gap-6 text-sm text-slate-500">
       <a href="#why" class="hover:text-ink ulink">Why Fusion</a>
+      <a href="#outcomes" class="hover:text-ink ulink">Outcomes</a>
+      <a href="#challenge" class="hover:text-ink ulink">The Challenge</a>
       <a href="#platform" class="hover:text-ink ulink">Platform</a>
-      <a href="#scan" class="hover:text-ink ulink">Assessment</a>
+      <a href="#technology" class="hover:text-ink ulink">Technology</a>
       <a href="#offers" class="hover:text-ink ulink">Engagement</a>
+      <a href="/redesign/services/" class="hover:text-ink ulink">For services firms</a>
     </div>
   </div>
   <div class="mx-auto max-w-7xl px-5 mt-6">
-    <p class="text-xs text-slate-400">© <span id="year"></span> Fusion. AI-assisted delivery that actually ships.</p>
+    <p class="text-xs text-slate-400">&copy; <span id="year"></span> Fusion. AI-assisted delivery that actually ships.</p>
   </div>
 </footer>
 
 <!-- ====================== SCRIPT ====================== -->
 <script>
 /* ============================================================
-   Fusion — audience-driven content + state
+   Fusion — enterprise page
    ============================================================ */
-
-const content = {
-  enterprise: {
-    ctaHeader: "Take the scan",
-    // the four SDLC phases, in delivery order
-    ribbon: [
-      "Discovery — Problem statement · Stakeholders & personas · Current state walkthroughs · Current state workflows",
-      "Design — Workflow value chain · Domain model · Workflow spec · Resource spec",
-      "Development — Code · System test plan · System test results · UAT task · UAT results",
-      "Deploy — PR review · CI/CD",
-    ],
-    hero: {
-      eyebrow: "SDLC + AI + code you own",
-      title: "Finally master enterprise software development.",
-      sub: "Fusion combines a disciplined SDLC, AI across the whole lifecycle, and the business apps you'd otherwise build on a rented low-code platform — delivered as code you own. No per-seat licensing, no vendor lock-in. Built from real deliveries, not a whiteboard.",
-      ctaPrimary: "Take the readiness scan",
-      ctaSecondary: "Explore the platform",
-    },
-    why: {
-      eyebrow: "Why the old model is breaking",
-      title: "Traditional SDLC tools track activity. Fusion connects it to working software.",
-      sub: "Requirements in Confluence. Work in Jira. Risks in a spreadsheet. Evidence assembled by hand before every release. It's the fragmentation, not the people, that's failing — in a Fusion engagement, your initiative runs on one record, so the trace holds from business intent to working software.",
-      problems: [
-        "Discovery, design, development and deployment happen in disconnected tools. Context dies at every handoff.",
-        "Teams track activity, but can't trace work back to business outcomes.",
-        "Requirements, architecture, risk, assurance and release evidence drift apart.",
-        "AI is bolted on as a coding assistant instead of applied across the full lifecycle.",
-      ],
-    },
-    shift: {
-      eyebrow: "What changes",
-      title: "From managing process to shipping software.",
-      rows: [
-        ["Today", "A requirement changes and nobody updates the linked tests, risks or release gates. You find out at go-live."],
-        ["With Fusion", "The requirement, its tests, risks and release gates live on one record. Every change lands on the record's audit trail, next to everything linked to it."],
-        ["What it buys you", "Evidence assembled as you go, not the night before. One record, one context, from idea to production."],
-      ],
-    },
-    platform: {
-      eyebrow: "Platform",
-      title: "One connected lifecycle. Six modules.",
-      sub: "Fusion doesn't replace your delivery tools on day one. Day-to-day work continues in the tools your teams already use; through the engagement, we keep the record current alongside them — that's part of the work, not an integration you have to build. No per-seat licensing, so the record can spread without a procurement fight.",
-      modules: [
-        ["Discover", "compass", "Capture business intent, opportunity, user need, constraints and success measures before work fragments."],
-        ["Blueprint", "file-text", "Turn intent into requirements, options, architecture, dependencies, epics and delivery plans."],
-        ["Forge", "cpu", "Support backlog creation, build guidance, development orchestration and AI-assisted engineering work."],
-        ["Assure", "shield-check", "Connect requirements, risks, controls, tests, quality gates and release readiness from the beginning."],
-        ["Deploy", "rocket", "Coordinate deployment confidence, change impact, operational transition and release evidence."],
-        ["Signals", "line-chart", "Track delivery health, operational feedback, adoption, value progress and measurable impact."],
-      ],
-    },
-    ai: {
-      eyebrow: "Where AI fits",
-      title: "AI beyond code.",
-      sub: "Coding assistants cover one step of the lifecycle. We apply AI from requirements to working software — with conventions that keep the output reviewable work, not slop.",
-      grid: [
-        "Intent awareness", "Architecture context", "Dependency intelligence",
-        "Risk and control mapping", "Release readiness", "Impact signals",
-      ],
-    },
-    scan: {
-      eyebrow: "Free self-assessment",
-      title: "Delivery Readiness Scan",
-      sub: "Five questions, two minutes. See where fragmented tools, handoffs or weak traceability are costing you — and what to fix first.",
-      bullets: [
-        "Get a readiness score across five dimensions of your delivery model.",
-        "See where lifecycle integration, traceability or release evidence breaks down.",
-        "If the result raises questions, book 30 minutes and we'll walk through it — no deck.",
-      ],
-      formTitle: "Assess your current model",
-      submit: "Get my readiness summary",
-      questions: [
-        "Business intent is clearly captured and traceable through design, delivery and deployment.",
-        "Discovery, design, development and deployment run through connected tools, not disconnected silos.",
-        "Initiatives are measured by progress to outcome, not only by activity, velocity or milestones.",
-        "Risks, controls, test coverage and release readiness are linked back to requirements and solution design.",
-        "AI supports discovery, design, delivery, assurance and feedback — not just code generation.",
-      ],
-      bands: {
-        low:  { label: "Fragmented", summary: "Your delivery likely runs across disconnected tools, and the trace from intent to release breaks early. Start by connecting one initiative end to end." },
-        mid:  { label: "Partly connected", summary: "Useful foundations, but gaps in traceability, assurance or outcome visibility are still costing you. Fix the weakest link first." },
-        high: { label: "Connected", summary: "Your delivery model holds together. You're well placed to run a connected record across multiple initiatives and teams." },
-      },
-    },
-    offers: {
-      eyebrow: "How to start",
-      title: "Start with one real initiative.",
-      sub: "No transformation programme up front. Prove Fusion on one live initiative, then decide.",
-      cards: [
-        ["Readiness Assessment", "target", "Fixed-scope diagnostic", "Map where your delivery fragments, where the trace breaks, and the highest-value place to start."],
-        ["Delivery Pilot", "rocket", "4–6 weeks, one live initiative", "Run the initiative through discovery, blueprint and assurance — with evidence you can put in front of your exec team."],
-        ["Operating Model Sprint", "layers-3", "8–12 weeks, after the pilot", "Once the pilot proves value, redesign how work moves from idea to production across the organisation."],
-      ],
-    },
-    final: {
-      title: "Can you trace what shipped last quarter back to why it was funded?",
-      sub: "It's a harder question than it should be. Five questions, honest answer — see where the trace breaks and what to fix first.",
-      cta: "Take the readiness scan",
-    },
-    footerTagline: "Your initiative on one record, from business intent to working software. Built from real deliveries, not mockups.",
-  },
-
-  services: {
-    ctaHeader: "Take the scan",
-    ribbon: [
-      "Client work · Captured IP · Packaged offer · Recurring revenue",
-      "Client work · Captured IP · Packaged offer · Recurring revenue",
-      "Client work · Captured IP · Packaged offer · Recurring revenue",
-    ],
-    hero: {
-      eyebrow: "For SIs, consultancies and professional services firms",
-      title: "Your services business already builds products. It just doesn't keep them.",
-      sub: "Capture the IP you already create, productise the solutions you keep rebuilding, and turn that into recurring revenue.",
-      ctaPrimary: "Take the opportunity scan",
-      ctaSecondary: "See how it works",
-    },
-    why: {
-      eyebrow: "Why services growth has a ceiling",
-      title: "Billable hours built your business. They'll also cap it.",
-      sub: "Every project creates IP — patterns, code, templates, know-how — and most of it walks out the door when the engagement ends. We grew a Salesforce consultancy to 130 people and sold it. Fusion is the operating model we wished we had.",
-      problems: [
-        "Revenue resets at the start of every project. Growth depends on more people, more hours.",
-        "Your IP is trapped in proposals, repos, old SOWs and three senior people's heads.",
-        "Consultants rebuild the same solution for different clients because starting over is easier than finding what you already built.",
-        "Productisation dies the moment a client project needs the team. Billable work always wins.",
-      ],
-    },
-    shift: {
-      eyebrow: "What changes",
-      title: "From selling hours to compounding IP.",
-      rows: [
-        ["Today", "The engagement ends, the team rolls off, and everything you learned goes with them."],
-        ["With Fusion", "A structured way to capture what you build, and to turn the patterns you're actually allowed to keep into offers you can sell again."],
-        ["What it buys you", "Same expertise. Better margins. Recurring revenue — the things acquirers actually pay for."],
-      ],
-    },
-    platform: {
-      eyebrow: "Platform",
-      title: "One operating model. Six modules. From delivery to product.",
-      sub: "Start where your IP already lives — repos, proposals, delivery docs, wikis — and work one repeatable problem at a time into a packaged offer with recurring economics.",
-      modules: [
-        ["Discover", "compass", "Surface repeatable customer problems across engagements and identify your strongest productisation candidates."],
-        ["Capture", "archive", "Pull together the IP your teams already create — artefacts, code, frameworks, templates, workflows and know-how."],
-        ["Blueprint", "file-text", "Shape captured IP into productised solutions: target customer, value proposition, packaging, commercial model."],
-        ["Package", "package", "Define the offer — fixed-scope service, accelerator, subscription, managed service — with the assets behind it."],
-        ["Operationalise", "workflow", "Embed productised delivery into how your firm sells, scopes, delivers and renews."],
-        ["Signals", "line-chart", "Track product adoption, margin uplift, reuse and recurring revenue contribution across the portfolio."],
-      ],
-    },
-    ai: {
-      eyebrow: "Where AI fits",
-      title: "Make every engagement build your product company.",
-      sub: "No magic. Fusion gives you a structured way to spot the problems you've solved more than three times, decide which engagements hold product-ready IP, and shape those assets into offers you can sell again.",
-      grid: [
-        "Pattern detection", "IP inventory", "Reusable asset mapping",
-        "Offer packaging assist", "Pricing model guidance", "Recurring revenue forecasting",
-      ],
-    },
-    scan: {
-      eyebrow: "Free self-assessment",
-      title: "Productisation Opportunity Scan",
-      sub: "Five questions. Find the repeatable problem most ready to become a productised, recurring offer — and see what's standing in the way.",
-      bullets: [
-        "Get a productisation readiness score across five dimensions.",
-        "See where delivery IP is leaking — and what's worth packaging.",
-        "If the result looks interesting, book 30 minutes to map your first product candidate.",
-      ],
-      formTitle: "Assess your productisation readiness",
-      submit: "Get my opportunity summary",
-      questions: [
-        "We solve similar customer problems across multiple clients.",
-        "Our delivery teams create reusable artefacts, templates, code or frameworks on every engagement.",
-        "One of our offers has been delivered end to end by someone other than the person who created it.",
-        "We have services that could be packaged into fixed-scope or subscription offers.",
-        "We have protected, non-billable time set aside to package what we build.",
-      ],
-      bands: {
-        low:  { label: "Hidden IP",                summary: "Your product potential is still trapped in delivery work. Start by capturing what you build before it walks out the door." },
-        mid:  { label: "Productisation ready",     summary: "You have repeatable problems and reusable assets. What's missing is a structured way to package them — and protected time to do it." },
-        high: { label: "Product company in waiting", summary: "The raw material is there. Pick one problem, prove the economics, then the next." },
-      },
-    },
-    offers: {
-      eyebrow: "How to start",
-      title: "Start with one repeatable problem.",
-      sub: "You don't need a transformation programme. Pick one problem you already solve well, prove the product economics, and do the next one.",
-      cards: [
-        ["Opportunity Assessment", "target", "Fixed-scope diagnostic", "Map your service portfolio, the IP you already hold, and the strongest first product candidate."],
-        ["First Product Sprint", "rocket", "6–8 week productisation", "Turn one repeatable problem into a packaged offer you can put in front of a client the following week, plus a build-ready blueprint for the product version."],
-        ["Services-to-Product Operating Model", "layers-3", "10–12 week embedding", "Embed IP capture, packaging, pricing and recurring revenue into how the firm sells, scopes and delivers."],
-      ],
-    },
-    final: {
-      title: "Which problem did your firm solve three times last year — and productise zero times?",
-      sub: "Take the opportunity scan and find the first repeatable problem worth turning into a product. If the result raises questions, book 30 minutes and we'll walk through it — no deck.",
-      cta: "Take the opportunity scan",
-    },
-    footerTagline: "Turn client work into product revenue — and capture what you build before it walks out the door.",
-  },
-};
-
-/* ---------- Lead capture (Web3Forms) ---------- */
-// Get a free access key at https://web3forms.com (enter the email leads should go to).
-const WEB3FORMS_ACCESS_KEY = "be3fdadd-7e50-45ae-afa6-b4242e31a5c9";
-
-/* ---------- Scale labels (1–5) ---------- */
-const scaleLabels = {
-  1: "Strongly disagree",
-  2: "Disagree",
-  3: "Neutral",
-  4: "Agree",
-  5: "Strongly agree",
-};
 
 /* ---------- Helpers ---------- */
 const $  = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-function setText(selector, value) {
-  $$(selector).forEach(el => el.textContent = value);
-}
-
-function lucideRefresh() {
-  if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-}
-
-/* ---------- Render functions ---------- */
-function renderHero(c) {
-  setText('[data-hero-eyebrow]', c.hero.eyebrow);
-  setText('[data-hero-title]', c.hero.title);
-  setText('[data-hero-sub]', c.hero.sub);
-  setText('[data-cta-primary]', c.hero.ctaPrimary);
-  setText('[data-cta-secondary]', c.hero.ctaSecondary);
-}
-
-function renderWhy(c) {
-  setText('[data-why-eyebrow]', c.why.eyebrow);
-  setText('[data-why-title]', c.why.title);
-  setText('[data-why-sub]', c.why.sub);
-  const target = $('[data-problems]');
-  target.innerHTML = c.why.problems.map(p => `
-    <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
-      <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
-        <i data-lucide="git-branch" class="h-5 w-5"></i>
-      </div>
-      <p class="text-base leading-7 text-slate-700">${p}</p>
-    </div>
-  `).join('');
-}
-
-function renderShift(c) {
-  setText('[data-shift-eyebrow]', c.shift.eyebrow);
-  setText('[data-shift-title]', c.shift.title);
-  const target = $('[data-shift-rows]');
-  target.innerHTML = c.shift.rows.map(([t, d]) => `
-    <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-      <h3 class="text-lg font-semibold" style="color: var(--accent-100);">${t}</h3>
-      <p class="mt-2 leading-7 text-slate-300">${d}</p>
-    </div>
-  `).join('');
-}
-
-function renderPlatform(c) {
-  setText('[data-platform-eyebrow]', c.platform.eyebrow);
-  setText('[data-platform-title]', c.platform.title);
-  setText('[data-platform-sub]', c.platform.sub);
-  const target = $('[data-modules]');
-  target.innerHTML = c.platform.modules.map(([title, icon, text]) => `
-    <div class="rounded-3xl border border-slate-200 bg-white shadow-sm lift">
-      <div class="p-6">
-        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-white">
-          <i data-lucide="${icon}" class="h-6 w-6"></i>
-        </div>
-        <h3 class="font-display mt-5 text-xl font-medium">Fusion ${title}</h3>
-        <p class="mt-3 leading-7 text-slate-600">${text}</p>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderAI(c) {
-  setText('[data-ai-eyebrow]', c.ai.eyebrow);
-  setText('[data-ai-title]', c.ai.title);
-  setText('[data-ai-sub]', c.ai.sub);
-  const target = $('[data-ai-grid]');
-  target.innerHTML = c.ai.grid.map(item => `
-    <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
-      <i data-lucide="network" class="h-5 w-5" style="color: var(--accent-200);"></i>
-      <span class="text-sm font-medium">${item}</span>
-    </div>
-  `).join('');
-}
-
-function renderScan(c) {
-  setText('[data-scan-eyebrow]', c.scan.eyebrow);
-  setText('[data-scan-title]', c.scan.title);
-  setText('[data-scan-sub]', c.scan.sub);
-  setText('[data-scanform-title]', c.scan.formTitle);
-  setText('[data-scanform-submit]', c.scan.submit);
-
-  // Bullets
-  const bullets = $('[data-scan-bullets]');
-  bullets.innerHTML = c.scan.bullets.map(b => `
-    <div class="flex gap-3">
-      <i data-lucide="check-circle-2" class="mt-1 h-5 w-5 shrink-0 text-ink"></i>
-      <p class="leading-7 text-slate-700">${b}</p>
-    </div>
-  `).join('');
-
-  // Questions
-  const qList = $('#questionList');
-  qList.innerHTML = c.scan.questions.map((q, idx) => `
-    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-      <label class="block text-sm font-medium leading-6 text-slate-800">${q}</label>
-      <div class="mt-4 flex items-center gap-3">
-        <span class="text-xs text-slate-500">1</span>
-        <input type="range" min="1" max="5" value="2" data-q="${idx}" class="w-full accent-color" aria-valuetext="${scaleLabels[2]}" />
-        <span class="text-xs text-slate-500">5</span>
-        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-semibold shadow-sm" data-q-out="${idx}">2</span>
-      </div>
-      <p class="mt-2 text-xs font-medium text-slate-600" data-q-label="${idx}">${scaleLabels[2]}</p>
-    </div>
-  `).join('');
-
-  // wire ranges
-  qList.querySelectorAll('input[type=range]').forEach(r => {
-    r.addEventListener('input', () => {
-      const out = qList.querySelector(`[data-q-out="${r.dataset.q}"]`);
-      const lbl = qList.querySelector(`[data-q-label="${r.dataset.q}"]`);
-      const text = scaleLabels[r.value];
-      out.textContent = r.value;
-      lbl.textContent = text;
-      r.setAttribute('aria-valuetext', text);
-      updateScore();
-    });
-  });
-
-  updateScore();
-}
-
-function updateScore() {
-  const aud = document.body.dataset.audience;
-  const c = content[aud];
-  const ranges = $$('#questionList input[type=range]');
-  const total = ranges.reduce((s, r) => s + Number(r.value), 0);
-  $('#scoreNumber').textContent = `${total}/25`;
-  let band = c.scan.bands.low;
-  if (total >= 18) band = c.scan.bands.high;
-  else if (total >= 12) band = c.scan.bands.mid;
-  $('#scoreLabel').textContent = band.label;
-  $('#scoreSummary').textContent = band.summary;
-}
-
-function renderOffers(c) {
-  setText('[data-offers-eyebrow]', c.offers.eyebrow);
-  setText('[data-offers-title]', c.offers.title);
-  setText('[data-offers-sub]', c.offers.sub);
-  const target = $('[data-offers-cards]');
-  target.innerHTML = c.offers.cards.map(([title, icon, price, text]) => `
-    <div class="rounded-3xl border border-slate-200 bg-slate-50 shadow-sm lift">
-      <div class="p-6">
-        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
-          <i data-lucide="${icon}" class="h-6 w-6"></i>
-        </div>
-        <h3 class="font-display mt-5 text-xl font-medium">${title}</h3>
-        <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">${price}</p>
-        <p class="mt-4 leading-7 text-slate-600">${text}</p>
-        <a href="#scan" class="mt-5 inline-flex items-center text-sm font-semibold text-ink">
-          Start here <i data-lucide="chevron-right" class="ml-1 h-4 w-4"></i>
-        </a>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderFinalAndChrome(c) {
-  setText('[data-final-title]', c.final.title);
-  setText('[data-final-sub]', c.final.sub);
-  setText('[data-final-cta]', c.final.cta);
-  setText('[data-footer-tagline]', c.footerTagline);
-  setText('[data-cta-header]', c.ctaHeader);
-  // Ribbon: one span per segment, diamond separators, both marquee halves identical
-  $$('[data-ribbon-group]').forEach(g => {
-    g.innerHTML = c.ribbon.map(r =>
-      `<span>${r.replace(/&/g, '&amp;')}</span><i data-lucide="diamond" class="h-3 w-3"></i>`
-    ).join('');
-  });
-}
-
-/* ---------- Audience switch ---------- */
-function setAudience(aud, opts = {}) {
-  document.body.dataset.audience = aud;
-  const c = content[aud];
-  if (typeof heroParticles !== 'undefined' && heroParticles) heroParticles.refreshColors();
-
-  // Animate the swappable groups
-  const swapTargets = $$('[data-swap-key]');
-  if (!opts.initial) {
-    swapTargets.forEach(el => {
-      el.classList.remove('swap-fade');
-      // force reflow so animation can replay
-      void el.offsetWidth;
-      el.classList.add('swap-fade');
-    });
-  }
-
-  renderHero(c);
-  renderWhy(c);
-  renderShift(c);
-  renderPlatform(c);
-  renderAI(c);
-  renderScan(c);
-  renderOffers(c);
-  renderFinalAndChrome(c);
-
-  // Header switch always points at the other audience
-  const sw = $('#audienceSwitch');
-  if (sw) {
-    const toServices = aud === 'enterprise';
-    setText('[data-switch-short]', toServices ? 'Services' : 'Enterprise');
-    setText('[data-switch-long]', toServices ? 'For services firms' : 'For enterprise teams');
-    sw.setAttribute('aria-label', toServices ? 'Switch to the services firm view' : 'Switch to the enterprise view');
-  }
-
-  lucideRefresh();
-}
-
 /* ---------- Hero tokamak (continuous field lines on a spinning torus) ---------- */
-const heroParticles = (() => {
+(() => {
   const canvas = $('#heroCanvas');
   if (!canvas || !canvas.getContext) return null;
   const ctx = canvas.getContext('2d');
@@ -1159,78 +1709,12 @@ const heroParticles = (() => {
     else start();
   });
 
-  return {
-    refreshColors: () => {
-      refreshColors();
-      if (!raf) drawFrame(reduced.matches || t0 === null ? 30 : lastT); // repaint in the new accent
-    },
-  };
 })();
 
 /* ---------- Wire up ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   $('#year').textContent = new Date().getFullYear();
-  setAudience('enterprise', { initial: true });
-
-  $('#audienceSwitch').addEventListener('click', () => {
-    setAudience(document.body.dataset.audience === 'enterprise' ? 'services' : 'enterprise');
-  });
-
-  $('#scanForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const btn = $('#scanSubmit');
-    const thanks = $('#scanThanks');
-    const error = $('#scanError');
-    error.classList.add('hidden');
-
-    const aud = document.body.dataset.audience;
-    const c = content[aud];
-    const fd = new FormData(form);
-
-    // Build a readable summary of the scan answers
-    const answers = $$('#questionList input[type=range]').map(r => {
-      const idx = Number(r.dataset.q);
-      return `Q${idx + 1}. ${c.scan.questions[idx]}\n   → ${r.value}/5 (${scaleLabels[r.value]})`;
-    }).join('\n');
-
-    const payload = {
-      access_key: WEB3FORMS_ACCESS_KEY,
-      subject: `New ${aud === 'services' ? 'Productisation Opportunity' : 'Readiness'} Scan lead — ${fd.get('name') || 'Unknown'}`,
-      from_name: "Fusion scan",
-      name: fd.get('name') || '',
-      email: fd.get('email') || '',
-      organisation: fd.get('organisation') || '',
-      role: fd.get('role') || '',
-      audience: aud,
-      readiness_score: $('#scoreNumber').textContent,
-      readiness_band: $('#scoreLabel').textContent,
-      scan_responses: answers,
-      botcheck: fd.get('botcheck') ? true : false,
-    };
-
-    btn.disabled = true;
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (data.success) {
-        thanks.classList.remove('hidden');
-        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        form.querySelectorAll('input[name="name"],input[name="email"],input[name="organisation"],input[name="role"]').forEach(i => i.value = '');
-      } else {
-        throw new Error(data.message || 'Submission failed');
-      }
-    } catch (err) {
-      error.classList.remove('hidden');
-      error.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } finally {
-      btn.disabled = false;
-    }
-  });
+  if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
 });
 </script>
 
