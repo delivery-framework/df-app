@@ -62,6 +62,7 @@
     --torus-1: #fcd34d; /* gold */
     --torus-2: #fda4af; /* rose */
     --torus-3: #fdba74; /* orange */
+    --header-h: 61px;
   }
 
   body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -89,10 +90,12 @@
     transition: background 600ms ease;
   }
 
-  /* Landing fills the viewport below the header — one clean screen, nothing peeking */
+  /* Landing fills the viewport below the header — one clean screen, nothing peeking.
+     The header height is declared once, so the two cannot drift apart. */
+  header { min-height: var(--header-h); }
   .hero-fill {
-    min-height: calc(100vh - 73px);
-    min-height: calc(100svh - 73px);
+    min-height: calc(100vh - var(--header-h));
+    min-height: calc(100svh - var(--header-h));
   }
 
   /* Fade animation for audience swap */
@@ -386,7 +389,7 @@
     font-size: 0.9375rem; line-height: 1.75; color: #94a3b8;
   }
 
-  /* Less custom code section */
+  /* Significantly less code section */
   .less-split { margin-top: 3rem; display: grid; gap: 2rem; align-items: start; }
   @media (min-width: 1024px) { .less-split { grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; } }
   .less-label {
@@ -554,6 +557,185 @@
     font-size: 0.9375rem; line-height: 1.75; color: #94a3b8;
   }
 
+  /* Build or buy comparison */
+  .cots-wrap { margin-top: 3rem; overflow-x: auto; }
+  .cots-table { min-width: 56rem; display: grid; gap: 0; }
+  .cots-row {
+    display: grid;
+    grid-template-columns: 12rem repeat(3, 1fr);
+    border-top: 1px solid #e2e8f0;
+  }
+  .cots-row:last-child .cots-cell--us { border-radius: 0 0 1.25rem 1.25rem; }
+  .cots-row--head { border-top: 0; }
+  .cots-row--head .cots-cell {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: #64748b; padding-bottom: 1rem;
+  }
+  .cots-row--head .cots-cell--us {
+    color: var(--accent-200);
+    border-radius: 1.25rem 1.25rem 0 0;
+    padding-top: 1.25rem;
+  }
+  .cots-label {
+    padding: 1.25rem 1.25rem 1.25rem 0;
+    font-size: 0.8125rem; font-weight: 600;
+    color: #0B1220; line-height: 1.4;
+  }
+  .cots-cell {
+    padding: 1.25rem;
+    font-size: 0.9375rem; line-height: 1.65; color: #475569;
+  }
+  /* the Fusion column runs as one continuous panel */
+  .cots-cell--us {
+    background: #0B1220; color: #e2e8f0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .cots-row--head .cots-cell--us { box-shadow: none; }
+  .cots-foot {
+    margin-top: 1.5rem; max-width: 46rem;
+    font-size: 0.875rem; line-height: 1.7; color: #64748b;
+  }
+
+  /* AI-native cascade */
+  .aware-split { margin-top: 3rem; display: grid; gap: 2rem; align-items: start; }
+  @media (min-width: 1000px) { .aware-split { grid-template-columns: 0.85fr 1.15fr; gap: 3rem; } }
+
+  .aware-ask {
+    border-radius: 1.75rem; padding: 1.75rem;
+    border: 1px solid color-mix(in srgb, var(--accent-500) 45%, transparent);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .aware-ask-label, .aware-list-label {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--accent-200);
+  }
+  .aware-ask-quote {
+    margin-top: 1.25rem;
+    font-family: 'Fraunces', serif; font-feature-settings: 'ss01' on;
+    font-size: 1.375rem; font-weight: 500; line-height: 1.4;
+    letter-spacing: -0.01em; color: #fff;
+  }
+  .aware-ask-foot {
+    margin-top: 1.25rem; padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    font-size: 0.875rem; line-height: 1.7; color: #94a3b8;
+  }
+
+  .aware-list { margin: 1.25rem 0 0; padding: 0; list-style: none; }
+  .aware-step {
+    position: relative;
+    display: grid; grid-template-columns: 2.25rem 1fr;
+    column-gap: 1rem; padding-bottom: 1.5rem;
+  }
+  .aware-step:last-child { padding-bottom: 0; }
+  .aware-step::before {
+    content: ""; position: absolute;
+    left: 1.0625rem; top: 2rem; bottom: 0; width: 2px;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--accent-500) 50%, transparent), rgba(255,255,255,0.08));
+  }
+  .aware-step:last-child::before { display: none; }
+  .aware-step-n {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.25rem; height: 2.25rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75rem; font-weight: 700;
+    font-variant-numeric: tabular-nums; color: var(--accent-200);
+  }
+  .aware-step-title { font-size: 1.0625rem; font-weight: 600; color: #fff; padding-top: 0.35rem; }
+  .aware-step-text { margin-top: 0.375rem; font-size: 0.9375rem; line-height: 1.7; color: #cbd5e1; }
+
+  .aware-stats {
+    margin-top: 3rem; display: grid; gap: 1.25rem;
+  }
+  @media (min-width: 900px) { .aware-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+  .aware-stat {
+    border-radius: 1.75rem; padding: 1.75rem;
+    border: 1px solid color-mix(in srgb, var(--accent-500) 40%, transparent);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .aware-stat-fig {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 3.25rem; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums; color: var(--accent-300);
+  }
+  .aware-stat-unit { font-size: 2rem; }
+  .aware-stat-slash { color: #64748b; margin: 0 0.1em; }
+  .aware-bar {
+    display: flex; height: 0.5rem; margin-top: 1.125rem;
+    border-radius: 9999px; overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .aware-bar-ai { width: 80%; background: var(--accent-500); }
+  .aware-bar-you { width: 20%; background: #64748b; }
+  .aware-stat-label {
+    margin-top: 1.125rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--accent-200);
+  }
+  .aware-stat-sep { color: #64748b; }
+  .aware-stat-text { margin-top: 0.875rem; font-size: 0.9375rem; line-height: 1.7; color: #cbd5e1; }
+
+  .aware-cards { margin-top: 3.5rem; display: grid; gap: 1.25rem; }
+  @media (min-width: 900px) { .aware-cards { grid-template-columns: repeat(3, 1fr); } }
+  .aware-card {
+    border-radius: 1.5rem; padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .aware-card-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 0.875rem; background: var(--accent-500); color: #0B1220;
+  }
+  .aware-card-title { margin-top: 1.125rem; font-size: 1.0625rem; font-weight: 600; color: #fff; }
+  .aware-card-text { margin-top: 0.5rem; font-size: 0.9375rem; line-height: 1.7; color: #cbd5e1; }
+
+  /* Analytics */
+  .viz-figure { margin: 3rem 0 0; }
+  .viz-frame {
+    border-radius: 1.25rem; overflow: hidden;
+    border: 1px solid #e2e8f0; background: #0B1220;
+    box-shadow: 0 30px 60px -30px rgba(15, 23, 42, 0.45);
+  }
+  .viz-frame img { display: block; width: 100%; height: auto; }
+  .viz-cap {
+    margin-top: 1.25rem; max-width: 46rem;
+    font-size: 1rem; line-height: 1.75; color: #475569;
+  }
+  .viz-cards { margin-top: 3.5rem; display: grid; gap: 1.25rem; }
+  @media (min-width: 900px) { .viz-cards { grid-template-columns: repeat(3, 1fr); } }
+  .viz-card {
+    border-radius: 1.5rem; padding: 1.5rem;
+    border: 1px solid #e2e8f0; background: #f8fafc;
+  }
+  .viz-card-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 0.875rem; background: #0B1220; color: #fff;
+  }
+  .viz-card-title { margin-top: 1.125rem; font-size: 1.0625rem; font-weight: 600; color: #0B1220; line-height: 1.3; }
+  .viz-card-text { margin-top: 0.5rem; font-size: 0.9375rem; line-height: 1.7; color: #475569; }
+
+  .viz-note {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    border-radius: 1.5rem; padding: 1.75rem;
+    border: 1px solid var(--accent-200); background: var(--accent-50);
+  }
+  .viz-note-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem; flex: none;
+    border-radius: 0.875rem; background: var(--accent-500); color: #0B1220;
+  }
+  .viz-note-title { font-size: 1.0625rem; font-weight: 600; color: #0B1220; }
+  .viz-note-text { margin-top: 0.5rem; max-width: 60rem; line-height: 1.75; color: #475569; }
+
   /* Honour reduced motion across the page, not just the hero canvas */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -582,7 +764,6 @@
 
     <nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
       <a href="#why" class="hover:text-white ulink">Why Fusion</a>
-      <a href="#outcomes" class="hover:text-white ulink">Outcomes</a>
       <a href="#challenge" class="hover:text-white ulink">The Challenge</a>
       <a href="#platform" class="hover:text-white ulink">Platform</a>
       <a href="#technology" class="hover:text-white ulink">Technology</a>
@@ -610,13 +791,13 @@
     <div class="relative z-10 reveal reveal-2">
       <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-slate-200">
         <i data-lucide="sparkles" class="h-4 w-4" style="color: var(--accent-300)"></i>
-        <span>SDLC + AI + code you own</span>
+        <span>Software development pipeline + AI + code you own</span>
       </div>
       <h1 class="font-display max-w-4xl text-5xl font-medium text-white md:text-7xl leading-[0.98]">
         Enterprise software development solved.
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        Fusion combines a disciplined SDLC, AI across the whole lifecycle, and the business apps you'd otherwise build on a rented low-code platform — delivered as code you own. No per-seat licensing, no vendor lock-in. Built from real deliveries, not a whiteboard.
+        Fusion combines a disciplined software development pipeline, AI across the whole lifecycle, and the business apps you'd otherwise build on a rented low-code platform — delivered as code you own. No per-seat licensing, no vendor lock-in. Built from real deliveries, not a whiteboard.
       </p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row">
         <a href="#platform" class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-4 text-base font-medium text-white hover:bg-white/20 transition-colors">
@@ -627,52 +808,11 @@
   </div>
 </section>
 
-<!-- ====================== WHY ====================== -->
-<section id="why" class="bg-white py-20">
+<!-- ====================== WHY FUSION ====================== -->
+<section id="why" class="bg-slate-50 py-20">
   <div class="mx-auto max-w-7xl px-5">
     <div class="max-w-3xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Why the old model is breaking</p>
-      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
-        Traditional SDLC tools track activity. Fusion connects it to working software.
-      </h2>
-      <p class="mt-5 text-lg leading-8 text-slate-600">
-        Requirements in Confluence. Work in Jira. Risks in a spreadsheet. Evidence assembled by hand before every release. It's the fragmentation, not the people, that's failing — in a Fusion engagement, your initiative runs on one record, so the trace holds from business intent to working software.
-      </p>
-    </div>
-    <div class="mt-12 grid gap-5 md:grid-cols-2">
-      <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
-        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
-          <i data-lucide="git-branch" class="h-5 w-5"></i>
-        </div>
-        <p class="text-base leading-7 text-slate-700">Discovery, design, development and deployment happen in disconnected tools. Context dies at every handoff.</p>
-      </div>
-      <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
-        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
-          <i data-lucide="git-branch" class="h-5 w-5"></i>
-        </div>
-        <p class="text-base leading-7 text-slate-700">Teams track activity, but can't trace work back to business outcomes.</p>
-      </div>
-      <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
-        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
-          <i data-lucide="git-branch" class="h-5 w-5"></i>
-        </div>
-        <p class="text-base leading-7 text-slate-700">Requirements, architecture, risk, assurance and release evidence drift apart.</p>
-      </div>
-      <div class="flex gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 lift">
-        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
-          <i data-lucide="git-branch" class="h-5 w-5"></i>
-        </div>
-        <p class="text-base leading-7 text-slate-700">AI is bolted on as a coding assistant instead of applied across the full lifecycle.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== OUTCOMES ====================== -->
-<section id="outcomes" class="bg-slate-50 py-20">
-  <div class="mx-auto max-w-7xl px-5">
-    <div class="max-w-3xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Outcomes</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Why Fusion</p>
       <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
         Less disruption. Faster impact. A stronger posture.
       </h2>
@@ -686,7 +826,7 @@
           <i data-lucide="users" class="h-6 w-6"></i>
         </div>
         <h3 class="font-display mt-5 text-xl font-medium">Less disruption to business as usual</h3>
-        <p class="mt-3 leading-7 text-slate-600">Fusion asks less of your business stakeholders. Structured discovery and one shared record mean fewer workshops, fewer repeat conversations, and fewer people pulled off their day job to explain the same thing twice.</p>
+        <p class="mt-3 leading-7 text-slate-600">Fusion asks less of your business stakeholders. The sessions they sit in are captured, and the documents get written from what was actually said — not from a second round of workshops held to confirm the first. Nobody is pulled off their day job to explain the same thing to a new person.</p>
       </div>
       <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lift">
         <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-white">
@@ -710,6 +850,72 @@
         <p class="mt-3 leading-7 text-slate-600">Feedback is collected continuously, not at the end of a phase. A change can be in production the same day — with requirements, tests and release evidence already up to date.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ====================== BUILD OR BUY ====================== -->
+<section id="build-or-buy" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Build or buy</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        You have been asked to choose between two bad answers.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        Build it, and wait a year for something that fits. Buy it, and have something next month that does not. The trade has been presented as a law of nature for twenty years, and it is really just an artefact of how the tools were sold. Fusion takes the finished plumbing and the fast start from one side, and the fit, the ownership and the freedom from the other.
+      </p>
+    </div>
+
+    <div class="cots-wrap">
+      <div class="cots-table">
+        <div class="cots-row cots-row--head">
+          <div class="cots-label"></div>
+          <div class="cots-cell">Build it yourself</div>
+          <div class="cots-cell">Rent a platform</div>
+          <div class="cots-cell cots-cell--us">Fusion</div>
+        </div>
+          <div class="cots-row">
+            <div class="cots-label">Time to something working</div>
+            <div class="cots-cell">Months. You write authentication, permissions, audit and forms before you write any of your business.</div>
+            <div class="cots-cell">Days. It is already built.</div>
+            <div class="cots-cell cots-cell--us">Days. It is already built, and it starts in your own repository.</div>
+          </div>
+          <div class="cots-row">
+            <div class="cots-label">How well it fits</div>
+            <div class="cots-cell">Exactly. You built it.</div>
+            <div class="cots-cell">As well as the vendor allows. You bend the business to fit the product.</div>
+            <div class="cots-cell cots-cell--us">Exactly. The screens follow your model, and any screen can be replaced by hand.</div>
+          </div>
+          <div class="cots-row">
+            <div class="cots-label">Who maintains the plumbing</div>
+            <div class="cots-cell">You do. Every year, forever.</div>
+            <div class="cots-cell">The vendor does. It is the thing you are paying for.</div>
+            <div class="cots-cell cots-cell--us">We do, as a dependency you update — and it is yours to fork if you ever need to.</div>
+          </div>
+          <div class="cots-row">
+            <div class="cots-label">What it costs</div>
+            <div class="cots-cell">Salaries, scaling with everything you decide to build.</div>
+            <div class="cots-cell">A fee for every seat, forever, scaling with how many people log in.</div>
+            <div class="cots-cell cots-cell--us">Machines and a subscription. It scales with what you run, not with who logs in.</div>
+          </div>
+          <div class="cots-row">
+            <div class="cots-label">The ceiling</div>
+            <div class="cots-cell">None. It is your code.</div>
+            <div class="cots-cell">Real, and you tend to meet it late, once you have already committed.</div>
+            <div class="cots-cell cots-cell--us">None. It is a Rails application.</div>
+          </div>
+          <div class="cots-row">
+            <div class="cots-label">If you walk away</div>
+            <div class="cots-cell">Nothing to walk away from.</div>
+            <div class="cots-cell">A file export. The logic dies with the platform it was written for.</div>
+            <div class="cots-cell cots-cell--us">Your data, your schema and your business logic. You rebuild the screens.</div>
+          </div>
+      </div>
+    </div>
+
+    <p class="cots-foot">
+      Read the last column down. Every entry is taken from one side or the other, and none of them is a compromise between the two.
+    </p>
   </div>
 </section>
 
@@ -997,6 +1203,121 @@
   </div>
 </section>
 
+<!-- ====================== AI NATIVE ====================== -->
+<section id="ai-native" class="bg-ink py-20 text-white relative overflow-hidden grain">
+  <div class="absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl opacity-15" style="background: var(--accent-500);"></div>
+  <div class="mx-auto max-w-7xl px-5 relative">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);">Built AI-native</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        Ask for a change. Everything it touches moves with it.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-300">
+        AI was not added to Fusion afterwards. The framework was built to be worked on by it, which means it knows what it is made of — which spec describes which workflow, which code implements it, which tests cover it, which guide explains it. Ask for a change and it already knows the full list of things that change with it.
+      </p>
+    </div>
+
+    <div class="aware-split">
+      <div class="aware-ask">
+        <p class="aware-ask-label">Somebody asks for</p>
+        <p class="aware-ask-quote">“Add a risk rating to the intake workflow. Anything rated high should route to the compliance queue for sign-off.”</p>
+        <p class="aware-ask-foot">One sentence, from somebody who does the job — not a change request written by somebody who has to translate it first.</p>
+      </div>
+      <div>
+        <p class="aware-list-label">What moves with it</p>
+        <ol class="aware-list">
+          <li class="aware-step">
+            <span class="aware-step-n">01</span>
+            <div>
+              <h4 class="aware-step-title">The specs</h4>
+              <p class="aware-step-text">The workflow spec, the resource specs and the domain model are updated to describe the new field, the new rule and the new route.</p>
+            </div>
+          </li>
+          <li class="aware-step">
+            <span class="aware-step-n">02</span>
+            <div>
+              <h4 class="aware-step-title">The code</h4>
+              <p class="aware-step-text">Fields, logic, screens and the database migration, written to the conventions the framework already holds.</p>
+            </div>
+          </li>
+          <li class="aware-step">
+            <span class="aware-step-n">03</span>
+            <div>
+              <h4 class="aware-step-title">The tests</h4>
+              <p class="aware-step-text">Unit and system tests written for the new behaviour, then run. When one fails it fixes the code, never the test.</p>
+            </div>
+          </li>
+          <li class="aware-step">
+            <span class="aware-step-n">04</span>
+            <div>
+              <h4 class="aware-step-title">The user guide</h4>
+              <p class="aware-step-text">Rewritten against the screens as they now are, and the walkthrough video recorded again.</p>
+            </div>
+          </li>
+          <li class="aware-step">
+            <span class="aware-step-n">05</span>
+            <div>
+              <h4 class="aware-step-title">User acceptance</h4>
+              <p class="aware-step-text">The task script prepared, the sessions analysed, the findings triaged into issues and queued for retest.</p>
+            </div>
+          </li>
+          <li class="aware-step">
+            <span class="aware-step-n">06</span>
+            <div>
+              <h4 class="aware-step-title">The plan</h4>
+              <p class="aware-step-text">Roadmap status, changelog entry and tech-debt ledger all brought back up to date.</p>
+            </div>
+          </li>
+          <li class="aware-step">
+            <span class="aware-step-n">07</span>
+            <div>
+              <h4 class="aware-step-title">The release</h4>
+              <p class="aware-step-text">Deployed, and then verified in production.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+
+    <div class="aware-stats">
+      <div class="aware-stat">
+        <p class="aware-stat-fig">4&ndash;8<span class="aware-stat-unit">h</span></p>
+        <p class="aware-stat-label">Request to production</p>
+        <p class="aware-stat-text">
+          A change of this size lands the same day. The person who asked for it watches it working before they go home, instead of waiting for it to appear in a release three months out.
+        </p>
+      </div>
+      <div class="aware-stat">
+        <p class="aware-stat-fig">80<span class="aware-stat-slash">/</span>20</p>
+        <div class="aware-bar"><span class="aware-bar-ai"></span><span class="aware-bar-you"></span></div>
+        <p class="aware-stat-label">AI effort <span class="aware-stat-sep">&middot;</span> human effort</p>
+        <p class="aware-stat-text">
+          AI does the writing: the specs, the code, the tests, the guide. Your people spend their fifth of the effort on the two parts that need a person — deciding what ought to change, and judging whether what came back is right.
+        </p>
+      </div>
+    </div>
+
+    <div class="aware-cards">
+        <div class="aware-card">
+          <div class="aware-card-icon"><i data-lucide="git-branch" class="h-5 w-5"></i></div>
+          <h3 class="aware-card-title">It knows what it is made of</h3>
+          <p class="aware-card-text">The roadmap, the domain model, the specs, the code, the tests and the guides are a declared chain, not a folder of documents that happen to sit near each other. A checker walks that chain and reports anything that no longer agrees with its neighbour.</p>
+        </div>
+        <div class="aware-card">
+          <div class="aware-card-icon"><i data-lucide="book-open" class="h-5 w-5"></i></div>
+          <h3 class="aware-card-title">A named skill for every step</h3>
+          <p class="aware-card-text">Not one general assistant guessing at your house style. Each step has its own skill, with its own inputs, its own outputs and its own definition of done — shipped and versioned with the framework, so the conventions arrive with the code.</p>
+        </div>
+        <div class="aware-card">
+          <div class="aware-card-icon"><i data-lucide="pause" class="h-5 w-5"></i></div>
+          <h3 class="aware-card-title">You approve at every checkpoint</h3>
+          <p class="aware-card-text">The orchestrator stops and waits: at the workflow spec, at the resource specs, at the test coverage. Nothing reaches production because a machine decided it had finished. The work is faster, and the judgement stays yours.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
 <!-- ====================== PLATFORM ====================== -->
 <section id="platform" class="bg-slate-50 py-20">
   <div class="mx-auto max-w-7xl px-5">
@@ -1102,6 +1423,61 @@
   </div>
 </section>
 
+<!-- ====================== ANALYTICS ====================== -->
+<section id="analytics" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Analytics</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        Stop fighting for an answer.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        Every question anyone asks about your business is already answerable from data the application holds. Getting the answer is the part that takes three weeks — a request to a data team, an extract, a spreadsheet, and a number nobody entirely trusts. Fusion puts the analysis inside the application, where the data already is and where the permission rules already are.
+      </p>
+    </div>
+
+    <figure class="viz-figure">
+      <div class="viz-frame">
+        <picture>
+          <source srcset="/site/images/platform/notebook.avif" type="image/avif">
+          <img src="/site/images/platform/notebook.webp" alt="An analytics notebook running inside the application, showing a roster donut chart, a per-person attendance bar chart, and a searchable data table with column summaries" width="1280" height="785" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <figcaption class="viz-cap">
+        A live notebook inside the application. Charts, an interactive table, and the numbers behind them — built for one programme, and re-runnable against any other.
+      </figcaption>
+    </figure>
+
+    <div class="viz-cards">
+        <div class="viz-card">
+          <div class="viz-card-icon"><i data-lucide="notebook-pen" class="h-5 w-5"></i></div>
+          <h3 class="viz-card-title">Notebooks, not a second product</h3>
+          <p class="viz-card-text">Reactive notebooks run in the browser, inside the application. Change one input and every chart and table below it recalculates. There is no separate reporting product with its own logins, its own nightly copy of your data, and its own bill per analyst.</p>
+        </div>
+        <div class="viz-card">
+          <div class="viz-card-icon"><i data-lucide="sparkles" class="h-5 w-5"></i></div>
+          <h3 class="viz-card-title">Describe the question in plain words</h3>
+          <p class="viz-card-text">The assistant writes the query and draws the chart, and every line of it stays visible and editable. Nobody is waiting three weeks in a queue behind the one person who knows the reporting tool.</p>
+        </div>
+        <div class="viz-card">
+          <div class="viz-card-icon"><i data-lucide="lock" class="h-5 w-5"></i></div>
+          <h3 class="viz-card-title">It can only ever show what that person could already see</h3>
+          <p class="viz-card-text">Every query runs through the same permission rules as every screen in the application. There is no second copy of your access rules kept in step by hand — which is exactly how somebody ends up seeing a number they were never meant to see.</p>
+        </div>
+    </div>
+
+    <div class="viz-note">
+      <div class="viz-note-icon"><i data-lucide="triangle-alert" class="h-5 w-5"></i></div>
+      <div>
+        <h3 class="viz-note-title">Why this matters more than it sounds</h3>
+        <p class="viz-note-text">
+          The usual approach is a reporting tool pointed at a nightly copy of the database, with your permission rules rebuilt inside it by hand. You now maintain two sets of rules that have to agree forever. The first time they quietly disagree, somebody sees a salary, a case note or a client they had no right to see — and nobody finds out from the software.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ====================== TECHNOLOGY ====================== -->
 <section id="technology" class="bg-ink py-20 text-white relative overflow-hidden grain">
   <div class="absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl opacity-15" style="background: var(--accent-500);"></div>
@@ -1109,23 +1485,23 @@
     <div class="max-w-3xl">
       <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);">Technology</p>
       <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
-        Fast for the people who use it. Cheap for the people who pay for it.
+        Rewarding for the people who use it. Unbeatable value for the people who pay for it.
       </h2>
       <p class="mt-5 text-lg leading-8 text-slate-300">
-        Two groups judge the technology, and they judge it on opposite things. The people doing the work care whether it is quick. The people signing for it care what it costs to run and whether they are tied to one supplier. You should not have to trade one against the other.
+        Two groups judge the technology, and they judge it on entirely different things. The people doing the work want software that is a pleasure to use and helps them get the job done quickly and well. The people signing for it want to know what they get for what they pay, and whether they are tied to one supplier for the next decade. You should not have to trade one against the other.
       </p>
     </div>
 
     <div class="tech-bens">
         <div class="tech-ben">
           <div class="tech-ben-icon"><i data-lucide="zap" class="h-5 w-5"></i></div>
-          <h3 class="tech-ben-title">It feels quick to the people using it</h3>
-          <p class="tech-ben-text">Pages arrive ready to work with. The heavy lifting happens on the server, so nobody sits watching a spinner while their browser downloads and assembles an application first. Your people meet this difference every hour of every day, and it is what separates software they use from software they tolerate.</p>
+          <h3 class="tech-ben-title">Software your people are glad to use</h3>
+          <p class="tech-ben-text">Nobody wants to admire the software. They want it to get out of the way and let them finish. Pages arrive ready to work with, every screen behaves the same way as the last one, and nothing is waiting on a browser to download and assemble an application first. Your people meet that difference every hour of every day, and it is what separates software they use from software they merely tolerate.</p>
         </div>
         <div class="tech-ben">
           <div class="tech-ben-icon"><i data-lucide="wallet" class="h-5 w-5"></i></div>
-          <h3 class="tech-ben-title">It costs little to keep running</h3>
-          <p class="tech-ben-text">Fusion needs a web server and one database. That is the whole list. The platforms you are comparing it against expect a string of extra paid services alongside them, and every one of those is another line on the invoice, another supplier to manage, and another thing that can fail on a Sunday night.</p>
+          <h3 class="tech-ben-title">More for considerably less</h3>
+          <p class="tech-ben-text">Fusion needs a web server and one database. That is the whole list. The platforms you are comparing it against expect a string of paid services alongside them, and charge you for every person who logs in on top. You are paying for the machines you run rather than for permission to run them, and getting an application that fits instead of one you had to bend the business around.</p>
         </div>
         <div class="tech-ben">
           <div class="tech-ben-icon"><i data-lucide="server" class="h-5 w-5"></i></div>
@@ -1147,7 +1523,7 @@
 <section id="less-code" class="bg-slate-50 py-20">
   <div class="mx-auto max-w-7xl px-5">
     <div class="max-w-3xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Less custom code</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Significantly less code</p>
       <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
         The safest code is the code nobody has to write.
       </h2>
@@ -1457,11 +1833,10 @@ end</code></pre></div>
   <div class="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 md:flex-row md:items-center">
     <div>
       <div class="wordmark text-lg">Fusion</div>
-      <p class="mt-1 text-sm text-slate-500">Your initiative on one record, from business intent to working software. Built from real deliveries, not mockups.</p>
+      <p class="mt-1 text-sm text-slate-500">From a one-hour sponsor session to software in production. Code you own, running wherever you choose.</p>
     </div>
     <div class="flex flex-wrap gap-6 text-sm text-slate-500">
       <a href="#why" class="hover:text-ink ulink">Why Fusion</a>
-      <a href="#outcomes" class="hover:text-ink ulink">Outcomes</a>
       <a href="#challenge" class="hover:text-ink ulink">The Challenge</a>
       <a href="#platform" class="hover:text-ink ulink">Platform</a>
       <a href="#technology" class="hover:text-ink ulink">Technology</a>

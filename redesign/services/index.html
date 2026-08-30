@@ -62,6 +62,7 @@
     --torus-1: #67e8f9; /* cyan */
     --torus-2: #a78bfa; /* violet */
     --torus-3: #f0abfc; /* fuchsia */
+    --header-h: 61px;
   }
 
   body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -89,10 +90,12 @@
     transition: background 600ms ease;
   }
 
-  /* Landing fills the viewport below the header — one clean screen, nothing peeking */
+  /* Landing fills the viewport below the header — one clean screen, nothing peeking.
+     The header height is declared once, so the two cannot drift apart. */
+  header { min-height: var(--header-h); }
   .hero-fill {
-    min-height: calc(100vh - 73px);
-    min-height: calc(100svh - 73px);
+    min-height: calc(100vh - var(--header-h));
+    min-height: calc(100svh - var(--header-h));
   }
 
   /* Fade animation for audience swap */
