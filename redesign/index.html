@@ -306,19 +306,27 @@
   #shot-list:checked ~ .shot-tabs label[for="shot-list"],
   #shot-detail:checked ~ .shot-tabs label[for="shot-detail"],
   #shot-actions:checked ~ .shot-tabs label[for="shot-actions"],
+  #shot-history:checked ~ .shot-tabs label[for="shot-history"],
+  #shot-comments:checked ~ .shot-tabs label[for="shot-comments"],
   #shot-form:checked ~ .shot-tabs label[for="shot-form"],
   #shot-search:checked ~ .shot-tabs label[for="shot-search"],
   #shot-cards:checked ~ .shot-tabs label[for="shot-cards"],
-  #shot-theme:checked ~ .shot-tabs label[for="shot-theme"] {
+  #shot-theme:checked ~ .shot-tabs label[for="shot-theme"],
+  #shot-mobile:checked ~ .shot-tabs label[for="shot-mobile"],
+  #shot-roadmap:checked ~ .shot-tabs label[for="shot-roadmap"] {
     background: #0B1220; border-color: #0B1220; color: #fff;
   }
   #shot-list:focus-visible ~ .shot-tabs label[for="shot-list"],
   #shot-detail:focus-visible ~ .shot-tabs label[for="shot-detail"],
   #shot-actions:focus-visible ~ .shot-tabs label[for="shot-actions"],
+  #shot-history:focus-visible ~ .shot-tabs label[for="shot-history"],
+  #shot-comments:focus-visible ~ .shot-tabs label[for="shot-comments"],
   #shot-form:focus-visible ~ .shot-tabs label[for="shot-form"],
   #shot-search:focus-visible ~ .shot-tabs label[for="shot-search"],
   #shot-cards:focus-visible ~ .shot-tabs label[for="shot-cards"],
-  #shot-theme:focus-visible ~ .shot-tabs label[for="shot-theme"] {
+  #shot-theme:focus-visible ~ .shot-tabs label[for="shot-theme"],
+  #shot-mobile:focus-visible ~ .shot-tabs label[for="shot-mobile"],
+  #shot-roadmap:focus-visible ~ .shot-tabs label[for="shot-roadmap"] {
     outline: 2px solid var(--accent-500); outline-offset: 2px;
   }
 
@@ -326,10 +334,14 @@
   #shot-list:checked ~ .shot-panels #panel-list,
   #shot-detail:checked ~ .shot-panels #panel-detail,
   #shot-actions:checked ~ .shot-panels #panel-actions,
+  #shot-history:checked ~ .shot-panels #panel-history,
+  #shot-comments:checked ~ .shot-panels #panel-comments,
   #shot-form:checked ~ .shot-panels #panel-form,
   #shot-search:checked ~ .shot-panels #panel-search,
   #shot-cards:checked ~ .shot-panels #panel-cards,
-  #shot-theme:checked ~ .shot-panels #panel-theme { display: block; }
+  #shot-theme:checked ~ .shot-panels #panel-theme,
+  #shot-mobile:checked ~ .shot-panels #panel-mobile,
+  #shot-roadmap:checked ~ .shot-panels #panel-roadmap { display: block; }
 
   .shot-frame {
     border-radius: 1.25rem; overflow: hidden;
@@ -1310,7 +1322,7 @@
         Nobody hand-built or vibe coded a single screen below.
       </h2>
       <p class="mt-5 text-lg leading-8 text-slate-600">
-        Lists that search, sort, filter and page through thousands of records. Record pages with history, comments and attachments. Forms with typeahead lookups and inline create. State machines that enforce their own rules. One search across every resource in the application. All of it comes from what your business objects already declare — and all of it is a real screenshot of a running application, not a mockup.
+        Record pages that carry their own facilitators, registrations, sessions and expenses. State machines that decide what can happen to a record next. Forms with typeahead lookups and inline create. One search across every resource in the application. Table or cards, whichever the person prefers. All of it comes from what your business objects already declare — and all of it is a real screenshot of a running application, not a mockup.
       </p>
     </div>
 
@@ -1318,70 +1330,96 @@
         <input type="radio" name="platform-shot" id="shot-list" checked>
         <input type="radio" name="platform-shot" id="shot-detail">
         <input type="radio" name="platform-shot" id="shot-actions">
+        <input type="radio" name="platform-shot" id="shot-history">
+        <input type="radio" name="platform-shot" id="shot-comments">
         <input type="radio" name="platform-shot" id="shot-form">
         <input type="radio" name="platform-shot" id="shot-search">
         <input type="radio" name="platform-shot" id="shot-cards">
         <input type="radio" name="platform-shot" id="shot-theme">
+        <input type="radio" name="platform-shot" id="shot-mobile">
+        <input type="radio" name="platform-shot" id="shot-roadmap">
         <div class="shot-tabs">
           <label for="shot-list">Records at scale</label>
           <label for="shot-detail">Record pages</label>
           <label for="shot-actions">State machines</label>
+          <label for="shot-history">Audit trail</label>
+          <label for="shot-comments">Comments and collaboration</label>
           <label for="shot-form">Forms and validation</label>
           <label for="shot-search">Search across everything</label>
           <label for="shot-cards">Views your users pick</label>
           <label for="shot-theme">Your design system</label>
+          <label for="shot-mobile">On a phone</label>
+          <label for="shot-roadmap">Roadmap</label>
         </div>
         <div class="shot-panels">
           <figure class="shot-panel" id="panel-list">
             <div class="shot-frame">
               <picture>
                 <source srcset="/site/images/platform/list.avif" type="image/avif">
-                <img src="/site/images/platform/list.webp" alt="Session list showing 2,932 records with search, a status filter, sortable columns and status badges" width="1440" height="900" loading="lazy" decoding="async">
+                <img src="/site/images/platform/list.webp" alt="A list of 414 delivery programs with search, four filters and status badges" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
-            <figcaption class="shot-cap">Search, filter, sort and page through thousands of records. The status badges, the sortable columns and the links out to related records all come from the resource definition — nobody hand-built this screen.</figcaption>
+            <figcaption class="shot-cap">Four hundred programmes, with search, four filters, sortable columns and paging. The status badges, the state chips and the links out to related records all come from the resource definition — nobody hand-built this screen.</figcaption>
           </figure>
           <figure class="shot-panel" id="panel-detail">
             <div class="shot-frame">
               <picture>
                 <source srcset="/site/images/platform/detail.avif" type="image/avif">
-                <img src="/site/images/platform/detail.webp" alt="Session record page with highlight fields, tabbed sections and linked related records" width="1440" height="900" loading="lazy" decoding="async">
+                <img src="/site/images/platform/detail.webp" alt="A delivery program record page with highlight fields and seven tabs, each showing a count" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
-            <figcaption class="shot-cap">Highlights across the top, field sections below, and tabs for history, comments and attachments. Every record page in the application is generated the same way, so they behave the same way.</figcaption>
+            <figcaption class="shot-cap">Highlights across the top, then the record's own tabs — facilitators, registrations, sessions, expenses, history, comments, attachments — each carrying its count. Every record page in the application is built the same way, so they all behave the same way.</figcaption>
           </figure>
           <figure class="shot-panel" id="panel-actions">
             <div class="shot-frame">
               <picture>
                 <source srcset="/site/images/platform/actions.avif" type="image/avif">
-                <img src="/site/images/platform/actions.webp" alt="Actions menu on a scheduled session showing Complete, Cancel and Reschedule available while Schedule and Reopen are disabled" width="1440" height="900" loading="lazy" decoding="async">
+                <img src="/site/images/platform/actions.webp" alt="An actions menu on a delivery program showing eight named state transitions" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
-            <figcaption class="shot-cap">Declare the states and the transitions once. The actions menu then enforces the guards: this session is scheduled, so it can be completed, cancelled or rescheduled — and the transitions that are not legal from here are not offered.</figcaption>
+            <figcaption class="shot-cap">Declare the states and the transitions once. The menu then offers only what is legal from where this record actually is — schedule, mark full, start, complete, cancel, cancel partially, reschedule, decline — and refuses the rest.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-history">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/history.avif" type="image/avif">
+                <img src="/site/images/platform/history.webp" alt="A history tab showing state changes with the actor, the time and the before and after values" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">Every change, with the person who made it, the time, and the fields before and after. Nobody writes this and nobody can forget to. It is what makes an obligation evidenced rather than asserted.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-comments">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/comments.avif" type="image/avif">
+                <img src="/site/images/platform/comments.webp" alt="A comments tab showing a conversation between two people with an image attached" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">A conversation on the record itself, with images attached inline, rather than in an email thread nobody outside it can find. It arrives with the resource; nobody builds a commenting feature.</figcaption>
           </figure>
           <figure class="shot-panel" id="panel-form">
             <div class="shot-frame">
               <picture>
                 <source srcset="/site/images/platform/form.avif" type="image/avif">
-                <img src="/site/images/platform/form.webp" alt="New session form with a typeahead lookup, required field markers and a date picker" width="1440" height="900" loading="lazy" decoding="async">
+                <img src="/site/images/platform/form.webp" alt="A new enrolment form with typeahead lookups, an inline create button and a required status field" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
-            <figcaption class="shot-cap">Sections, typeahead lookups with inline create, required fields and validation — generated from the same definition that generates the list and the record page. Change the model, and all three follow.</figcaption>
+            <figcaption class="shot-cap">Typeahead lookups for the records this one links to, an inline create beside the facilitator field, a required status, and the conditional sections that only matter sometimes. Generated from the same definition that generates the list and the record page.</figcaption>
           </figure>
           <figure class="shot-panel" id="panel-search">
             <div class="shot-frame">
               <picture>
                 <source srcset="/site/images/platform/search.avif" type="image/avif">
-                <img src="/site/images/platform/search.webp" alt="Global search showing typed results grouped under an Organisations heading" width="1440" height="900" loading="lazy" decoding="async">
+                <img src="/site/images/platform/search.webp" alt="Global search showing results grouped by resource type" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
-            <figcaption class="shot-cap">One search box over every resource in the application, grouped by type as you type. There is no separate index to stand up and no per-object configuration to maintain.</figcaption>
+            <figcaption class="shot-cap">One search box over every resource in the application, grouped by type as you type — people, organisations, work orders, facilitators, programmes. There is no separate index to stand up and no per-object configuration to maintain.</figcaption>
           </figure>
           <figure class="shot-panel" id="panel-cards">
             <div class="shot-frame">
               <picture>
                 <source srcset="/site/images/platform/cards.avif" type="image/avif">
-                <img src="/site/images/platform/cards.webp" alt="The same session records shown as a grid of cards instead of a table" width="1440" height="900" loading="lazy" decoding="async">
+                <img src="/site/images/platform/cards.webp" alt="The same delivery programs shown as cards instead of a table" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
             <figcaption class="shot-cap">Table or cards, chosen per resource by the person using it. Both views come with the resource; neither is a screen someone has to build and then keep in step with the other.</figcaption>
@@ -1390,10 +1428,28 @@
             <div class="shot-frame">
               <picture>
                 <source srcset="/site/images/platform/theme.avif" type="image/avif">
-                <img src="/site/images/platform/theme.webp" alt="The same session list rendered in the light theme" width="1440" height="900" loading="lazy" decoding="async">
+                <img src="/site/images/platform/theme.webp" alt="The delivery programs list rendered in the light theme" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
             <figcaption class="shot-cap">Light, dark and system themes, driven by design tokens rather than by a hundred hard-coded colours. Restyle the button once and every button in the application follows it, in every theme.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-mobile">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/mobile.avif" type="image/avif">
+                <img src="/site/images/platform/mobile.webp" alt="The delivery programs list on a phone, reflowed into stacked cards" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">The same screen on a phone. The table reflows into cards, the filters into a row that scrolls, and the navigation folds behind a menu — none of which anybody built separately. A screen generated once works everywhere the person opens it.</figcaption>
+          </figure>
+          <figure class="shot-panel" id="panel-roadmap">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="/site/images/platform/roadmap.avif" type="image/avif">
+                <img src="/site/images/platform/roadmap.webp" alt="A product roadmap inside the application showing artefact completion by stage" width="1440" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="shot-cap">A roadmap inside the application, reading the artefacts rather than a spreadsheet somebody keeps up to date. Every problem statement, persona set and domain model listed with the state it is actually in. Stakeholders see progress without anybody preparing a report.</figcaption>
           </figure>
         </div>
     </div>
