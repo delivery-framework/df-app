@@ -345,16 +345,19 @@
   #shot-roadmap:checked ~ .shot-panels #panel-roadmap { display: block; }
 
   /* The built-in SDLC gallery reuses the .shot-* styles with its own radio group. */
+  #pipe-menu:checked ~ .shot-tabs label[for="pipe-menu"],
   #pipe-sdlc:checked ~ .shot-tabs label[for="pipe-sdlc"],
   #pipe-chain:checked ~ .shot-tabs label[for="pipe-chain"],
   #pipe-testing:checked ~ .shot-tabs label[for="pipe-testing"] {
     background: #0B1220; border-color: #0B1220; color: #fff;
   }
+  #pipe-menu:focus-visible ~ .shot-tabs label[for="pipe-menu"],
   #pipe-sdlc:focus-visible ~ .shot-tabs label[for="pipe-sdlc"],
   #pipe-chain:focus-visible ~ .shot-tabs label[for="pipe-chain"],
   #pipe-testing:focus-visible ~ .shot-tabs label[for="pipe-testing"] {
     outline: 2px solid var(--accent-500); outline-offset: 2px;
   }
+  #pipe-menu:checked ~ .shot-panels #panel-pipe-menu,
   #pipe-sdlc:checked ~ .shot-panels #panel-pipe-sdlc,
   #pipe-chain:checked ~ .shot-panels #panel-pipe-chain,
   #pipe-testing:checked ~ .shot-panels #panel-pipe-testing { display: block; }
@@ -1354,15 +1357,26 @@
     </div>
 
     <div class="mt-12 shots">
-      <input type="radio" name="pipeline-shot" id="pipe-sdlc" checked>
+      <input type="radio" name="pipeline-shot" id="pipe-menu" checked>
+      <input type="radio" name="pipeline-shot" id="pipe-sdlc">
       <input type="radio" name="pipeline-shot" id="pipe-chain">
       <input type="radio" name="pipeline-shot" id="pipe-testing">
       <div class="shot-tabs">
+        <label for="pipe-menu">In the user menu</label>
         <label for="pipe-sdlc">Delivery artefacts</label>
         <label for="pipe-chain">Workflow gates</label>
         <label for="pipe-testing">User testing</label>
       </div>
       <div class="shot-panels">
+        <figure class="shot-panel" id="panel-pipe-menu">
+          <div class="shot-frame">
+            <picture>
+              <source srcset="/site/images/platform/usermenu.avif" type="image/avif">
+              <img src="/site/images/platform/usermenu.webp" alt="The application's own user menu open, listing feedback, user testing, roadmap, the delivery board and what's new alongside account security and sign out" width="1440" height="900" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <figcaption class="shot-cap">Start here, because it shows where all of this lives. Feedback, user testing, the roadmap, the delivery board and the release notes sit in the same menu as account security and sign out. Nobody bought a second tool and wired it in. They are pages of the application, in the place a user would look for them.</figcaption>
+        </figure>
         <figure class="shot-panel" id="panel-pipe-sdlc">
           <div class="shot-frame">
             <picture>
