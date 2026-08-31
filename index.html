@@ -344,6 +344,21 @@
   #shot-mobile:checked ~ .shot-panels #panel-mobile,
   #shot-roadmap:checked ~ .shot-panels #panel-roadmap { display: block; }
 
+  /* The built-in SDLC gallery reuses the .shot-* styles with its own radio group. */
+  #pipe-sdlc:checked ~ .shot-tabs label[for="pipe-sdlc"],
+  #pipe-chain:checked ~ .shot-tabs label[for="pipe-chain"],
+  #pipe-testing:checked ~ .shot-tabs label[for="pipe-testing"] {
+    background: #0B1220; border-color: #0B1220; color: #fff;
+  }
+  #pipe-sdlc:focus-visible ~ .shot-tabs label[for="pipe-sdlc"],
+  #pipe-chain:focus-visible ~ .shot-tabs label[for="pipe-chain"],
+  #pipe-testing:focus-visible ~ .shot-tabs label[for="pipe-testing"] {
+    outline: 2px solid var(--accent-500); outline-offset: 2px;
+  }
+  #pipe-sdlc:checked ~ .shot-panels #panel-pipe-sdlc,
+  #pipe-chain:checked ~ .shot-panels #panel-pipe-chain,
+  #pipe-testing:checked ~ .shot-panels #panel-pipe-testing { display: block; }
+
   .shot-frame {
     border-radius: 1.25rem; overflow: hidden;
     border: 1px solid #e2e8f0; background: #0B1220;
@@ -1321,6 +1336,70 @@
           <h3 class="aware-card-title">You approve at every checkpoint</h3>
           <p class="aware-card-text">The orchestrator stops and waits: at the workflow spec, at the resource specs, at the test coverage. Nothing reaches production because a machine decided it had finished. The work is faster, and the judgement stays yours.</p>
         </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== BUILT-IN SDLC ====================== -->
+<section id="sdlc" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Built-in SDLC</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        <span class="inline-block">The SDLC is not a folder.</span>
+        <span class="inline-block">It is a screen in the product.</span>
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        On most deliveries the evidence lives outside the software: a wiki nobody opens after go-live, a spreadsheet of test results, a roadmap deck that stopped being true in month three. Fusion knows what it is made of, so it keeps that record itself. The roadmap, the workflow gates, the user guides and the test recordings are pages in the application your people already sign in to — and they are current, because the work is what updates them.
+      </p>
+    </div>
+
+    <div class="mt-12 shots">
+      <input type="radio" name="sdlc-shot" id="pipe-sdlc" checked>
+      <input type="radio" name="sdlc-shot" id="pipe-chain">
+      <input type="radio" name="sdlc-shot" id="pipe-testing">
+      <div class="shot-tabs">
+        <label for="pipe-sdlc">Delivery artefacts</label>
+        <label for="pipe-chain">Workflow gates</label>
+        <label for="pipe-testing">User testing</label>
+      </div>
+      <div class="shot-panels">
+        <figure class="shot-panel" id="panel-pipe-sdlc">
+          <div class="shot-frame">
+            <picture>
+              <source srcset="/site/images/platform/sdlc.avif" type="image/avif">
+              <img src="/site/images/platform/sdlc.webp" alt="The product roadmap on its SDLC tab, showing 86 per cent complete, six of seven artefacts done, grouped into Discovery and Design phases" width="1440" height="900" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <figcaption class="shot-cap">Every artefact the delivery depends on, with its state: the problem statement, the personas, the domain model, the workflow value chain. Six of seven done, one in progress, and each one opens the document itself. The ones marked "Living doc" are rewritten as the software changes, not at the end of a phase.</figcaption>
+        </figure>
+        <figure class="shot-panel" id="panel-pipe-chain">
+          <div class="shot-frame">
+            <picture>
+              <source srcset="/site/images/platform/valuechain.avif" type="image/avif">
+              <img src="/site/images/platform/valuechain.webp" alt="The roadmap value chain tab, showing twenty-one workflows each tracked across five gates: spec, build, system testing, user guide and user testing" width="1440" height="900" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <figcaption class="shot-cap">Twenty-one workflows, each carrying the same five gates: spec, build, system testing, user guide, user testing. A workflow is not finished when the code runs. It is finished when somebody outside the team has read the guide and used it. The counts across the top are the honest state of the delivery, on a page anyone can open.</figcaption>
+        </figure>
+        <figure class="shot-panel" id="panel-pipe-testing">
+          <div class="shot-frame">
+            <picture>
+              <source srcset="/site/images/platform/usertesting.avif" type="image/avif">
+              <img src="/site/images/platform/usertesting.webp" alt="The user testing panel open over the application, listing workflows with their gate status and a start recording button" width="1440" height="900" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <figcaption class="shot-cap">A user opens this from their own menu, picks the workflow they are about to exercise, and records the session. The recording lands against that workflow's user-testing gate. Feedback is not a survey sent afterwards — it is collected in the application, at the moment the person meets the thing.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-slate-500">
+      <span>The roadmap is a page in the app, not a slide</span>
+      <span aria-hidden="true" class="text-slate-300">&middot;</span>
+      <span>Five gates on every workflow</span>
+      <span aria-hidden="true" class="text-slate-300">&middot;</span>
+      <span>Evidence collected where the work happens</span>
     </div>
   </div>
 </section>
