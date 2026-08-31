@@ -61,7 +61,7 @@
     --torus-1: #67e8f9; /* cyan */
     --torus-2: #a78bfa; /* violet */
     --torus-3: #f0abfc; /* fuchsia */
-    --header-h: 61px;
+    --header-h: 73px;
   }
 
   body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -92,6 +92,8 @@
   /* Landing fills the viewport below the header — one clean screen, nothing peeking.
      The header height is declared once, so the two cannot drift apart. */
   header { min-height: var(--header-h); }
+  /* the header is sticky, so an anchor must stop below it */
+  section[id], main[id] { scroll-margin-top: var(--header-h); }
   .hero-fill {
     min-height: calc(100vh - var(--header-h));
     min-height: calc(100svh - var(--header-h));
