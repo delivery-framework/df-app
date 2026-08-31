@@ -348,19 +348,22 @@
   #pipe-menu:checked ~ .shot-tabs label[for="pipe-menu"],
   #pipe-sdlc:checked ~ .shot-tabs label[for="pipe-sdlc"],
   #pipe-chain:checked ~ .shot-tabs label[for="pipe-chain"],
-  #pipe-testing:checked ~ .shot-tabs label[for="pipe-testing"] {
+  #pipe-testing:checked ~ .shot-tabs label[for="pipe-testing"],
+  #pipe-log:checked ~ .shot-tabs label[for="pipe-log"] {
     background: #0B1220; border-color: #0B1220; color: #fff;
   }
   #pipe-menu:focus-visible ~ .shot-tabs label[for="pipe-menu"],
   #pipe-sdlc:focus-visible ~ .shot-tabs label[for="pipe-sdlc"],
   #pipe-chain:focus-visible ~ .shot-tabs label[for="pipe-chain"],
-  #pipe-testing:focus-visible ~ .shot-tabs label[for="pipe-testing"] {
+  #pipe-testing:focus-visible ~ .shot-tabs label[for="pipe-testing"],
+  #pipe-log:focus-visible ~ .shot-tabs label[for="pipe-log"] {
     outline: 2px solid var(--accent-500); outline-offset: 2px;
   }
   #pipe-menu:checked ~ .shot-panels #panel-pipe-menu,
   #pipe-sdlc:checked ~ .shot-panels #panel-pipe-sdlc,
   #pipe-chain:checked ~ .shot-panels #panel-pipe-chain,
-  #pipe-testing:checked ~ .shot-panels #panel-pipe-testing { display: block; }
+  #pipe-testing:checked ~ .shot-panels #panel-pipe-testing,
+  #pipe-log:checked ~ .shot-panels #panel-pipe-log { display: block; }
 
   .shot-frame {
     border-radius: 1.25rem; overflow: hidden;
@@ -1361,11 +1364,13 @@
       <input type="radio" name="pipeline-shot" id="pipe-sdlc">
       <input type="radio" name="pipeline-shot" id="pipe-chain">
       <input type="radio" name="pipeline-shot" id="pipe-testing">
+      <input type="radio" name="pipeline-shot" id="pipe-log">
       <div class="shot-tabs">
         <label for="pipe-menu">In the user menu</label>
         <label for="pipe-sdlc">Delivery artefacts</label>
         <label for="pipe-chain">Workflow gates</label>
         <label for="pipe-testing">User testing</label>
+        <label for="pipe-log">Release notes</label>
       </div>
       <div class="shot-panels">
         <figure class="shot-panel" id="panel-pipe-menu">
@@ -1403,6 +1408,15 @@
             </picture>
           </div>
           <figcaption class="shot-cap">A user opens this from their own menu and picks the workflow they are about to exercise. Only workflows whose user guide is finished can be recorded — the rest are listed but refuse to start. Then the app tells the tester how to run the session, and the recording lands against that workflow's user-testing gate. Feedback is not a survey sent afterwards. It is collected in the application, at the moment the person meets the thing.</figcaption>
+        </figure>
+        <figure class="shot-panel" id="panel-pipe-log">
+          <div class="shot-frame">
+            <picture>
+              <source srcset="/site/images/platform/changelog.avif" type="image/avif">
+              <img src="/site/images/platform/changelog.webp" alt="The what's new page inside the application, showing release v0.35.0 with its changes grouped into added, changed, fixed and security" width="1440" height="900" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <figcaption class="shot-cap">Every release writes itself up here, grouped into what was added, changed, fixed and secured — in the language of the business, not commit messages. "Envisage can now set up the facilitator training its delivery partners' staff attend." The security entries name the fix and the CVE. Your users read this page. So does your auditor.</figcaption>
         </figure>
       </div>
     </div>
