@@ -1,10 +1,69 @@
 @import "tailwindcss";
 
-@source "../index.html";
-@source "../services/index.html";
+/* DaisyUI supplies the components. The page keeps its own CSS for everything
+   that DaisyUI has no component for: the hero canvas, the Challenge timeline,
+   the code split, the screenshot gallery, the lock-in ledger.
+
+   themes: false  — the built-in light and dark themes set colours on :root and
+                    would fight the page palette. The fusion theme below is the
+                    only theme.
+   include:       — DaisyUI emits a component whenever its name appears anywhere
+                    in the scanned HTML, and words like "card", "alert" and
+                    "loading" appear in the prose and in loading="lazy". Without
+                    this list the stylesheet grows to 120 kB of unused CSS.
+                    ADD A COMPONENT NAME HERE BEFORE YOU USE ITS CLASSES.
+                    A class whose component is not listed does nothing. */
+@plugin "daisyui" {
+  themes: false;
+  include: button, card, badge;
+}
+
+/* The fusion theme maps DaisyUI tokens onto the palette the page already used,
+   so btn, card and badge render the same as the utility classes they replaced.
+   The base layer is not included, so DaisyUI sets no colour on :root. */
+@plugin "daisyui/theme" {
+  name: "fusion";
+  default: true;
+
+  --color-base-100: #ffffff;
+  --color-base-200: #f8fafc;
+  --color-base-300: #e2e8f0;
+  --color-base-content: #0B1220;
+
+  --color-primary: #f59e0b;
+  --color-primary-content: #0B1220;
+  --color-secondary: #0B1220;
+  --color-secondary-content: #f8fafc;
+  --color-accent: #f59e0b;
+  --color-accent-content: #0B1220;
+  --color-neutral: #0B1220;
+  --color-neutral-content: #ffffff;
+  --color-info: #0ea5e9;
+  --color-info-content: #ffffff;
+  --color-success: #16a34a;
+  --color-success-content: #ffffff;
+  --color-warning: #d97706;
+  --color-warning-content: #ffffff;
+  --color-error: #dc2626;
+  --color-error-content: #ffffff;
+
+  /* rounded-full for pills, rounded-3xl for cards */
+  --radius-selector: calc(infinity * 1px);
+  --radius-field: calc(infinity * 1px);
+  --radius-box: 1.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  /* depth and noise are DaisyUI's shading and texture. The page uses neither. */
+  --depth: 0;
+  --noise: 0;
+}
 
 @theme {
   --font-sans: "Inter Tight", system-ui, sans-serif;
   --font-display: "Fraunces", serif;
   --color-ink: #0B1220;
 }
+
+@source "../index.html";
+@source "../services/index.html";

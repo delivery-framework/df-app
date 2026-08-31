@@ -23,8 +23,15 @@ CNAME
 ```
 
 Both live pages hold their own custom CSS in a `<style>` block. Tailwind supplies
-the utility classes. `css/input.css` lists the files that Tailwind scans. If you add
-a page, add an `@source` line for it, or its classes do not compile.
+the utility classes and DaisyUI supplies `btn`, `card` and `badge`.
+
+Two rules for `css/input.css`:
+
+- If you add a page, add an `@source` line for it, or its classes do not compile.
+- If you use a new DaisyUI class, add its component to the `include:` list, or the
+  class does nothing. The list exists because DaisyUI is not tree-shaken reliably:
+  it emits a component whenever its name appears in the scanned HTML, and words
+  such as `card` and `loading` appear in the prose and in `loading="lazy"`.
 
 ## Development
 
