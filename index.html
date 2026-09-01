@@ -628,6 +628,29 @@
     font-size: 0.875rem; line-height: 1.7; color: #64748b;
   }
 
+  /* Pricing */
+  .price-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; padding: 0.875rem 0; border-top: 1px solid #e2e8f0;
+  }
+  .price-row:first-child { border-top: 0; padding-top: 0; }
+  .price-name { font-size: 0.9375rem; font-weight: 600; line-height: 1.45; color: #0B1220; }
+  .price-note {
+    display: block; margin-top: 0.2rem;
+    font-size: 0.8125rem; font-weight: 400; line-height: 1.5; color: #64748b;
+  }
+  .price-fig {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.25rem; font-weight: 700; color: #0B1220; white-space: nowrap;
+  }
+  .price-per {
+    margin-left: 0.25rem;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #64748b;
+  }
+
   /* AI-native cascade */
   .aware-split { margin-top: 3rem; display: grid; gap: 2rem; align-items: start; }
   @media (min-width: 1000px) { .aware-split { grid-template-columns: 0.85fr 1.15fr; gap: 3rem; } }
@@ -1965,6 +1988,86 @@ end</code></pre></div>
   </div>
 </section>
 
+<!-- ====================== PRICING ====================== -->
+<section id="pricing" class="bg-slate-50 py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Pricing</p>
+      <h2 class="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-5xl">
+        Priced by what you run, not by who logs in.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        Two things carry a price: the environments you run, and the people who build with Fusion. The people who use what you build are not licensed at all — however many of them there are. Every figure below is a list price in US dollars, per year.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-5 lg:grid-cols-2">
+      <div class="card card-border border-slate-200 bg-white shadow-sm">
+        <div class="p-6 md:p-8">
+          <h3 class="font-display text-xl font-medium">What you run</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">Scales with your workload</p>
+          <div class="mt-6">
+            <div class="price-row">
+              <span class="price-name">Delivery pipeline<span class="price-note">Discovery through to deployment</span></span>
+              <span class="price-fig">$24,000<span class="price-per">/yr</span></span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Hosting<span class="price-note">Staging and production</span></span>
+              <span class="price-fig">$10,000<span class="price-per">/yr</span></span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Monitoring<span class="price-note">Usage, security and performance, in production</span></span>
+              <span class="price-fig">$5,000<span class="price-per">/yr</span></span>
+            </div>
+          </div>
+          <p class="mt-6 text-sm leading-6 text-slate-500">Hosting and monitoring are optional. Run the environments yourself, at any provider or on your own servers, and those two lines come off.</p>
+        </div>
+      </div>
+
+      <div class="card card-border border-slate-200 bg-white shadow-sm">
+        <div class="p-6 md:p-8">
+          <h3 class="font-display text-xl font-medium">Who builds with it</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">A delivery team, not your user base</p>
+          <div class="mt-6">
+            <div class="price-row">
+              <span class="price-name">Creator<span class="price-note">Solution architects — model the domain, define the workflows</span></span>
+              <span class="price-fig">$1,800<span class="price-per">/yr</span></span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Contributor<span class="price-note">The delivery team</span></span>
+              <span class="price-fig">$600<span class="price-per">/yr</span></span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Viewer<span class="price-note">Management and observers — read the roadmap, watch progress</span></span>
+              <span class="price-fig">$200<span class="price-per">/yr</span></span>
+            </div>
+          </div>
+          <p class="mt-6 text-sm leading-6 text-slate-500">A typical delivery is a handful of people. The application they build carries no seat fee at all.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="less-stat">
+      <div class="less-stat-fig">
+        <span class="less-stat-num">$0</span>
+        <span class="less-stat-unit">per application user</span>
+      </div>
+      <div>
+        <p class="less-stat-body">
+          However many people use the software you build — ten, ten thousand, everyone you serve — none of them is licensed. The seats above are for the few people who build with Fusion, and that is the whole difference between this and a platform that charges you for every person who logs in.
+        </p>
+        <p class="less-stat-scope">
+          That is what “no per-seat licensing” means on this page: the seats above licence the few people who build with Fusion, and nobody is ever charged for using what they built. Growing your user base is not a pricing event.
+        </p>
+      </div>
+    </div>
+
+    <p class="cots-foot">
+      List prices in US dollars, per year. Delivery services are quoted per engagement. What you actually pay depends on how many environments you run and how many people build with Fusion, so treat this as the basis of a quote rather than the quote itself.
+    </p>
+  </div>
+</section>
+
 <!-- ====================== FINAL ====================== -->
 <section class="bg-ink py-20 text-white relative overflow-hidden grain">
   <div class="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
@@ -1997,6 +2100,7 @@ end</code></pre></div>
       <a href="#platform" class="hover:text-ink ulink">Platform</a>
       <a href="#technology" class="hover:text-ink ulink">Technology</a>
       <a href="#offers" class="hover:text-ink ulink">Engagement</a>
+      <a href="#pricing" class="hover:text-ink ulink">Pricing</a>
       <a href="/services/" class="hover:text-ink ulink">For services firms</a>
     </div>
   </div>
