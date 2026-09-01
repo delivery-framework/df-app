@@ -313,8 +313,7 @@
   #shot-search:checked ~ .shot-tabs label[for="shot-search"],
   #shot-cards:checked ~ .shot-tabs label[for="shot-cards"],
   #shot-theme:checked ~ .shot-tabs label[for="shot-theme"],
-  #shot-mobile:checked ~ .shot-tabs label[for="shot-mobile"],
-  #shot-roadmap:checked ~ .shot-tabs label[for="shot-roadmap"] {
+  #shot-mobile:checked ~ .shot-tabs label[for="shot-mobile"] {
     background: #0B1220; border-color: #0B1220; color: #fff;
   }
   #shot-list:focus-visible ~ .shot-tabs label[for="shot-list"],
@@ -326,8 +325,7 @@
   #shot-search:focus-visible ~ .shot-tabs label[for="shot-search"],
   #shot-cards:focus-visible ~ .shot-tabs label[for="shot-cards"],
   #shot-theme:focus-visible ~ .shot-tabs label[for="shot-theme"],
-  #shot-mobile:focus-visible ~ .shot-tabs label[for="shot-mobile"],
-  #shot-roadmap:focus-visible ~ .shot-tabs label[for="shot-roadmap"] {
+  #shot-mobile:focus-visible ~ .shot-tabs label[for="shot-mobile"] {
     outline: 2px solid var(--accent-500); outline-offset: 2px;
   }
 
@@ -341,8 +339,7 @@
   #shot-search:checked ~ .shot-panels #panel-search,
   #shot-cards:checked ~ .shot-panels #panel-cards,
   #shot-theme:checked ~ .shot-panels #panel-theme,
-  #shot-mobile:checked ~ .shot-panels #panel-mobile,
-  #shot-roadmap:checked ~ .shot-panels #panel-roadmap { display: block; }
+  #shot-mobile:checked ~ .shot-panels #panel-mobile { display: block; }
 
   /* The built-in SDLC gallery reuses the .shot-* styles with its own radio group. */
   #pipe-menu:checked ~ .shot-tabs label[for="pipe-menu"],
@@ -1389,7 +1386,7 @@
               <img src="/site/images/platform/sdlc.webp" alt="The product roadmap showing 86 per cent complete, six of seven delivery artefacts done, grouped into Discovery and Design phases" width="1440" height="900" loading="lazy" decoding="async">
             </picture>
           </div>
-          <figcaption class="shot-cap">Every artefact the delivery depends on, with its state: the problem statement, the personas, the domain model, the workflow value chain. Six of seven done, one in progress, and each one opens the document itself. The ones marked "Living doc" are rewritten as the software changes, not at the end of a phase.</figcaption>
+          <figcaption class="shot-cap">Every artefact the delivery depends on, with its state: the problem statement, the personas, the domain model, the workflow value chain. Six of seven done, one in progress, and each one opens the document itself. The ones marked "Living doc" are rewritten as the software changes, not at the end of a phase. Stakeholders see progress without anybody preparing a report.</figcaption>
         </figure>
         <figure class="shot-panel" id="panel-pipe-chain">
           <div class="shot-frame">
@@ -1455,8 +1452,7 @@
         <input type="radio" name="platform-shot" id="shot-cards">
         <input type="radio" name="platform-shot" id="shot-theme">
         <input type="radio" name="platform-shot" id="shot-mobile">
-        <input type="radio" name="platform-shot" id="shot-roadmap">
-        <div class="shot-tabs">
+          <div class="shot-tabs">
           <label for="shot-list">Records at scale</label>
           <label for="shot-detail">Record pages</label>
           <label for="shot-actions">State machines</label>
@@ -1467,8 +1463,7 @@
           <label for="shot-cards">Views your users pick</label>
           <label for="shot-theme">Your design system</label>
           <label for="shot-mobile">On a phone</label>
-          <label for="shot-roadmap">Roadmap</label>
-        </div>
+          </div>
         <div class="shot-panels">
           <figure class="shot-panel" id="panel-list">
             <div class="shot-frame">
@@ -1558,16 +1553,7 @@
                 <img src="/site/images/platform/mobile.webp" alt="The delivery programs list on a phone, reflowed into stacked cards" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
-            <figcaption class="shot-cap">The same screen on a phone. The card view the person chose on their laptop follows them here, the filters become a row that scrolls, and the navigation folds behind a menu — none of which anybody built separately. A screen generated once works everywhere the person opens it.</figcaption>
-          </figure>
-          <figure class="shot-panel" id="panel-roadmap">
-            <div class="shot-frame">
-              <picture>
-                <source srcset="/site/images/platform/roadmap.avif" type="image/avif">
-                <img src="/site/images/platform/roadmap.webp" alt="A product roadmap inside the application showing artefact completion by stage" width="1440" height="900" loading="lazy" decoding="async">
-              </picture>
-            </div>
-            <figcaption class="shot-cap">A roadmap inside the application, reading the artefacts rather than a spreadsheet somebody keeps up to date. Every problem statement, persona set and domain model listed with the state it is actually in. Stakeholders see progress without anybody preparing a report.</figcaption>
+            <figcaption class="shot-cap">The same screen on a phone. The table reflows into cards, the filters into a row that scrolls, and the navigation folds behind a menu — none of which anybody built separately. A screen generated once works everywhere the person opens it.</figcaption>
           </figure>
         </div>
     </div>
