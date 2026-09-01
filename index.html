@@ -629,6 +629,34 @@
   }
 
   /* Pricing */
+  .prices { position: relative; }
+  .prices > input {
+    position: absolute; width: 1px; height: 1px;
+    opacity: 0; margin: 0; pointer-events: none;
+  }
+  .cur-tabs {
+    display: inline-flex; gap: 0.25rem; margin-top: 2rem;
+    padding: 0.25rem; border-radius: 9999px;
+    background: #fff; border: 1px solid #e2e8f0;
+  }
+  .cur-tabs label {
+    cursor: pointer; border-radius: 9999px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8125rem; font-weight: 600; color: #475569;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+  .cur-tabs label:hover { color: #0B1220; }
+  #cur-aud:checked ~ .cur-tabs label[for="cur-aud"],
+  #cur-usd:checked ~ .cur-tabs label[for="cur-usd"] { background: #0B1220; color: #fff; }
+  #cur-aud:focus-visible ~ .cur-tabs label[for="cur-aud"],
+  #cur-usd:focus-visible ~ .cur-tabs label[for="cur-usd"] {
+    outline: 2px solid var(--accent-500); outline-offset: 2px;
+  }
+  /* AUD is the set price; the USD figures are rounded equivalents */
+  .cur-usd { display: none; }
+  #cur-usd:checked ~ * .cur-aud { display: none; }
+  #cur-usd:checked ~ * .cur-usd { display: inline; }
+
   .price-row {
     display: flex; align-items: baseline; justify-content: space-between;
     gap: 1rem; padding: 0.875rem 0; border-top: 1px solid #e2e8f0;
@@ -1997,11 +2025,19 @@ end</code></pre></div>
         Priced by what you run, not by who logs in.
       </h2>
       <p class="mt-5 text-lg leading-8 text-slate-600">
-        Two things carry a price: the environments you run, and the people who build with Fusion. The people who use what you build are not licensed at all — however many of them there are. Every figure below is a list price in US dollars, per year.
+        Two things carry a price: the environments you run, and the people who build with Fusion. The people who use what you build are not licensed at all — however many of them there are. Every figure below is an annual list price, set in Australian dollars.
       </p>
     </div>
 
-    <div class="mt-12 grid gap-5 lg:grid-cols-2">
+    <div class="prices">
+      <input type="radio" name="currency" id="cur-aud" checked>
+      <input type="radio" name="currency" id="cur-usd">
+      <div class="cur-tabs" role="group" aria-label="Currency">
+        <label for="cur-aud">AUD</label>
+        <label for="cur-usd">USD</label>
+      </div>
+
+      <div class="mt-8 grid gap-5 lg:grid-cols-2">
       <div class="card card-border border-slate-200 bg-white shadow-sm">
         <div class="p-6 md:p-8">
           <h3 class="font-display text-xl font-medium">What you run</h3>
@@ -2009,15 +2045,15 @@ end</code></pre></div>
           <div class="mt-6">
             <div class="price-row">
               <span class="price-name">Delivery pipeline<span class="price-note">Discovery through to deployment</span></span>
-              <span class="price-fig">$24,000<span class="price-per">/yr</span></span>
+              <span class="price-fig"><span class="cur-aud">A$24,000</span><span class="cur-usd">US$16,000</span><span class="price-per">/yr</span></span>
             </div>
             <div class="price-row">
               <span class="price-name">Hosting<span class="price-note">Staging and production</span></span>
-              <span class="price-fig">$10,000<span class="price-per">/yr</span></span>
+              <span class="price-fig"><span class="cur-aud">A$10,000</span><span class="cur-usd">US$7,000</span><span class="price-per">/yr</span></span>
             </div>
             <div class="price-row">
               <span class="price-name">Monitoring<span class="price-note">Usage, security and performance, in production</span></span>
-              <span class="price-fig">$5,000<span class="price-per">/yr</span></span>
+              <span class="price-fig"><span class="cur-aud">A$5,000</span><span class="cur-usd">US$3,500</span><span class="price-per">/yr</span></span>
             </div>
           </div>
           <p class="mt-6 text-sm leading-6 text-slate-500">Hosting and monitoring are optional. Run the environments yourself, at any provider or on your own servers, and those two lines come off.</p>
@@ -2031,15 +2067,15 @@ end</code></pre></div>
           <div class="mt-6">
             <div class="price-row">
               <span class="price-name">Creator<span class="price-note">Solution architects — model the domain, define the workflows</span></span>
-              <span class="price-fig">$1,800<span class="price-per">/yr</span></span>
+              <span class="price-fig"><span class="cur-aud">A$1,800</span><span class="cur-usd">US$1,200</span><span class="price-per">/yr</span></span>
             </div>
             <div class="price-row">
               <span class="price-name">Contributor<span class="price-note">The delivery team</span></span>
-              <span class="price-fig">$600<span class="price-per">/yr</span></span>
+              <span class="price-fig"><span class="cur-aud">A$600</span><span class="cur-usd">US$400</span><span class="price-per">/yr</span></span>
             </div>
             <div class="price-row">
               <span class="price-name">Viewer<span class="price-note">Management and observers — read the roadmap, watch progress</span></span>
-              <span class="price-fig">$200<span class="price-per">/yr</span></span>
+              <span class="price-fig"><span class="cur-aud">A$200</span><span class="cur-usd">US$150</span><span class="price-per">/yr</span></span>
             </div>
           </div>
           <p class="mt-6 text-sm leading-6 text-slate-500">A typical delivery is a handful of people. The application they build carries no seat fee at all.</p>
@@ -2061,9 +2097,10 @@ end</code></pre></div>
         </p>
       </div>
     </div>
+    </div>
 
     <p class="cots-foot">
-      List prices in US dollars, per year. Delivery services are quoted per engagement. What you actually pay depends on how many environments you run and how many people build with Fusion, so treat this as the basis of a quote rather than the quote itself.
+      List prices per year. Prices are set in Australian dollars; the US dollar figures are rounded equivalents, not a live conversion, and the rate is fixed in the agreement. Delivery services are quoted per engagement. What you actually pay depends on how many environments you run and how many people build with Fusion, so treat this as the basis of a quote rather than the quote itself.
     </p>
   </div>
 </section>
