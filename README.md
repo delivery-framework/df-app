@@ -8,8 +8,8 @@ Marketing site for fusionframe.work. GitHub Pages serves the repository root.
 index.html            ← Home page (enterprise audience)
 challenge/index.html  ← The Idea to Impact Challenge
 platform/index.html   ← Platform, analytics, custom UI (business audience)
-lifecycle/index.html  ← The built-in development lifecycle
-technology/index.html ← AI-native, integration, less code (technical audience)
+lifecycle/index.html  ← The built-in development lifecycle, AI-native change flow
+technology/index.html ← Integration, less code, technology (technical audience)
 pricing/index.html    ← Pricing, offers, lock-in ledger
 services/index.html   ← Services firms page
 redesign/             ← Redirect stubs for the old /redesign/ URLs
