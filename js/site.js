@@ -237,4 +237,10 @@ const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 document.addEventListener('DOMContentLoaded', () => {
   $('#year').textContent = new Date().getFullYear();
   if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+
+  /* Mark the current page in the header nav. Hash links are skipped, so
+     same-page section links (home, services) never all light up at once. */
+  $$('header nav a').forEach((a) => {
+    if (!a.hash && a.pathname === location.pathname) a.setAttribute('aria-current', 'page');
+  });
 });
