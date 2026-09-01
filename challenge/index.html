@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Idea to Impact Challenge — Fusion</title>
+<meta name="description" content="Bring us one workflow. Sixteen working hours later it is software in production — the Idea to Impact Challenge, timed step by step." />
+<link rel="canonical" href="https://fusionframe.work/challenge/" />
+<link rel="icon" type="image/svg+xml" href="/site/images/favicon.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Fusion" />
+<meta property="og:title" content="The Idea to Impact Challenge — Fusion" />
+<meta property="og:description" content="Bring us one workflow. Sixteen working hours later it is software in production — the Idea to Impact Challenge, timed step by step." />
+<meta property="og:url" content="https://fusionframe.work/challenge/" />
+<meta property="og:image" content="https://fusionframe.work/site/images/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Idea to Impact Challenge — Fusion" />
+<meta name="twitter:description" content="Bring us one workflow. Sixteen working hours later it is software in production — the Idea to Impact Challenge, timed step by step." />
+<meta name="twitter:image" content="https://fusionframe.work/site/images/og-image.png" />
+
+
+<link rel="stylesheet" href="/css/output.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Wordmark face only — subset to the six logotype glyphs, block display so the brand name never flashes unstyled -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&text=Fusion&display=block" rel="stylesheet">
+
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-ktZLDqdblhaDYlH3Rd1PY.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+<style>
+  /* Speedrun timeline */
+  .run-layout { display: grid; gap: 2.5rem; align-items: start; }
+  .run-aside { min-width: 0; }
+  @media (min-width: 1024px) {
+    .run-layout { grid-template-columns: 1.35fr 0.65fr; }
+    .run-aside { position: sticky; top: 7rem; }
+  }
+  .run-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    column-gap: 1.25rem;
+    padding-bottom: 2.25rem;
+  }
+  .run-step:last-child { padding-bottom: 0; }
+  /* The rail joins each node to the next */
+  .run-step::before {
+    content: "";
+    position: absolute;
+    left: 1.4375rem;
+    top: 3.25rem;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-300), #e2e8f0);
+  }
+  .run-step:last-child::before { display: none; }
+
+  .run-node {
+    width: 3rem; height: 3rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 9999px;
+    background: #0B1220; color: #fff;
+    font-weight: 600; font-size: 0.9375rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .run-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.625rem; }
+  .run-title { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; }
+  .run-dur {
+    font-size: 0.75rem; font-weight: 600; white-space: nowrap;
+    padding: 0.2rem 0.6rem; border-radius: 9999px;
+    background: var(--accent-50); color: var(--accent-700);
+    border: 1px solid var(--accent-200);
+  }
+  .run-split {
+    margin-left: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8125rem; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: #64748b;
+  }
+  .run-text { margin-top: 0.5rem; line-height: 1.75; color: #475569; }
+  .run-arts { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .run-art {
+    font-size: 0.75rem; font-weight: 500;
+    padding: 0.25rem 0.6rem; border-radius: 9999px;
+    background: #f8fafc; border: 1px solid #e2e8f0; color: #334155;
+  }
+  .run-total {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem;
+    border-radius: 1.5rem; padding: 1.5rem 1.75rem;
+    background: #0B1220; color: #fff;
+  }
+  .run-total-clock {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 2.25rem; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-300);
+  }
+  @media (max-width: 640px) {
+    .run-step { grid-template-columns: 2.25rem 1fr; column-gap: 0.875rem; }
+    .run-step::before { left: 1.0625rem; top: 2.5rem; }
+    .run-node { width: 2.25rem; height: 2.25rem; font-size: 0.8125rem; }
+    .run-split { margin-left: 0; width: 100%; }
+  }
+
+  /* Run-complete marker, between the last timed step and the continuous one */
+  .run-mark {
+    display: flex; align-items: center; gap: 0.875rem;
+    margin-bottom: 2.25rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--accent-700);
+  }
+  .run-mark::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--accent-300), #e2e8f0);
+  }
+  .run-mark-clock {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.05em;
+  }
+  /* The run stops. The monitoring does not. */
+  .run-step--cont .run-node { background: var(--accent-500); color: #0B1220; }
+  .run-step--cont .run-dur {
+    background: var(--accent-500); color: #0B1220; border-color: var(--accent-500);
+  }
+
+  /* The four steps that need people from the business */
+  .run-step--biz .run-node { box-shadow: 0 0 0 4px var(--accent-200); }
+  .run-biz {
+    font-size: 0.75rem; font-weight: 600; white-space: nowrap;
+    padding: 0.2rem 0.6rem; border-radius: 9999px;
+    background: #0B1220; color: #fff;
+  }
+  .run-legend {
+    display: flex; align-items: center; gap: 0.625rem;
+    margin-bottom: 1.75rem;
+    font-size: 0.8125rem; line-height: 1.5; color: #64748b;
+  }
+  .run-legend-dot {
+    width: 0.75rem; height: 0.75rem; flex: none;
+    border-radius: 9999px; background: #0B1220;
+    box-shadow: 0 0 0 3px var(--accent-200);
+  }
+  .run-stat {
+    margin-top: 1rem;
+    border-radius: 1.5rem; padding: 1.5rem 1.75rem;
+    background: #fff; border: 1px solid var(--accent-200);
+  }
+  .run-stat-clock {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 2.25rem; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-700);
+  }
+
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-950">
+
+<!-- ====================== HEADER ====================== -->
+<header class="sticky top-0 z-50 border-b border-white/10 bg-ink/85 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+    <a href="/" class="flex items-center gap-2.5">
+      <!-- Logo mark: confinement arcs around a fusion core (follows the audience accent) -->
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--accent-300)">
+        <g transform="rotate(-18 16 16)">
+          <path d="M 13.15 26.63 A 11 11 0 0 1 13.15 5.37" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M 23.43 7.89 A 11 11 0 0 1 23.43 24.11" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+        <circle cx="16.4" cy="16" r="4.6" fill="#ffffff"/>
+      </svg>
+      <span class="wordmark text-xl text-white">Fusion</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+      <a href="/#why" class="hover:text-white ulink">Why Fusion</a>
+      <a href="/challenge/" class="hover:text-white ulink">The Challenge</a>
+      <a href="/platform/" class="hover:text-white ulink">Platform</a>
+      <a href="/technology/" class="hover:text-white ulink">Technology</a>
+      <a href="/pricing/" class="hover:text-white ulink">Pricing</a>
+    </nav>
+
+    <div class="flex items-center gap-3 md:gap-5">
+      <a href="https://calendar.app.google/X5crfjDgDdMgqXPn8" target="_blank" rel="noopener" class="btn h-auto border-0 bg-white px-4 py-2.5 text-sm font-medium text-ink hover:bg-slate-100 md:px-5">Book a session</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ====================== IDEA TO IMPACT CHALLENGE ====================== -->
+<section id="challenge" class="bg-white py-20 border-t border-slate-200">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">The Idea to Impact Challenge</p>
+      <h1 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        <span class="inline-block">Select a problem or opportunity. Pick a workflow.</span>
+        <span class="inline-block">Sixteen hours later, it's built, tested and deployed with user guides.</span>
+      </h1>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        Pick a workflow your business actually runs, and we will take it the whole way. This is the sequence, with the clock running. Every step hands the next one a finished artefact — which is why the trace from the sponsor's problem to software running in production holds without anyone assembling it afterwards. Four of the sixteen hours are your people's time.
+      </p>
+    </div>
+
+    <div class="mt-12 run-layout">
+      <div class="max-w-2xl">
+        <p class="run-legend">
+          <span class="run-legend-dot"></span>
+          A ringed number is a step that needs people from the business. There are four of them.
+        </p>
+      <ol>
+      <li class="run-step run-step--biz">
+        <div class="run-node">01</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Sponsor session</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-biz">Business time</span>
+            <span class="run-split">1:00h</span>
+          </div>
+          <p class="run-text">Sit with the sponsor and agree the problem to be solved, the opportunity, the success measures and who the stakeholders are.</p>
+        <div class="run-arts">
+          <span class="run-art">Session transcript</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">02</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Problem &amp; Opportunity Statement</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">2:00h</span>
+          </div>
+          <p class="run-text">Produce the statement and the stakeholder artefacts straight from the sponsor session transcript.</p>
+        <div class="run-arts">
+          <span class="run-art">Problem &amp; Opportunity Statement</span>
+          <span class="run-art">Stakeholders &amp; Personas</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step run-step--biz">
+        <div class="run-node">03</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Observation sessions</h3>
+            <span class="run-dur">1 hour each</span>
+            <span class="run-biz">Business time</span>
+            <span class="run-split">3:00h</span>
+          </div>
+          <p class="run-text">Stakeholders walk you through the workflows they run today, and you capture the pain points and the openings to improve.</p>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">04</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Current state documented</h3>
+            <span class="run-dur">2 hours</span>
+            <span class="run-split">5:00h</span>
+          </div>
+          <p class="run-text">Write up how the work runs today and what it runs on, then update the Problem &amp; Opportunity Statement with what you learned.</p>
+        <div class="run-arts">
+          <span class="run-art">Current State Workflows</span>
+          <span class="run-art">Current State System Architecture</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">05</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Domain Model and Workflows Value Stream</h3>
+            <span class="run-dur">4 hours</span>
+            <span class="run-split">9:00h</span>
+          </div>
+          <p class="run-text">Design the model the solution rests on, and the value stream its workflows make up between them.</p>
+        <div class="run-arts">
+          <span class="run-art">Domain Model</span>
+          <span class="run-art">Workflows Value Stream</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">06</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Workflow design and Model Specs</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">10:00h</span>
+          </div>
+          <p class="run-text">Design one workflow from the stream. Create the model specs behind it, or update the specs that already exist.</p>
+        <div class="run-arts">
+          <span class="run-art">Workflow design</span>
+          <span class="run-art">Model Specs</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">07</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Build and unit test</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">11:00h</span>
+          </div>
+          <p class="run-text">Build the workflow and unit test it.</p>
+        <div class="run-arts">
+          <span class="run-art">Working workflow</span>
+          <span class="run-art">Unit tests</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">08</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">System tests written and run</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">12:00h</span>
+          </div>
+          <p class="run-text">Write the system tests, run them, and record what they returned.</p>
+        <div class="run-arts">
+          <span class="run-art">System tests</span>
+          <span class="run-art">Test results</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">09</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">User guide and video</h3>
+            <span class="run-dur">30 minutes</span>
+            <span class="run-split">12:30h</span>
+          </div>
+          <p class="run-text">Write the user guide and produce the walkthrough video, so the people who use the workflow can start on it.</p>
+        <div class="run-arts">
+          <span class="run-art">User Guide</span>
+          <span class="run-art">User Guide Video</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step run-step--biz">
+        <div class="run-node">10</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Users review and test</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-biz">Business time</span>
+            <span class="run-split">13:30h</span>
+          </div>
+          <p class="run-text">Hand the guide and the build to the users. They review the guide and test the workflow against the way they actually work.</p>
+        <div class="run-arts">
+          <span class="run-art">Review findings</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">11</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Triage, fix, re-test</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-split">14:30h</span>
+          </div>
+          <p class="run-text">Triage the findings and fix them. Every artefact the fix touches is updated with it, and the system tests run again.</p>
+        <div class="run-arts">
+          <span class="run-art">Updated artefacts</span>
+          <span class="run-art">System test results</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step run-step--biz">
+        <div class="run-node">12</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Users confirm the fixes</h3>
+            <span class="run-dur">1 hour</span>
+            <span class="run-biz">Business time</span>
+            <span class="run-split">15:30h</span>
+          </div>
+          <p class="run-text">The users who raised the findings confirm the fixes. The record is current at the moment they sign off, not a week later.</p>
+        <div class="run-arts">
+          <span class="run-art">User sign-off</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-step">
+        <div class="run-node">13</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Release notes, roadmap, production deploy</h3>
+            <span class="run-dur">30 minutes</span>
+            <span class="run-split">16:00h</span>
+          </div>
+          <p class="run-text">Publish the release notes and the updated roadmap, then deploy to production. Both come off artefacts that are already current, which is why this step is measured in minutes.</p>
+        <div class="run-arts">
+          <span class="run-art">Release notes</span>
+          <span class="run-art">Roadmap</span>
+          <span class="run-art">Production deploy</span>
+        </div>
+        </div>
+      </li>
+      <li class="run-mark">
+        <span>Run complete</span>
+        <span class="run-mark-clock">16:00h</span>
+      </li>
+      <li class="run-step run-step--cont">
+        <div class="run-node">14</div>
+        <div>
+          <div class="run-head">
+            <h3 class="run-title">Monitor usage, security and performance</h3>
+            <span class="run-dur">continuous</span>
+          </div>
+          <p class="run-text">From the moment it is live. Usage, security and performance are watched in production, and what comes back is the input to the next run.</p>
+        </div>
+      </li>
+      </ol>
+      </div>
+
+      <div class="run-aside">
+        <div class="run-total">
+          <div>
+            <p class="text-sm uppercase tracking-[0.25em]" style="color: var(--accent-200);">Total</p>
+            <p class="run-total-clock mt-2">16:00h</p>
+          </div>
+          <p class="text-sm leading-6 text-slate-300">
+            Two working days from the sponsor session to the workflow running in production. Add an hour for every extra stakeholder you observe.
+          </p>
+        </div>
+        <div class="run-stat">
+          <p class="text-sm uppercase tracking-[0.25em]" style="color: var(--accent-700);">Business stakeholder time</p>
+          <p class="run-stat-clock mt-2">4:00h</p>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            Four of the sixteen hours ask anything of your business: the sponsor session, the observation session, the review, and the confirmation. The other twelve run without them.
+          </p>
+        </div>
+        <p class="mt-4 text-sm leading-6 text-slate-500">
+          The running clock assumes one observation session. Nothing in the list is a status meeting, a handover, or a document written to catch a record up. Step 14 sits outside the clock, because the monitoring does not stop.
+        </p>
+      </div>
+    </div>
+
+    <div class="card card-border mt-14 gap-5 border-slate-200 bg-slate-50 p-8 md:flex-row! md:items-center md:justify-between md:p-10">
+      <div>
+        <p class="font-display text-2xl font-medium tracking-tight md:text-3xl">Start the clock on one workflow.</p>
+        <p class="mt-3 max-w-xl leading-7 text-slate-600">
+          Step one is a one-hour session with your sponsor. Everything after it runs from what you agree there.
+        </p>
+      </div>
+      <a href="https://calendar.app.google/X5crfjDgDdMgqXPn8" target="_blank" rel="noopener" class="btn h-auto shrink-0 gap-0 border-0 bg-ink px-7 py-4 text-base font-medium text-white hover:bg-slate-800">
+        <span>Book the sponsor session</span>
+        <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FINAL ====================== -->
+<section class="bg-ink py-20 text-white relative overflow-hidden grain">
+  <div class="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
+  <div class="mx-auto max-w-7xl px-5 text-center relative">
+    <i data-lucide="workflow" class="mx-auto h-10 w-10" style="color: var(--accent-200);"></i>
+    <h2 class="font-display mx-auto mt-6 max-w-4xl text-4xl font-medium tracking-tight md:text-5xl">
+      Can you trace what shipped last quarter back to why it was funded?
+    </h2>
+    <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+      It is a harder question than it should be. Bring us one workflow, and we will answer it with working software rather than a proposal.
+    </p>
+    <a href="https://calendar.app.google/X5crfjDgDdMgqXPn8" target="_blank" rel="noopener" class="btn mt-9 h-auto gap-0 border-0 bg-white px-7 py-4 text-base font-medium text-ink hover:bg-slate-100">
+      <span>Book a session</span>
+      <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="border-t border-slate-200 bg-white py-10">
+  <div class="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 md:flex-row md:items-center">
+    <div>
+      <div class="wordmark text-lg">Fusion</div>
+      <p class="mt-1 text-sm text-slate-500">From a one-hour sponsor session to software in production. Hosted wherever you choose, including your own servers.</p>
+    </div>
+    <div class="flex flex-wrap gap-6 text-sm text-slate-500">
+      <a href="/#why" class="hover:text-ink ulink">Why Fusion</a>
+      <a href="/challenge/" class="hover:text-ink ulink">The Challenge</a>
+      <a href="/platform/" class="hover:text-ink ulink">Platform</a>
+      <a href="/technology/" class="hover:text-ink ulink">Technology</a>
+      <a href="/pricing/#offers" class="hover:text-ink ulink">Engagement</a>
+      <a href="/pricing/" class="hover:text-ink ulink">Pricing</a>
+      <a href="/services/" class="hover:text-ink ulink">For services firms</a>
+    </div>
+  </div>
+  <div class="mx-auto max-w-7xl px-5 mt-6">
+    <p class="text-xs text-slate-400">&copy; <span id="year"></span> Fusion. AI-assisted delivery that actually ships.</p>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+
+</body>
+</html>

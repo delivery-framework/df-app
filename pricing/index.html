@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pricing &amp; engagement — Fusion</title>
+<meta name="description" content="Simple pricing, clear engagement offers, and no lock-in: your code, your data, your hosting." />
+<link rel="canonical" href="https://fusionframe.work/pricing/" />
+<link rel="icon" type="image/svg+xml" href="/site/images/favicon.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Fusion" />
+<meta property="og:title" content="Pricing &amp; engagement — Fusion" />
+<meta property="og:description" content="Simple pricing, clear engagement offers, and no lock-in: your code, your data, your hosting." />
+<meta property="og:url" content="https://fusionframe.work/pricing/" />
+<meta property="og:image" content="https://fusionframe.work/site/images/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pricing &amp; engagement — Fusion" />
+<meta name="twitter:description" content="Simple pricing, clear engagement offers, and no lock-in: your code, your data, your hosting." />
+<meta name="twitter:image" content="https://fusionframe.work/site/images/og-image.png" />
+
+
+<link rel="stylesheet" href="/css/output.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Wordmark face only — subset to the six logotype glyphs, block display so the brand name never flashes unstyled -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&text=Fusion&display=block" rel="stylesheet">
+
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-ktZLDqdblhaDYlH3Rd1PY.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+<style>
+  /* No lock-in ledger */
+  .exit-ledger { margin-top: 3rem; display: grid; gap: 1.25rem; align-items: start; }
+  @media (min-width: 900px) { .exit-ledger { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+  .exit-col {
+    border-radius: 1.75rem; padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .exit-col--keep { border-color: color-mix(in srgb, var(--accent-500) 45%, transparent); }
+  .exit-col-head {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    padding-bottom: 1.25rem; margin-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    color: #94a3b8;
+  }
+  .exit-col--keep .exit-col-head { color: var(--accent-200); }
+  .exit-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 1.5rem; }
+  .exit-item-title { font-size: 1.0625rem; font-weight: 600; color: #fff; }
+  .exit-item-text { margin-top: 0.5rem; font-size: 0.9375rem; line-height: 1.7; color: #cbd5e1; }
+
+  .exit-verdict {
+    margin-top: 2rem; max-width: 52rem;
+    font-family: 'Fraunces', serif; font-feature-settings: 'ss01' on;
+    font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em;
+    line-height: 1.4; color: #fff;
+  }
+  .exit-compare {
+    margin-top: 2.5rem; padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+  }
+  .exit-compare-title {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--accent-200);
+  }
+  .exit-compare-text {
+    margin-top: 0.875rem; max-width: 52rem;
+    font-size: 0.9375rem; line-height: 1.75; color: #94a3b8;
+  }
+
+  /* Pricing */
+  .prices { position: relative; }
+  .prices > input {
+    position: absolute; width: 1px; height: 1px;
+    opacity: 0; margin: 0; pointer-events: none;
+  }
+  .cur-tabs {
+    display: inline-flex; gap: 0.25rem; margin-top: 2rem;
+    padding: 0.25rem; border-radius: 9999px;
+    background: #fff; border: 1px solid #e2e8f0;
+  }
+  .cur-tabs label {
+    cursor: pointer; border-radius: 9999px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8125rem; font-weight: 600; color: #475569;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+  .cur-tabs label:hover { color: #0B1220; }
+  #cur-aud:checked ~ .cur-tabs label[for="cur-aud"],
+  #cur-usd:checked ~ .cur-tabs label[for="cur-usd"] { background: #0B1220; color: #fff; }
+  #cur-aud:focus-visible ~ .cur-tabs label[for="cur-aud"],
+  #cur-usd:focus-visible ~ .cur-tabs label[for="cur-usd"] {
+    outline: 2px solid var(--accent-500); outline-offset: 2px;
+  }
+  /* AUD is the set price; the USD figures are rounded equivalents */
+  .cur-usd { display: none; }
+  #cur-usd:checked ~ * .cur-aud { display: none; }
+  #cur-usd:checked ~ * .cur-usd { display: inline; }
+
+  .price-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; padding: 0.875rem 0; border-top: 1px solid #e2e8f0;
+  }
+  .price-row:first-child { border-top: 0; padding-top: 0; }
+  .price-name { font-size: 0.9375rem; font-weight: 600; line-height: 1.45; color: #0B1220; }
+  .price-note {
+    display: block; margin-top: 0.2rem;
+    font-size: 0.8125rem; font-weight: 400; line-height: 1.5; color: #64748b;
+  }
+  .price-fig {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.25rem; font-weight: 700; color: #0B1220; white-space: nowrap;
+  }
+  .price-per {
+    margin-left: 0.25rem;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #64748b;
+  }
+
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-950">
+
+<!-- ====================== HEADER ====================== -->
+<header class="sticky top-0 z-50 border-b border-white/10 bg-ink/85 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+    <a href="/" class="flex items-center gap-2.5">
+      <!-- Logo mark: confinement arcs around a fusion core (follows the audience accent) -->
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--accent-300)">
+        <g transform="rotate(-18 16 16)">
+          <path d="M 13.15 26.63 A 11 11 0 0 1 13.15 5.37" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M 23.43 7.89 A 11 11 0 0 1 23.43 24.11" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+        <circle cx="16.4" cy="16" r="4.6" fill="#ffffff"/>
+      </svg>
+      <span class="wordmark text-xl text-white">Fusion</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+      <a href="/#why" class="hover:text-white ulink">Why Fusion</a>
+      <a href="/challenge/" class="hover:text-white ulink">The Challenge</a>
+      <a href="/platform/" class="hover:text-white ulink">Platform</a>
+      <a href="/technology/" class="hover:text-white ulink">Technology</a>
+      <a href="/pricing/" class="hover:text-white ulink">Pricing</a>
+    </nav>
+
+    <div class="flex items-center gap-3 md:gap-5">
+      <a href="https://calendar.app.google/X5crfjDgDdMgqXPn8" target="_blank" rel="noopener" class="btn h-auto border-0 bg-white px-4 py-2.5 text-sm font-medium text-ink hover:bg-slate-100 md:px-5">Book a session</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ====================== PRICING ====================== -->
+<section id="pricing" class="bg-slate-50 py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Pricing</p>
+      <h1 class="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-5xl">
+        Priced by what you run, not by who logs in.
+      </h1>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        Two things carry a price: the environments you run, and the people who build with Fusion. The people who use what you build are not licensed at all — however many of them there are. Every figure below is an annual list price, set in Australian dollars.
+      </p>
+    </div>
+
+    <div class="prices">
+      <input type="radio" name="currency" id="cur-aud" checked>
+      <input type="radio" name="currency" id="cur-usd">
+      <div class="cur-tabs" role="group" aria-label="Currency">
+        <label for="cur-aud">AUD</label>
+        <label for="cur-usd">USD</label>
+      </div>
+
+      <div class="mt-8 grid gap-5 lg:grid-cols-2">
+      <div class="card card-border border-slate-200 bg-white shadow-sm">
+        <div class="p-6 md:p-8">
+          <h3 class="font-display text-xl font-medium">What you run</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">Scales with your workload</p>
+          <div class="mt-6">
+            <div class="price-row">
+              <span class="price-name">Delivery pipeline<span class="price-note">Discovery through to deployment</span></span>
+              <span class="price-fig"><span class="cur-aud">A$24,000</span><span class="cur-usd">US$16,000</span><span class="price-per">/yr</span></span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Hosting<span class="price-note">Staging and production</span></span>
+              <span class="price-fig"><span class="cur-aud">A$10,000</span><span class="cur-usd">US$7,000</span><span class="price-per">/yr</span></span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Monitoring<span class="price-note">Usage, security and performance, in production</span></span>
+              <span class="price-fig"><span class="cur-aud">A$5,000</span><span class="cur-usd">US$3,500</span><span class="price-per">/yr</span></span>
+            </div>
+          </div>
+          <p class="mt-6 text-sm leading-6 text-slate-500">Hosting and monitoring are optional. Run the environments yourself, at any provider or on your own servers, and those two lines come off.</p>
+        </div>
+      </div>
+
+      <div class="card card-border border-slate-200 bg-white shadow-sm">
+        <div class="p-6 md:p-8">
+          <h3 class="font-display text-xl font-medium">Who builds with it</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">A delivery team, not your user base</p>
+          <div class="mt-6">
+            <div class="price-row">
+              <span class="price-name">Creator<span class="price-note">Solution architects — model the domain, define the workflows</span></span>
+              <span class="price-fig"><span class="cur-aud">A$1,800</span><span class="cur-usd">US$1,200</span><span class="price-per">/yr</span></span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Contributor<span class="price-note">The delivery team</span></span>
+              <span class="price-fig"><span class="cur-aud">A$600</span><span class="cur-usd">US$400</span><span class="price-per">/yr</span></span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Viewer<span class="price-note">Management and observers — read the roadmap, watch progress</span></span>
+              <span class="price-fig"><span class="cur-aud">A$200</span><span class="cur-usd">US$150</span><span class="price-per">/yr</span></span>
+            </div>
+          </div>
+          <p class="mt-6 text-sm leading-6 text-slate-500">A typical delivery is a handful of people. The application they build carries no seat fee at all.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="less-stat">
+      <div class="less-stat-fig">
+        <span class="less-stat-num">$0</span>
+        <span class="less-stat-unit">per application user</span>
+      </div>
+      <div>
+        <p class="less-stat-body">
+          However many people use the software you build — ten, ten thousand, everyone you serve — none of them is licensed. The seats above are for the few people who build with Fusion, and that is the whole difference between this and a platform that charges you for every person who logs in.
+        </p>
+        <p class="less-stat-scope">
+          That is what “no per-seat licensing” means on this page: the seats above licence the few people who build with Fusion, and nobody is ever charged for using what they built. Growing your user base is not a pricing event.
+        </p>
+      </div>
+    </div>
+    </div>
+
+    <p class="cots-foot">
+      List prices per year. Prices are set in Australian dollars; the US dollar figures are rounded equivalents, not a live conversion, and the rate is fixed in the agreement. Delivery services are quoted per engagement. What you actually pay depends on how many environments you run and how many people build with Fusion, so treat this as the basis of a quote rather than the quote itself.
+    </p>
+  </div>
+</section>
+
+<!-- ====================== OFFERS ====================== -->
+<section id="offers" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">How to start</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        Start with one real initiative.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        No transformation programme up front. Prove Fusion on one live initiative, then decide.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-5 lg:grid-cols-3">
+      <div class="card card-border border-slate-200 bg-slate-50 shadow-sm lift">
+        <div class="p-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+            <i data-lucide="target" class="h-6 w-6"></i>
+          </div>
+          <h3 class="font-display mt-5 text-xl font-medium">Readiness Assessment</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">Fixed-scope diagnostic</p>
+          <p class="mt-4 leading-7 text-slate-600">Map where your delivery fragments, where the trace breaks, and the highest-value place to start.</p>
+          <a href="https://calendar.app.google/X5crfjDgDdMgqXPn8" target="_blank" rel="noopener" class="mt-5 inline-flex items-center text-sm font-semibold text-ink">
+            Start here <i data-lucide="chevron-right" class="ml-1 h-4 w-4"></i>
+          </a>
+        </div>
+      </div>
+      <div class="card card-border border-slate-200 bg-slate-50 shadow-sm lift">
+        <div class="p-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+            <i data-lucide="rocket" class="h-6 w-6"></i>
+          </div>
+          <h3 class="font-display mt-5 text-xl font-medium">Delivery Pilot</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">4–6 weeks, one live initiative</p>
+          <p class="mt-4 leading-7 text-slate-600">Run the initiative through discovery, blueprint and assurance — with evidence you can put in front of your exec team.</p>
+          <a href="https://calendar.app.google/X5crfjDgDdMgqXPn8" target="_blank" rel="noopener" class="mt-5 inline-flex items-center text-sm font-semibold text-ink">
+            Start here <i data-lucide="chevron-right" class="ml-1 h-4 w-4"></i>
+          </a>
+        </div>
+      </div>
+      <div class="card card-border border-slate-200 bg-slate-50 shadow-sm lift">
+        <div class="p-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+            <i data-lucide="layers-3" class="h-6 w-6"></i>
+          </div>
+          <h3 class="font-display mt-5 text-xl font-medium">Operating Model Sprint</h3>
+          <p class="mt-1 text-sm font-medium" style="color: var(--accent-700);">8–12 weeks, after the pilot</p>
+          <p class="mt-4 leading-7 text-slate-600">Once the pilot proves value, redesign how work moves from idea to production across the organisation.</p>
+          <a href="https://calendar.app.google/X5crfjDgDdMgqXPn8" target="_blank" rel="noopener" class="mt-5 inline-flex items-center text-sm font-semibold text-ink">
+            Start here <i data-lucide="chevron-right" class="ml-1 h-4 w-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== NO LOCK-IN ====================== -->
+<section id="lock-in" class="bg-ink py-20 text-white relative overflow-hidden grain">
+  <div class="absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl opacity-15" style="background: var(--accent-500);"></div>
+  <div class="mx-auto max-w-7xl px-5 relative">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);">No lock-in</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        Here is exactly what it would cost you to leave.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-300">
+        Every platform claims there is no lock-in. Almost none of them will tell you what walking away actually involves. So here is the honest ledger, before you sign anything rather than after.
+      </p>
+    </div>
+
+    <div class="exit-ledger">
+      <div class="exit-col exit-col--keep">
+        <p class="exit-col-head"><i data-lucide="check" class="h-4 w-4"></i> You keep</p>
+        <ul class="exit-list">
+          <li class="exit-item">
+            <h4 class="exit-item-title">Your documents</h4>
+            <p class="exit-item-text">The discovery, the design decisions, the delivery record. They are plain files sitting in your repository, and they stay readable with or without us.</p>
+          </li>
+          <li class="exit-item">
+            <h4 class="exit-item-title">Your business logic</h4>
+            <p class="exit-item-text">The models and the rules that describe how your organisation actually works. That is the part that took the thinking, and it is ordinary Rails that any Rails developer can pick up.</p>
+          </li>
+          <li class="exit-item">
+            <h4 class="exit-item-title">Your database, and everything in it</h4>
+            <p class="exit-item-text">A standard PostgreSQL database with a standard schema. Not a file export you have to reassemble — the live thing, running, with your data in it.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="exit-col exit-col--lose">
+        <p class="exit-col-head"><i data-lucide="rotate-ccw" class="h-4 w-4"></i> You would have to replace</p>
+        <ul class="exit-list">
+          <li class="exit-item">
+            <h4 class="exit-item-title">The interface</h4>
+            <p class="exit-item-text">Fusion generates your screens. Take Fusion out and the screens go with it, so you would build your own. This is the real cost of leaving and we are not going to pretend it is small.</p>
+          </li>
+          <li class="exit-item">
+            <h4 class="exit-item-title">The AI-assisted pipeline</h4>
+            <p class="exit-item-text">The path from discovery to delivery, and the conventions that keep AI output as reviewable work. You would go back to whatever you were doing before.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="exit-verdict">
+      That is a viable escape hatch, not a full system replacement. You would be rebuilding an interface, not rebuilding a system.
+    </p>
+
+    <div class="exit-compare">
+      <h3 class="exit-compare-title">Now weigh it against leaving a rented platform</h3>
+      <p class="exit-compare-text">
+        Your data comes out as a file export that somebody has to reassemble into a working system. Your business rules were written in a language that runs nowhere else. Your screens were configuration inside a product you no longer have access to. There is no escape hatch, viable or otherwise — and that is not an oversight in the design. It is the commercial model.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FINAL ====================== -->
+<section class="bg-ink py-20 text-white relative overflow-hidden grain">
+  <div class="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full blur-3xl opacity-30" style="background: var(--accent-500);"></div>
+  <div class="mx-auto max-w-7xl px-5 text-center relative">
+    <i data-lucide="workflow" class="mx-auto h-10 w-10" style="color: var(--accent-200);"></i>
+    <h2 class="font-display mx-auto mt-6 max-w-4xl text-4xl font-medium tracking-tight md:text-5xl">
+      Can you trace what shipped last quarter back to why it was funded?
+    </h2>
+    <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+      It is a harder question than it should be. Bring us one workflow, and we will answer it with working software rather than a proposal.
+    </p>
+    <a href="https://calendar.app.google/X5crfjDgDdMgqXPn8" target="_blank" rel="noopener" class="btn mt-9 h-auto gap-0 border-0 bg-white px-7 py-4 text-base font-medium text-ink hover:bg-slate-100">
+      <span>Book a session</span>
+      <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="border-t border-slate-200 bg-white py-10">
+  <div class="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 md:flex-row md:items-center">
+    <div>
+      <div class="wordmark text-lg">Fusion</div>
+      <p class="mt-1 text-sm text-slate-500">From a one-hour sponsor session to software in production. Hosted wherever you choose, including your own servers.</p>
+    </div>
+    <div class="flex flex-wrap gap-6 text-sm text-slate-500">
+      <a href="/#why" class="hover:text-ink ulink">Why Fusion</a>
+      <a href="/challenge/" class="hover:text-ink ulink">The Challenge</a>
+      <a href="/platform/" class="hover:text-ink ulink">Platform</a>
+      <a href="/technology/" class="hover:text-ink ulink">Technology</a>
+      <a href="/pricing/#offers" class="hover:text-ink ulink">Engagement</a>
+      <a href="/pricing/" class="hover:text-ink ulink">Pricing</a>
+      <a href="/services/" class="hover:text-ink ulink">For services firms</a>
+    </div>
+  </div>
+  <div class="mx-auto max-w-7xl px-5 mt-6">
+    <p class="text-xs text-slate-400">&copy; <span id="year"></span> Fusion. AI-assisted delivery that actually ships.</p>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+
+</body>
+</html>

@@ -6,13 +6,19 @@ Marketing site for fusionframe.work. GitHub Pages serves the repository root.
 
 ```
 index.html            ← Home page (enterprise audience)
+challenge/index.html  ← The Idea to Impact Challenge
+platform/index.html   ← Platform, analytics, custom UI (business audience)
+technology/index.html ← Pipeline, AI-native, integration, less code (technical audience)
+pricing/index.html    ← Pricing, offers, lock-in ledger
 services/index.html   ← Services firms page
 redesign/             ← Redirect stubs for the old /redesign/ URLs
 archive/              ← Superseded page, kept for reference
 explainer/            ← Standalone explainer page
 css/
-  input.css           ← Tailwind source (edit this)
+  input.css           ← Tailwind source (edit this; also holds the shared base styles)
   output.css          ← Compiled Tailwind (generated)
+js/
+  site.js             ← Shared script: hero canvas, footer year, lucide icons
 site/
   css/                ← Styles for archive/
   js/                 ← Script for archive/
@@ -22,8 +28,13 @@ robots.txt
 CNAME
 ```
 
-Both live pages hold their own custom CSS in a `<style>` block. Tailwind supplies
-the utility classes and DaisyUI supplies `btn`, `card` and `badge`.
+The shared base styles (palette tokens, hero, reveal, links) live in
+`css/input.css` and compile into `css/output.css`, which every page loads. Each
+page holds only its own section CSS in a `<style>` block; the services page also
+overrides the `:root` palette there. Tailwind supplies the utility classes and
+DaisyUI supplies `btn`, `card` and `badge`. The home page carries a small script
+that forwards the old single-page anchors (for example `/#pricing`) to the
+sub-pages.
 
 Two rules for `css/input.css`:
 
