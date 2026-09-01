@@ -268,51 +268,8 @@
   </div>
 </section>
 
-<!-- ====================== INTEGRATION ====================== -->
-<section id="integration" class="bg-slate-50 py-20">
-  <div class="mx-auto max-w-7xl px-5">
-    <div class="max-w-3xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Integration</p>
-      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
-        <span class="inline-block">Four reasons people buy an integration tier.</span>
-        <span class="inline-block">All four are already here.</span>
-      </h2>
-      <p class="mt-5 text-lg leading-8 text-slate-600">
-        An integration platform is bought to do four things: run this on a schedule, retry it when the other end is down, do not run it twice, and show me what happened. In Fusion those are properties of the application, not a product you licence and run beside it. The queue lives in the database the application already has — in the Rails build and the Elixir one alike — so there is no broker, no second service and nothing new to keep running.
-      </p>
-    </div>
-
-    <div class="mid-grid">
-      <div class="mid-card">
-        <div class="mid-icon"><i data-lucide="calendar-clock" class="h-5 w-5"></i></div>
-        <h3 class="mid-title">Run it on a schedule</h3>
-        <p class="mid-text">The schedule is declared next to the thing it acts on, not in a separate tool holding its own copy of your business rules.</p>
-      </div>
-      <div class="mid-card">
-        <div class="mid-icon"><i data-lucide="refresh-cw" class="h-5 w-5"></i></div>
-        <h3 class="mid-title">Retry when the other end is down</h3>
-        <p class="mid-text">Failed work retries on its own, backing off as it goes, and what happens after the last attempt is declared with it. Nobody sits watching a queue.</p>
-      </div>
-      <div class="mid-card">
-        <div class="mid-icon"><i data-lucide="shield-check" class="h-5 w-5"></i></div>
-        <h3 class="mid-title">Do not run it twice</h3>
-        <p class="mid-text">Work can be declared unique, and anything arriving from outside is keyed so the same delivery cannot be processed twice.</p>
-      </div>
-      <div class="mid-card">
-        <div class="mid-icon"><i data-lucide="eye" class="h-5 w-5"></i></div>
-        <h3 class="mid-title">Show me what happened</h3>
-        <p class="mid-text">An operator dashboard for the work itself, metrics for the graphs your team already keeps, and — the part people actually want — the outcome visible on the record it belongs to.</p>
-      </div>
-    </div>
-
-    <p class="cots-foot">
-      In the reference application that is eight queues, five schedules, and four live third-party integrations — inbound webhooks, transactional email, media processing and a reconciliation sweep — with no broker, no message bus and no integration product anywhere in the stack.
-    </p>
-  </div>
-</section>
-
 <!-- ====================== LESS CODE ====================== -->
-<section id="less-code" class="bg-slate-50 py-20 border-t border-slate-200">
+<section id="less-code" class="bg-slate-50 py-20">
   <div class="mx-auto max-w-7xl px-5">
     <div class="max-w-3xl">
       <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Significantly less code</p>
@@ -391,6 +348,49 @@ end</code></pre></div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ====================== INTEGRATION ====================== -->
+<section id="integration" class="bg-slate-50 py-20 border-t border-slate-200">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Integration</p>
+      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+        <span class="inline-block">Four reasons people buy an integration tier.</span>
+        <span class="inline-block">All four are already here.</span>
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        An integration platform is bought to do four things: run this on a schedule, retry it when the other end is down, do not run it twice, and show me what happened. In Fusion those are properties of the application, not a product you licence and run beside it. The queue lives in the database the application already has — in the Rails build and the Elixir one alike — so there is no broker, no second service and nothing new to keep running.
+      </p>
+    </div>
+
+    <div class="mid-grid">
+      <div class="mid-card">
+        <div class="mid-icon"><i data-lucide="calendar-clock" class="h-5 w-5"></i></div>
+        <h3 class="mid-title">Run it on a schedule</h3>
+        <p class="mid-text">The schedule is declared next to the thing it acts on, not in a separate tool holding its own copy of your business rules.</p>
+      </div>
+      <div class="mid-card">
+        <div class="mid-icon"><i data-lucide="refresh-cw" class="h-5 w-5"></i></div>
+        <h3 class="mid-title">Retry when the other end is down</h3>
+        <p class="mid-text">Failed work retries on its own, backing off as it goes, and what happens after the last attempt is declared with it. Nobody sits watching a queue.</p>
+      </div>
+      <div class="mid-card">
+        <div class="mid-icon"><i data-lucide="shield-check" class="h-5 w-5"></i></div>
+        <h3 class="mid-title">Do not run it twice</h3>
+        <p class="mid-text">Work can be declared unique, and anything arriving from outside is keyed so the same delivery cannot be processed twice.</p>
+      </div>
+      <div class="mid-card">
+        <div class="mid-icon"><i data-lucide="eye" class="h-5 w-5"></i></div>
+        <h3 class="mid-title">Show me what happened</h3>
+        <p class="mid-text">An operator dashboard for the work itself, metrics for the graphs your team already keeps, and — the part people actually want — the outcome visible on the record it belongs to.</p>
+      </div>
+    </div>
+
+    <p class="cots-foot">
+      In the reference application that is eight queues, five schedules, and four live third-party integrations — inbound webhooks, transactional email, media processing and a reconciliation sweep — with no broker, no message bus and no integration product anywhere in the stack.
+    </p>
   </div>
 </section>
 
