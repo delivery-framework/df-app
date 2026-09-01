@@ -4,21 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Technology — Fusion</title>
-<meta name="description" content="How Fusion ships: a built-in delivery pipeline, AI across the lifecycle, standard integration, and significantly less code to own." />
+<meta name="description" content="How Fusion ships: AI across the whole lifecycle, standard integration, and significantly less code to own." />
 <link rel="canonical" href="https://fusionframe.work/technology/" />
 <link rel="icon" type="image/svg+xml" href="/site/images/favicon.svg" />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Fusion" />
 <meta property="og:title" content="Technology — Fusion" />
-<meta property="og:description" content="How Fusion ships: a built-in delivery pipeline, AI across the lifecycle, standard integration, and significantly less code to own." />
+<meta property="og:description" content="How Fusion ships: AI across the whole lifecycle, standard integration, and significantly less code to own." />
 <meta property="og:url" content="https://fusionframe.work/technology/" />
 <meta property="og:image" content="https://fusionframe.work/site/images/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Technology — Fusion" />
-<meta name="twitter:description" content="How Fusion ships: a built-in delivery pipeline, AI across the lifecycle, standard integration, and significantly less code to own." />
+<meta name="twitter:description" content="How Fusion ships: AI across the whole lifecycle, standard integration, and significantly less code to own." />
 <meta name="twitter:image" content="https://fusionframe.work/site/images/og-image.png" />
 
 
@@ -286,6 +286,7 @@
       <a href="/#why" class="hover:text-white ulink">Why Fusion</a>
       <a href="/challenge/" class="hover:text-white ulink">The Challenge</a>
       <a href="/platform/" class="hover:text-white ulink">Platform</a>
+      <a href="/lifecycle/" class="hover:text-white ulink">Lifecycle</a>
       <a href="/technology/" class="hover:text-white ulink">Technology</a>
       <a href="/pricing/" class="hover:text-white ulink">Pricing</a>
     </nav>
@@ -298,100 +299,15 @@
 
 <main id="top">
 
-<!-- ====================== BUILT-IN SDLC ====================== -->
-<section id="pipeline" class="bg-white py-20">
-  <div class="mx-auto max-w-7xl px-5">
-    <div class="max-w-3xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Built-in lifecycle</p>
-      <h1 class="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-5xl">
-        The development lifecycle is built into the app.
-      </h1>
-      <p class="mt-5 text-lg leading-8 text-slate-600">
-        On most deliveries the evidence lives outside the software: a wiki nobody opens after go-live, a spreadsheet of test results, a roadmap deck that stopped being true in month three. Fusion knows what it is made of, so it keeps that record itself. The roadmap, the workflow gates, the user guides and the test recordings are pages in the application your people already sign in to — and they are current, because the work is what updates them.
-      </p>
-    </div>
-
-    <div class="mt-12 shots">
-      <input type="radio" name="pipeline-shot" id="pipe-menu" checked>
-      <input type="radio" name="pipeline-shot" id="pipe-sdlc">
-      <input type="radio" name="pipeline-shot" id="pipe-chain">
-      <input type="radio" name="pipeline-shot" id="pipe-testing">
-      <input type="radio" name="pipeline-shot" id="pipe-log">
-      <div class="shot-tabs">
-        <label for="pipe-menu">In the user menu</label>
-        <label for="pipe-sdlc">Delivery artefacts</label>
-        <label for="pipe-chain">Workflow gates</label>
-        <label for="pipe-testing">User testing</label>
-        <label for="pipe-log">Release notes</label>
-      </div>
-      <div class="shot-panels">
-        <figure class="shot-panel" id="panel-pipe-menu">
-          <div class="shot-frame">
-            <picture>
-              <source srcset="/site/images/platform/usermenu.avif" type="image/avif">
-              <img src="/site/images/platform/usermenu.webp" alt="The application's own user menu open, listing feedback, user testing, roadmap, the delivery board and what's new alongside account security and sign out" width="1440" height="900" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <figcaption class="shot-cap">Start here, because it shows where all of this lives. Feedback, user testing, the roadmap, the delivery board and the release notes sit in the same menu as account security and sign out. Nobody bought a second tool and wired it in. They are pages of the application, in the place a user would look for them.</figcaption>
-        </figure>
-        <figure class="shot-panel" id="panel-pipe-sdlc">
-          <div class="shot-frame">
-            <picture>
-              <source srcset="/site/images/platform/sdlc.avif" type="image/avif">
-              <img src="/site/images/platform/sdlc.webp" alt="The product roadmap showing 86 per cent complete, six of seven delivery artefacts done, grouped into Discovery and Design phases" width="1440" height="900" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <figcaption class="shot-cap">Every artefact the delivery depends on, with its state: the problem statement, the personas, the domain model, the workflow value chain. Six of seven done, one in progress, and each one opens the document itself. The ones marked "Living doc" are rewritten as the software changes, not at the end of a phase. Stakeholders see progress without anybody preparing a report.</figcaption>
-        </figure>
-        <figure class="shot-panel" id="panel-pipe-chain">
-          <div class="shot-frame">
-            <picture>
-              <source srcset="/site/images/platform/valuechain.avif" type="image/avif">
-              <img src="/site/images/platform/valuechain.webp" alt="The roadmap value chain tab, showing twenty-one workflows each tracked across five gates: spec, build, system testing, user guide and user testing" width="1440" height="900" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <figcaption class="shot-cap">Twenty-one workflows, each carrying the same five gates: spec, build, system testing, user guide, user testing. A workflow is not finished when the code runs. It is finished when somebody outside the team has read the guide and used it. The counts across the top are the honest state of the delivery, on a page anyone can open.</figcaption>
-        </figure>
-        <figure class="shot-panel" id="panel-pipe-testing">
-          <div class="shot-frame">
-            <picture>
-              <source srcset="/site/images/platform/usertesting.avif" type="image/avif">
-              <img src="/site/images/platform/usertesting.webp" alt="The user testing panel with the Invite User workflow selected, its five gates shown, a Before you record checklist and an enabled start recording button" width="1440" height="900" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <figcaption class="shot-cap">A user opens this from their own menu and picks the workflow they are about to exercise. Only workflows whose user guide is finished can be recorded — the rest are listed but refuse to start. Then the app tells the tester how to run the session, and the recording lands against that workflow's user-testing gate. Feedback is not a survey sent afterwards. It is collected in the application, at the moment the person meets the thing.</figcaption>
-        </figure>
-        <figure class="shot-panel" id="panel-pipe-log">
-          <div class="shot-frame">
-            <picture>
-              <source srcset="/site/images/platform/changelog.avif" type="image/avif">
-              <img src="/site/images/platform/changelog.webp" alt="The what's new page inside the application, showing release v0.35.0 with its changes grouped into added, changed, fixed and security" width="1440" height="900" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <figcaption class="shot-cap">Every release writes itself up here, grouped into what was added, changed, fixed and secured — in the language of the business, not commit messages. "Brightwattle can now set up the facilitator training its delivery partners' staff attend." The security entries name the fix and the CVE. Your users read this page. So does your auditor.</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-slate-500">
-      <span>The roadmap is a page in the app, not a slide</span>
-      <span aria-hidden="true" class="text-slate-300">&middot;</span>
-      <span>Five gates on every workflow</span>
-      <span aria-hidden="true" class="text-slate-300">&middot;</span>
-      <span>Evidence collected where the work happens</span>
-    </div>
-  </div>
-</section>
-
 <!-- ====================== AI NATIVE ====================== -->
 <section id="ai-native" class="bg-ink py-20 text-white relative overflow-hidden grain">
   <div class="absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl opacity-15" style="background: var(--accent-500);"></div>
   <div class="mx-auto max-w-7xl px-5 relative">
     <div class="max-w-3xl">
       <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-200);">Built AI-native</p>
-      <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+      <h1 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
         Ask for a change. Everything it touches moves with it.
-      </h2>
+      </h1>
       <p class="mt-5 text-lg leading-8 text-slate-300">
         AI was not added to Fusion afterwards. The framework was built to be worked on by it, which means it knows what it is made of — which spec describes which workflow, which code implements it, which tests cover it, which guide explains it. Ask for a change and it already knows the full list of things that change with it.
       </p>
@@ -696,6 +612,7 @@ end</code></pre></div>
       <a href="/#why" class="hover:text-ink ulink">Why Fusion</a>
       <a href="/challenge/" class="hover:text-ink ulink">The Challenge</a>
       <a href="/platform/" class="hover:text-ink ulink">Platform</a>
+      <a href="/lifecycle/" class="hover:text-ink ulink">Lifecycle</a>
       <a href="/technology/" class="hover:text-ink ulink">Technology</a>
       <a href="/pricing/#offers" class="hover:text-ink ulink">Engagement</a>
       <a href="/pricing/" class="hover:text-ink ulink">Pricing</a>
