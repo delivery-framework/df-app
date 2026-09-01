@@ -298,3 +298,10 @@ html { scroll-behavior: smooth; }
   .reveal { animation: none; opacity: 1; transform: none; }
   .lift, .lift:hover { transition: none; transform: none; }
 }
+
+/* Table footnote — used by the build-or-buy table (home) and the
+   integration section (technology page). */
+.cots-foot {
+  margin-top: 1.5rem; max-width: 46rem;
+  font-size: 0.875rem; line-height: 1.7; color: #64748b;
+}
