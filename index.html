@@ -590,10 +590,10 @@
 
   /* Build or buy comparison */
   .cots-wrap { margin-top: 3rem; overflow-x: auto; }
-  .cots-table { min-width: 56rem; display: grid; gap: 0; }
+  .cots-table { min-width: 68rem; display: grid; gap: 0; }
   .cots-row {
     display: grid;
-    grid-template-columns: 12rem repeat(3, 1fr);
+    grid-template-columns: 11rem repeat(4, 1fr);
     border-top: 1px solid #e2e8f0;
   }
   .cots-row:last-child .cots-cell--us { border-radius: 0 0 1.25rem 1.25rem; }
@@ -970,10 +970,11 @@
     <div class="max-w-3xl">
       <p class="text-sm font-semibold uppercase tracking-[0.25em]" style="color: var(--accent-700);">Build or buy</p>
       <h2 class="font-display mt-4 text-4xl font-medium tracking-tight md:text-5xl">
-        You have been asked to choose between two sub-optimal options.
+        <span class="inline-block">Three ways to get business software.</span>
+        <span class="inline-block">All three are sub-optimal.</span>
       </h2>
       <p class="mt-5 text-lg leading-8 text-slate-600">
-        Build it, and wait a year for something that fits. Buy it, and have something next month that does not. The trade has been presented as a law of nature for twenty years, and it is an artefact of how the tools were sold. Fusion takes the finished plumbing and the fast start from one side, and the fit, the ownership and the freedom from the other.
+        Build it, and wait a year for something that fits. Buy a package, and have something next month that does not. Build on a low-code platform, and get closer — until you meet its ceiling, on their licence, with your logic in their format. The trade has been presented as a law of nature for twenty years, and it is an artefact of how the tools were sold. Fusion takes the finished plumbing and the fast start from the products, and the fit, the ownership and the freedom from building it yourself.
       </p>
     </div>
 
@@ -982,48 +983,56 @@
         <div class="cots-row cots-row--head">
           <div class="cots-label"></div>
           <div class="cots-cell">Build it yourself</div>
-          <div class="cots-cell">Rent a platform</div>
+          <div class="cots-cell">Buy a package</div>
+          <div class="cots-cell">Build on a low-code platform</div>
           <div class="cots-cell cots-cell--us">Fusion</div>
         </div>
           <div class="cots-row">
             <div class="cots-label">Time to something working</div>
-            <div class="cots-cell">Months. You write authentication, permissions, audit and forms before you write any of your business.</div>
-            <div class="cots-cell">Days. It is already built.</div>
-            <div class="cots-cell cots-cell--us">Days. It is already built, and it starts in your own repository.</div>
+            <div class="cots-cell">Months to years. You write authentication, permissions, audit and forms before you write any of your business.</div>
+            <div class="cots-cell">Days to stand it up, then months of configuration to make it fit.</div>
+            <div class="cots-cell">Months. You are still building the application, only in someone else's tool.</div>
+            <div class="cots-cell cots-cell--us">Weeks. The plumbing is already built, and it starts in your own repository.</div>
           </div>
           <div class="cots-row">
             <div class="cots-label">How well it fits</div>
             <div class="cots-cell">Exactly. You built it.</div>
-            <div class="cots-cell">As well as the vendor allows. You bend the business to fit the product.</div>
+            <div class="cots-cell">As well as the vendor's idea of your business. You bend the process to fit the product.</div>
+            <div class="cots-cell">Closer, because you build it — until you need something the platform does not model.</div>
             <div class="cots-cell cots-cell--us">Exactly. The screens follow your model, and any screen can be replaced by hand.</div>
           </div>
           <div class="cots-row">
             <div class="cots-label">Who maintains the plumbing</div>
             <div class="cots-cell">You do. Every year, forever.</div>
+            <div class="cots-cell">The vendor does, on their release schedule. Your customisations are your problem at every upgrade.</div>
             <div class="cots-cell">The vendor does. It is the thing you are paying for.</div>
             <div class="cots-cell cots-cell--us">We do, and it arrives as a dependency you update on your own schedule. The version you hold keeps running whether or not you keep paying.</div>
           </div>
           <div class="cots-row">
             <div class="cots-label">What it costs</div>
             <div class="cots-cell">Salaries, scaling with everything you decide to build.</div>
-            <div class="cots-cell">A fee for every seat, forever, scaling with how many people log in.</div>
+            <div class="cots-cell">A licence per user, plus the implementation partner who configures it.</div>
+            <div class="cots-cell">A fee for every seat, forever, plus the builders certified to work in it.</div>
             <div class="cots-cell cots-cell--us">Machines and a subscription. It scales with what you run, not with who logs in.</div>
           </div>
           <div class="cots-row">
             <div class="cots-label">The ceiling</div>
             <div class="cots-cell">None. It is your code.</div>
+            <div class="cots-cell">Whatever the product already does. Past that, you are filing a feature request.</div>
             <div class="cots-cell">Real, and you tend to meet it late, once you have already committed.</div>
             <div class="cots-cell cots-cell--us">None. It is a Rails application.</div>
           </div>
           <div class="cots-row">
             <div class="cots-label">If you walk away</div>
             <div class="cots-cell">Nothing to walk away from.</div>
+            <div class="cots-cell">Your data in an export. How the work is done stays with the product.</div>
             <div class="cots-cell">A file export. The logic dies with the platform it was written for.</div>
             <div class="cots-cell cots-cell--us">Your data, your schema and your business logic. You rebuild the screens.</div>
           </div>
           <div class="cots-row">
             <div class="cots-label">Work that runs on a schedule</div>
             <div class="cots-cell">You add a queue, a scheduler, and somewhere to see what failed. Three more things to run.</div>
+            <div class="cots-cell">Whatever it ships with. If it does not do it, it does not do it.</div>
             <div class="cots-cell">A second product, licensed and run alongside the first.</div>
             <div class="cots-cell cots-cell--us">In the application, on the database it already uses.</div>
           </div>
@@ -1031,7 +1040,7 @@
     </div>
 
     <p class="cots-foot">
-      Read the last column down. Every entry is taken from one side or the other, and none of them is a compromise between the two.
+      Read the last column down. Every entry is taken from one of the other three, and not one of them is a compromise.
     </p>
   </div>
 </section>
